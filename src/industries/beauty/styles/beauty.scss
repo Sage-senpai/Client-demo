@@ -1,0 +1,2289 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500&family=Lato:wght@300;400;700;900&display=swap');
+
+/* ═══════════════════════════════════════════════════
+   RADIANCE STUDIO — Beauty Industry Stylesheet
+   ═══════════════════════════════════════════════════ */
+
+/* ── Variables ── */
+$primary: #2D0A1F;
+$accent: #C49A8A;
+$blush: #F9E8E8;
+$cream: #FAF6F2;
+$gold: #B8860B;
+$white: #ffffff;
+$text-dark: #3a1f2e;
+$text-muted: #7a5f6e;
+$radius: 12px;
+$radius-sm: 8px;
+$radius-lg: 20px;
+
+/* ── Mixins ── */
+@mixin heading-font {
+  font-family: 'Bodoni Moda', serif;
+}
+
+@mixin body-font {
+  font-family: 'Lato', sans-serif;
+}
+
+@mixin container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@mixin section-padding {
+  padding: 100px 0;
+  @media (max-width: 768px) {
+    padding: 64px 0;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@mixin grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  @media (max-width: 960px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@mixin grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  @media (max-width: 960px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   BASE
+   ═══════════════════════════════════════════════════ */
+.beauty-app {
+  @include body-font;
+  color: $text-dark;
+  background: $cream;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  h1, h2, h3, h4, h5 {
+    @include heading-font;
+    font-weight: 600;
+    line-height: 1.15;
+    color: $primary;
+  }
+
+  p {
+    line-height: 1.7;
+    color: $text-muted;
+  }
+
+  .section-label {
+    @include body-font;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: $accent;
+    margin-bottom: 12px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════════ */
+.beauty-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba($white, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba($accent, 0.15);
+  transition: background 0.3s, box-shadow 0.3s;
+
+  &--scrolled {
+    background: rgba($white, 0.97);
+    box-shadow: 0 2px 20px rgba($primary, 0.06);
+  }
+
+  &__inner {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  &__logo {
+    @include heading-font;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $primary;
+    letter-spacing: 1px;
+
+    span {
+      color: $accent;
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @media (max-width: 900px) {
+      display: none;
+    }
+  }
+
+  &__link {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: $text-dark;
+    letter-spacing: 0.5px;
+    transition: color 0.25s;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: $accent;
+      transition: width 0.3s;
+    }
+
+    &:hover {
+      color: $accent;
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &--active {
+      color: $accent;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &__cta {
+    @include body-font;
+    background: $accent;
+    color: $white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.2s;
+
+    &:hover {
+      background: darken($accent, 8%);
+    }
+
+    @media (max-width: 900px) {
+      display: none;
+    }
+  }
+
+  &__hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+
+    @media (max-width: 900px) {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: $primary;
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    &--open {
+      span:nth-child(1) {
+        transform: translateY(7.5px) rotate(45deg);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: translateY(-7.5px) rotate(-45deg);
+      }
+    }
+  }
+
+  &__mobile-menu {
+    display: none;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $white;
+    z-index: 999;
+    padding: 32px 24px;
+
+    @media (max-width: 900px) {
+      &--open {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+    }
+
+    a {
+      @include heading-font;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: $primary;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba($accent, 0.15);
+    }
+
+    .beauty-nav__cta {
+      display: inline-block;
+      text-align: center;
+      margin-top: 16px;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════════ */
+.beauty-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba($primary, 0.72) 0%,
+      rgba($primary, 0.40) 50%,
+      rgba($accent, 0.20) 100%
+    );
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    @include container;
+    padding-top: 120px;
+    max-width: 700px;
+    margin: 0;
+    margin-left: max(24px, calc((100vw - 1200px) / 2));
+  }
+
+  &__title {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    color: $white;
+    line-height: 1.05;
+    margin-bottom: 20px;
+
+    span {
+      color: $accent;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.15rem;
+    color: rgba($white, 0.85);
+    max-width: 480px;
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+
+  &__ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  &__btn-primary {
+    @include body-font;
+    background: $accent;
+    color: $white;
+    border: none;
+    padding: 14px 36px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.25s;
+
+    &:hover {
+      background: darken($accent, 8%);
+    }
+  }
+
+  &__btn-outline {
+    @include body-font;
+    background: transparent;
+    color: $white;
+    border: 2px solid rgba($white, 0.6);
+    padding: 14px 36px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color 0.25s, background 0.25s;
+
+    &:hover {
+      border-color: $white;
+      background: rgba($white, 0.1);
+    }
+  }
+
+  &__scroll-indicator {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba($white, 0.5);
+    font-size: 2rem;
+    animation: beauty-float 2.5s ease-in-out infinite;
+  }
+}
+
+@keyframes beauty-float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+
+/* ═══════════════════════════════════════════════════
+   BOOKING WIDGET
+   ═══════════════════════════════════════════════════ */
+.beauty-booking-widget {
+  background: $white;
+  @include container;
+  margin-top: -48px;
+  position: relative;
+  z-index: 10;
+  border-radius: $radius-lg;
+  padding: 32px 40px;
+  box-shadow: 0 8px 40px rgba($primary, 0.08);
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 24px;
+    margin-top: -32px;
+  }
+
+  &__field {
+    flex: 1;
+    min-width: 180px;
+
+    label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: $text-muted;
+      margin-bottom: 8px;
+    }
+
+    select,
+    input {
+      @include body-font;
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid rgba($accent, 0.25);
+      border-radius: $radius-sm;
+      font-size: 0.95rem;
+      color: $text-dark;
+      background: $cream;
+      outline: none;
+      transition: border-color 0.25s;
+
+      &:focus {
+        border-color: $accent;
+      }
+    }
+  }
+
+  &__btn {
+    @include body-font;
+    background: $primary;
+    color: $white;
+    border: none;
+    padding: 14px 36px;
+    border-radius: $radius-sm;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.25s;
+    white-space: nowrap;
+
+    &:hover {
+      background: lighten($primary, 8%);
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   TRUST PILLARS
+   ═══════════════════════════════════════════════════ */
+.beauty-trust {
+  @include section-padding;
+  background: $cream;
+
+  &__inner {
+    @include container;
+    text-align: center;
+  }
+
+  &__heading {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 60px;
+  }
+
+  &__grid {
+    @include grid-4;
+  }
+
+  &__pillar {
+    text-align: center;
+    padding: 32px 20px;
+
+    &-icon {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+    }
+
+    &-title {
+      @include heading-font;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: $primary;
+      margin-bottom: 8px;
+    }
+
+    &-text {
+      font-size: 0.92rem;
+      color: $text-muted;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   SERVICE CATEGORY CARDS
+   ═══════════════════════════════════════════════════ */
+.beauty-categories {
+  @include section-padding;
+  background: $blush;
+
+  &__inner {
+    @include container;
+    text-align: center;
+  }
+
+  &__heading {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 16px;
+  }
+
+  &__subtitle {
+    max-width: 560px;
+    margin: 0 auto 52px;
+    font-size: 1.05rem;
+  }
+
+  &__grid {
+    @include grid-4;
+  }
+
+  &__card {
+    position: relative;
+    border-radius: $radius;
+    overflow: hidden;
+    height: 340px;
+    cursor: pointer;
+
+    &:hover .beauty-categories__card-img {
+      transform: scale(1.08);
+    }
+
+    &:hover .beauty-categories__card-overlay {
+      background: rgba($primary, 0.45);
+    }
+  }
+
+  &__card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  &__card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba($primary, 0.32);
+    transition: background 0.4s;
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+  }
+
+  &__card-title {
+    @include heading-font;
+    color: $white;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   STYLIST SPOTLIGHT
+   ═══════════════════════════════════════════════════ */
+.beauty-stylists-spotlight {
+  @include section-padding;
+  background: $cream;
+
+  &__inner {
+    @include container;
+    text-align: center;
+  }
+
+  &__heading {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 52px;
+  }
+
+  &__grid {
+    @include grid-4;
+  }
+
+  &__card {
+    text-align: center;
+  }
+
+  &__card-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 16px;
+    border: 4px solid $blush;
+  }
+
+  &__card-name {
+    @include heading-font;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: $primary;
+    margin-bottom: 4px;
+  }
+
+  &__card-specialty {
+    font-size: 0.88rem;
+    color: $accent;
+    font-weight: 600;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   INSTAGRAM / GALLERY STRIP
+   ═══════════════════════════════════════════════════ */
+.beauty-gallery-strip {
+  @include section-padding;
+  background: $blush;
+  overflow: hidden;
+
+  &__inner {
+    @include container;
+    text-align: center;
+  }
+
+  &__heading {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 48px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+
+    @media (max-width: 960px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 500px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__item {
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: $radius-sm;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba($primary, 0.12);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    &:hover img {
+      transform: scale(1.06);
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   REVIEWS
+   ═══════════════════════════════════════════════════ */
+.beauty-reviews {
+  @include section-padding;
+  background: $cream;
+
+  &__inner {
+    @include container;
+    text-align: center;
+  }
+
+  &__heading {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 12px;
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 48px;
+
+    &-stars {
+      color: $gold;
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+    }
+
+    &-text {
+      font-size: 0.95rem;
+      color: $text-muted;
+      font-weight: 600;
+    }
+  }
+
+  &__grid {
+    @include grid-3;
+  }
+
+  &__card {
+    background: $white;
+    border-radius: $radius;
+    padding: 32px;
+    text-align: left;
+    box-shadow: 0 4px 20px rgba($primary, 0.05);
+  }
+
+  &__card-stars {
+    color: $gold;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  &__card-text {
+    font-size: 0.95rem;
+    color: $text-dark;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  &__card-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__card-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__card-name {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: $primary;
+  }
+
+  &__card-date {
+    font-size: 0.8rem;
+    color: $text-muted;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   SERVICES PAGE
+   ═══════════════════════════════════════════════════ */
+.beauty-services-page {
+  padding-top: 100px;
+  @include section-padding;
+  background: $cream;
+
+  &__inner {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  &__title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    margin-bottom: 12px;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
+
+    @media (max-width: 800px) {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  &__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    @media (max-width: 800px) {
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 8px;
+      padding-bottom: 8px;
+    }
+  }
+
+  &__sidebar-btn {
+    @include body-font;
+    background: transparent;
+    border: 1.5px solid rgba($accent, 0.2);
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $text-dark;
+    cursor: pointer;
+    text-align: left;
+    white-space: nowrap;
+    transition: all 0.25s;
+
+    &:hover {
+      border-color: $accent;
+      color: $accent;
+    }
+
+    &--active {
+      background: $primary;
+      border-color: $primary;
+      color: $white;
+
+      &:hover {
+        background: $primary;
+        border-color: $primary;
+        color: $white;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__service-row {
+    background: $white;
+    border-radius: $radius;
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 2px 12px rgba($primary, 0.04);
+    transition: box-shadow 0.25s;
+
+    &:hover {
+      box-shadow: 0 4px 24px rgba($primary, 0.08);
+    }
+
+    @media (max-width: 700px) {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+
+  &__service-info {
+    h3 {
+      @include heading-font;
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    p {
+      font-size: 0.88rem;
+      color: $text-muted;
+      margin: 0;
+    }
+  }
+
+  &__service-duration {
+    font-size: 0.88rem;
+    color: $text-muted;
+    white-space: nowrap;
+  }
+
+  &__service-price {
+    @include heading-font;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $primary;
+    white-space: nowrap;
+  }
+
+  &__service-book {
+    @include body-font;
+    background: $accent;
+    color: $white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.25s;
+
+    &:hover {
+      background: darken($accent, 8%);
+    }
+  }
+
+  &__price-note {
+    margin-top: 36px;
+    padding: 20px 24px;
+    background: $blush;
+    border-radius: $radius-sm;
+    font-size: 0.9rem;
+    color: $text-muted;
+    text-align: center;
+
+    strong {
+      color: $primary;
+    }
+  }
+}
+
+/* ── FAQ Accordion ── */
+.beauty-faq {
+  @include section-padding;
+  background: $blush;
+
+  &__inner {
+    @include container;
+    max-width: 800px;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    margin-bottom: 48px;
+  }
+
+  &__item {
+    background: $white;
+    border-radius: $radius;
+    margin-bottom: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba($primary, 0.04);
+  }
+
+  &__question {
+    @include body-font;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: $primary;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.25s;
+
+    &:hover {
+      color: $accent;
+    }
+
+    span {
+      font-size: 1.2rem;
+      transition: transform 0.3s;
+    }
+
+    &--open span {
+      transform: rotate(45deg);
+    }
+  }
+
+  &__answer {
+    padding: 0 24px 20px;
+    font-size: 0.95rem;
+    color: $text-muted;
+    line-height: 1.7;
+    text-align: left;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   TEAM PAGE
+   ═══════════════════════════════════════════════════ */
+.beauty-team-page {
+  padding-top: 100px;
+  @include section-padding;
+  background: $cream;
+
+  &__inner {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  &__title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    margin-bottom: 12px;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  &__grid {
+    @include grid-3;
+  }
+
+  &__card {
+    background: $white;
+    border-radius: $radius;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba($primary, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 36px rgba($primary, 0.1);
+    }
+  }
+
+  &__card-photo {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+  }
+
+  &__card-body {
+    padding: 24px;
+  }
+
+  &__card-name {
+    @include heading-font;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $primary;
+    margin-bottom: 4px;
+  }
+
+  &__card-specialty {
+    font-size: 0.88rem;
+    color: $accent;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  &__card-exp {
+    font-size: 0.82rem;
+    color: $text-muted;
+    margin-bottom: 12px;
+  }
+
+  &__card-bio {
+    font-size: 0.9rem;
+    color: $text-muted;
+    line-height: 1.65;
+  }
+}
+
+.beauty-promise {
+  @include section-padding;
+  background: $blush;
+  text-align: center;
+
+  &__inner {
+    @include container;
+    max-width: 700px;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 20px;
+  }
+
+  &__text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GALLERY PAGE
+   ═══════════════════════════════════════════════════ */
+.beauty-gallery-page {
+  padding-top: 100px;
+  @include section-padding;
+  background: $cream;
+
+  &__inner {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    margin-bottom: 12px;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  &__toggle {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  &__toggle-btn {
+    @include body-font;
+    background: transparent;
+    border: 2px solid rgba($accent, 0.3);
+    padding: 10px 28px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: $text-dark;
+    cursor: pointer;
+    transition: all 0.25s;
+
+    &:hover {
+      border-color: $accent;
+    }
+
+    &--active {
+      background: $primary;
+      border-color: $primary;
+      color: $white;
+    }
+  }
+
+  &__filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  &__filter-btn {
+    @include body-font;
+    background: transparent;
+    border: 1.5px solid rgba($accent, 0.2);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $text-dark;
+    cursor: pointer;
+    transition: all 0.25s;
+
+    &:hover {
+      border-color: $accent;
+      color: $accent;
+    }
+
+    &--active {
+      background: $accent;
+      border-color: $accent;
+      color: $white;
+    }
+  }
+}
+
+/* ── Masonry Grid ── */
+.beauty-masonry {
+  columns: 3;
+  column-gap: 16px;
+
+  @media (max-width: 960px) {
+    columns: 2;
+  }
+  @media (max-width: 500px) {
+    columns: 1;
+  }
+
+  &__item {
+    break-inside: avoid;
+    margin-bottom: 16px;
+    border-radius: $radius;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba($primary, 0.12);
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+}
+
+/* ── Before & After ── */
+.beauty-before-after {
+  @include grid-2;
+
+  &__card {
+    background: $white;
+    border-radius: $radius;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba($primary, 0.05);
+  }
+
+  &__images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &__img-wrapper {
+    position: relative;
+    height: 240px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: $primary;
+    color: $white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 50px;
+
+    &--after {
+      background: $accent;
+    }
+  }
+
+  &__body {
+    padding: 20px 24px;
+  }
+
+  &__title {
+    @include heading-font;
+    font-size: 1.1rem;
+    color: $primary;
+    margin-bottom: 4px;
+  }
+
+  &__desc {
+    font-size: 0.88rem;
+    color: $text-muted;
+    margin: 0;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   BOOK PAGE
+   ═══════════════════════════════════════════════════ */
+.beauty-book-page {
+  padding-top: 100px;
+  @include section-padding;
+  background: $cream;
+  min-height: 100vh;
+
+  &__inner {
+    @include container;
+    max-width: 800px;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  &__title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    margin-bottom: 12px;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+/* ── Progress Bar ── */
+.beauty-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 48px;
+
+  &__step {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  &__circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    @include flex-center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 2px solid rgba($accent, 0.3);
+    color: $text-muted;
+    background: $white;
+    transition: all 0.3s;
+
+    &--active {
+      background: $accent;
+      border-color: $accent;
+      color: $white;
+    }
+
+    &--done {
+      background: $primary;
+      border-color: $primary;
+      color: $white;
+    }
+  }
+
+  &__line {
+    width: 48px;
+    height: 2px;
+    background: rgba($accent, 0.2);
+    transition: background 0.3s;
+
+    &--active {
+      background: $primary;
+    }
+
+    @media (max-width: 500px) {
+      width: 24px;
+    }
+  }
+
+  &__label {
+    display: none;
+  }
+}
+
+/* ── Step Container ── */
+.beauty-step {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: 40px;
+  box-shadow: 0 4px 24px rgba($primary, 0.06);
+
+  @media (max-width: 600px) {
+    padding: 24px;
+  }
+
+  &__heading {
+    @include heading-font;
+    font-size: 1.5rem;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+
+  &__back {
+    @include body-font;
+    background: none;
+    border: none;
+    color: $accent;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
+/* ── Category Tiles ── */
+.beauty-category-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__tile {
+    @include body-font;
+    background: $blush;
+    border: 2px solid transparent;
+    border-radius: $radius;
+    padding: 24px 16px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: $primary;
+    cursor: pointer;
+    transition: all 0.25s;
+
+    &:hover {
+      border-color: $accent;
+      background: $white;
+    }
+
+    &--selected {
+      border-color: $accent;
+      background: $white;
+    }
+  }
+}
+
+/* ── Service Options ── */
+.beauty-service-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  &__item {
+    @include body-font;
+    background: $blush;
+    border: 2px solid transparent;
+    border-radius: $radius;
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.25s;
+
+    &:hover {
+      border-color: $accent;
+    }
+
+    &--selected {
+      border-color: $accent;
+      background: $white;
+    }
+  }
+
+  &__info {
+    h4 {
+      @include heading-font;
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+
+    span {
+      font-size: 0.82rem;
+      color: $text-muted;
+    }
+  }
+
+  &__price {
+    @include heading-font;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: $primary;
+  }
+}
+
+/* ── Stylist Cards in Booking ── */
+.beauty-stylist-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+
+  &__card {
+    background: $blush;
+    border: 2px solid transparent;
+    border-radius: $radius;
+    padding: 24px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s;
+
+    &:hover {
+      border-color: $accent;
+    }
+
+    &--selected {
+      border-color: $accent;
+      background: $white;
+    }
+  }
+
+  &__photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 12px;
+  }
+
+  &__name {
+    @include heading-font;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: $primary;
+    margin-bottom: 4px;
+  }
+
+  &__specialty {
+    font-size: 0.82rem;
+    color: $accent;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  &__rating {
+    font-size: 0.85rem;
+    color: $gold;
+    margin-bottom: 12px;
+  }
+
+  &__days {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+  }
+
+  &__day {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 50px;
+    background: rgba($accent, 0.15);
+    color: $accent;
+
+    &--off {
+      background: rgba($text-muted, 0.1);
+      color: $text-muted;
+      text-decoration: line-through;
+    }
+  }
+}
+
+/* ── Date & Time ── */
+.beauty-datetime {
+  &__calendar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+
+    .react-datepicker {
+      @include body-font;
+      border: 1.5px solid rgba($accent, 0.2);
+      border-radius: $radius;
+      box-shadow: 0 4px 20px rgba($primary, 0.06);
+    }
+
+    .react-datepicker__header {
+      background: $blush;
+      border-bottom: 1px solid rgba($accent, 0.15);
+    }
+
+    .react-datepicker__day--selected {
+      background: $accent;
+      border-radius: 50%;
+    }
+
+    .react-datepicker__day:hover {
+      background: $blush;
+      border-radius: 50%;
+    }
+  }
+
+  &__time-label {
+    @include body-font;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  &__time-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+
+    @media (max-width: 600px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__time-slot {
+    @include body-font;
+    background: $blush;
+    border: 1.5px solid transparent;
+    border-radius: $radius-sm;
+    padding: 10px 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $primary;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s;
+
+    &:hover:not(&--unavailable) {
+      border-color: $accent;
+    }
+
+    &--selected {
+      border-color: $accent;
+      background: $accent;
+      color: $white;
+    }
+
+    &--unavailable {
+      background: rgba($text-muted, 0.08);
+      color: rgba($text-muted, 0.45);
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+  }
+}
+
+/* ── Details Form ── */
+.beauty-details-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: $text-muted;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    input,
+    textarea {
+      @include body-font;
+      padding: 12px 16px;
+      border: 1.5px solid rgba($accent, 0.25);
+      border-radius: $radius-sm;
+      font-size: 0.95rem;
+      color: $text-dark;
+      background: $cream;
+      outline: none;
+      transition: border-color 0.25s;
+      resize: vertical;
+
+      &:focus {
+        border-color: $accent;
+      }
+    }
+
+    textarea {
+      min-height: 100px;
+    }
+  }
+}
+
+/* ── Confirm / Next Buttons ── */
+.beauty-step-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+
+  &__btn {
+    @include body-font;
+    background: $primary;
+    color: $white;
+    border: none;
+    padding: 14px 48px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.25s;
+
+    &:hover {
+      background: lighten($primary, 8%);
+    }
+
+    &--accent {
+      background: $accent;
+
+      &:hover {
+        background: darken($accent, 8%);
+      }
+    }
+  }
+}
+
+/* ── Success Screen ── */
+.beauty-success {
+  text-align: center;
+  padding: 60px 20px;
+
+  &__icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 12px;
+  }
+
+  &__text {
+    font-size: 1.05rem;
+    max-width: 480px;
+    margin: 0 auto 32px;
+  }
+
+  &__summary {
+    background: $blush;
+    border-radius: $radius;
+    padding: 28px 32px;
+    max-width: 420px;
+    margin: 0 auto 32px;
+    text-align: left;
+  }
+
+  &__summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba($accent, 0.15);
+    font-size: 0.92rem;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    span:first-child {
+      color: $text-muted;
+      font-weight: 600;
+    }
+
+    span:last-child {
+      color: $primary;
+      font-weight: 700;
+    }
+  }
+
+  &__btn {
+    @include body-font;
+    background: $accent;
+    color: $white;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.25s;
+
+    &:hover {
+      background: darken($accent, 8%);
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   PRODUCTS PAGE
+   ═══════════════════════════════════════════════════ */
+.beauty-products-page {
+  padding-top: 100px;
+  @include section-padding;
+  background: $cream;
+
+  &__inner {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  &__title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    margin-bottom: 12px;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  &__grid {
+    @include grid-4;
+  }
+
+  &__card {
+    background: $white;
+    border-radius: $radius;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba($primary, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 36px rgba($primary, 0.1);
+    }
+  }
+
+  &__card-img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+  }
+
+  &__card-body {
+    padding: 20px;
+  }
+
+  &__card-category {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: $accent;
+    margin-bottom: 6px;
+  }
+
+  &__card-name {
+    @include heading-font;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $primary;
+    margin-bottom: 6px;
+  }
+
+  &__card-desc {
+    font-size: 0.88rem;
+    color: $text-muted;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+
+  &__card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__card-price {
+    @include heading-font;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: $primary;
+  }
+
+  &__card-btn {
+    @include body-font;
+    background: $accent;
+    color: $white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.25s;
+
+    &:hover {
+      background: darken($accent, 8%);
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   CONTACT PAGE
+   ═══════════════════════════════════════════════════ */
+.beauty-contact-page {
+  padding-top: 100px;
+  @include section-padding;
+  background: $cream;
+
+  &__inner {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  &__title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    margin-bottom: 12px;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  &__grid {
+    @include grid-2;
+    margin-bottom: 60px;
+  }
+}
+
+.beauty-contact-info {
+  &__card {
+    background: $white;
+    border-radius: $radius;
+    padding: 36px;
+    box-shadow: 0 4px 20px rgba($primary, 0.05);
+    margin-bottom: 24px;
+  }
+
+  &__card-title {
+    @include heading-font;
+    font-size: 1.3rem;
+    color: $primary;
+    margin-bottom: 20px;
+  }
+
+  &__row {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__icon {
+    font-size: 1.2rem;
+    margin-top: 2px;
+  }
+
+  &__text {
+    font-size: 0.95rem;
+    color: $text-dark;
+    line-height: 1.6;
+
+    strong {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+  }
+}
+
+.beauty-contact-hours {
+  &__card {
+    background: $blush;
+    border-radius: $radius;
+    padding: 36px;
+  }
+
+  &__card-title {
+    @include heading-font;
+    font-size: 1.3rem;
+    color: $primary;
+    margin-bottom: 20px;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba($accent, 0.15);
+    font-size: 0.92rem;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    span:first-child {
+      color: $text-muted;
+      font-weight: 600;
+    }
+
+    span:last-child {
+      color: $primary;
+      font-weight: 700;
+    }
+  }
+}
+
+.beauty-contact-form {
+  background: $white;
+  border-radius: $radius;
+  padding: 36px;
+  box-shadow: 0 4px 20px rgba($primary, 0.05);
+
+  &__title {
+    @include heading-font;
+    font-size: 1.3rem;
+    color: $primary;
+    margin-bottom: 24px;
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: $text-muted;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    input,
+    textarea,
+    select {
+      @include body-font;
+      padding: 12px 16px;
+      border: 1.5px solid rgba($accent, 0.25);
+      border-radius: $radius-sm;
+      font-size: 0.95rem;
+      color: $text-dark;
+      background: $cream;
+      outline: none;
+      transition: border-color 0.25s;
+      resize: vertical;
+
+      &:focus {
+        border-color: $accent;
+      }
+    }
+
+    textarea {
+      min-height: 110px;
+    }
+  }
+
+  &__btn {
+    @include body-font;
+    background: $primary;
+    color: $white;
+    border: none;
+    padding: 14px 48px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.25s;
+    align-self: flex-start;
+
+    &:hover {
+      background: lighten($primary, 8%);
+    }
+  }
+}
+
+.beauty-map {
+  margin-top: 60px;
+  border-radius: $radius;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba($primary, 0.06);
+
+  iframe {
+    width: 100%;
+    height: 400px;
+    border: 0;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════ */
+.beauty-footer {
+  background: $primary;
+  padding: 80px 0 32px;
+
+  &__inner {
+    @include container;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+
+    @media (max-width: 960px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__brand {
+    h3 {
+      @include heading-font;
+      font-size: 1.5rem;
+      color: $white;
+      margin-bottom: 16px;
+
+      span {
+        color: $accent;
+      }
+    }
+
+    p {
+      font-size: 0.92rem;
+      color: rgba($white, 0.6);
+      line-height: 1.7;
+    }
+  }
+
+  &__col {
+    h4 {
+      @include body-font;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: $accent;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    a {
+      font-size: 0.92rem;
+      color: rgba($white, 0.65);
+      transition: color 0.25s;
+
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid rgba($white, 0.1);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    p {
+      font-size: 0.82rem;
+      color: rgba($white, 0.45);
+      margin: 0;
+    }
+  }
+
+  &__socials {
+    display: flex;
+    gap: 16px;
+
+    a {
+      font-size: 1.1rem;
+      color: rgba($white, 0.5);
+      transition: color 0.25s;
+
+      &:hover {
+        color: $accent;
+      }
+    }
+  }
+}

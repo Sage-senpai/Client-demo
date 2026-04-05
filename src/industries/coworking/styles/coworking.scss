@@ -1,0 +1,2639 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+// ─────────────────────────────────────────────
+// VARIABLES
+// ─────────────────────────────────────────────
+:root {
+  --cw-primary: #2D4A32;
+  --cw-secondary: #8B6347;
+  --cw-copper: #B87333;
+  --cw-cream: #F7F3EE;
+  --cw-dark: #1A1A14;
+}
+
+$primary: #2D4A32;
+$secondary: #8B6347;
+$copper: #B87333;
+$cream: #F7F3EE;
+$dark: #1A1A14;
+
+$font-heading: 'Raleway', 'Segoe UI', sans-serif;
+$font-body: 'Work Sans', -apple-system, sans-serif;
+
+$radius-sm: 8px;
+$radius-md: 16px;
+$radius-lg: 24px;
+$radius-xl: 32px;
+$radius-pill: 999px;
+
+// ─────────────────────────────────────────────
+// RESET & BASE
+// ─────────────────────────────────────────────
+.coworking-app {
+  font-family: $font-body;
+  color: $dark;
+  background: $cream;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-heading;
+    font-weight: 600;
+    line-height: 1.18;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    font-family: $font-body;
+  }
+
+  input, select, textarea {
+    font-family: $font-body;
+  }
+}
+
+// ─────────────────────────────────────────────
+// UTILITY
+// ─────────────────────────────────────────────
+.cw-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.cw-section {
+  padding: 100px 0;
+
+  @media (max-width: 768px) {
+    padding: 64px 0;
+  }
+}
+
+.cw-section-title {
+  font-family: $font-heading;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: $primary;
+  text-align: center;
+  margin-bottom: 16px;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.cw-section-subtitle {
+  font-size: 1.05rem;
+  color: rgba($dark, 0.6);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 48px;
+  line-height: 1.7;
+}
+
+.cw-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: $radius-pill;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  letter-spacing: 0.02em;
+
+  &--primary {
+    background: $primary;
+    color: #fff;
+
+    &:hover {
+      background: darken($primary, 8%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba($primary, 0.3);
+    }
+  }
+
+  &--copper {
+    background: $copper;
+    color: #fff;
+
+    &:hover {
+      background: darken($copper, 8%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba($copper, 0.3);
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    color: $primary;
+    border: 2px solid $primary;
+
+    &:hover {
+      background: $primary;
+      color: #fff;
+    }
+  }
+
+  &--cream {
+    background: $cream;
+    color: $primary;
+
+    &:hover {
+      background: #fff;
+      transform: translateY(-2px);
+    }
+  }
+
+  &--secondary {
+    background: $secondary;
+    color: #fff;
+
+    &:hover {
+      background: darken($secondary, 8%);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// NAV
+// ─────────────────────────────────────────────
+.cw-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: $cream;
+  transition: all 0.35s ease;
+  border-bottom: 1px solid transparent;
+
+  &--scrolled {
+    background: rgba($cream, 0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba($primary, 0.1);
+    box-shadow: 0 2px 20px rgba($dark, 0.06);
+  }
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  &__logo {
+    font-family: $font-heading;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $primary;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+
+    span {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: $secondary;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+
+    @media (max-width: 900px) {
+      display: none;
+    }
+  }
+
+  &__link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba($dark, 0.7);
+    transition: color 0.2s;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: $primary;
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+
+    &:hover {
+      color: $primary;
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &--active {
+      color: $primary;
+      font-weight: 600;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &__cta {
+    background: $primary;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: $radius-pill;
+    font-weight: 600;
+    font-size: 0.88rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: darken($primary, 8%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba($primary, 0.3);
+    }
+  }
+
+  &__hamburger {
+    display: none;
+    width: 32px;
+    height: 24px;
+    background: none;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media (max-width: 900px) {
+      display: flex;
+    }
+
+    span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: $primary;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    &--open {
+      span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: rotate(-45deg) translate(8px, -8px);
+      }
+    }
+  }
+}
+
+// ── Mobile Nav ──
+.cw-mobile-nav {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: $cream;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+
+  &__link {
+    font-family: $font-heading;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: $primary;
+  }
+
+  &__cta {
+    background: $primary;
+    color: #fff;
+    padding: 14px 36px;
+    border-radius: $radius-pill;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 12px;
+  }
+}
+
+// ─────────────────────────────────────────────
+// FOOTER
+// ─────────────────────────────────────────────
+.cw-footer {
+  background: $dark;
+  color: rgba(#fff, 0.7);
+  padding: 80px 0 0;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 48px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+  }
+
+  &__brand {
+    h3 {
+      font-family: $font-heading;
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: 300px;
+    }
+  }
+
+  &__col {
+    h4 {
+      font-family: $font-heading;
+      color: $copper;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style: none;
+
+      li {
+        margin-bottom: 12px;
+
+        a {
+          font-size: 0.9rem;
+          transition: color 0.2s;
+
+          &:hover {
+            color: $cream;
+          }
+        }
+      }
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid rgba(#fff, 0.1);
+    margin-top: 60px;
+    padding: 24px 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(#fff, 0.4);
+  }
+}
+
+// ─────────────────────────────────────────────
+// HOME — HERO
+// ─────────────────────────────────────────────
+.cw-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  padding-top: 72px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 48px 60px 64px;
+    background: $cream;
+
+    @media (max-width: 900px) {
+      padding: 48px 24px;
+      order: 2;
+    }
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: 4rem;
+    font-weight: 800;
+    color: $primary;
+    line-height: 1.1;
+    margin-bottom: 24px;
+
+    @media (max-width: 768px) {
+      font-size: 2.6rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.15rem;
+    color: rgba($dark, 0.6);
+    line-height: 1.7;
+    max-width: 440px;
+    margin-bottom: 36px;
+  }
+
+  &__ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  &__image {
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 900px) {
+      min-height: 320px;
+      order: 1;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// HOME — MEMBERSHIP PREVIEW STRIP
+// ─────────────────────────────────────────────
+.cw-membership-strip {
+  background: #fff;
+  padding: 80px 0;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__card {
+    background: $cream;
+    border-radius: $radius-lg;
+    padding: 28px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+
+    &:hover {
+      border-color: $primary;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba($primary, 0.1);
+    }
+
+    &-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba($primary, 0.1);
+      color: $primary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 1.3rem;
+    }
+
+    h4 {
+      font-size: 1rem;
+      color: $dark;
+      margin-bottom: 8px;
+    }
+
+    &-price {
+      font-size: 0.9rem;
+      color: $copper;
+      font-weight: 600;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// HOME — AMBIENCE
+// ─────────────────────────────────────────────
+.cw-ambience {
+  padding: 100px 0;
+
+  @media (max-width: 768px) {
+    padding: 64px 0;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__masonry {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+
+    img {
+      border-radius: $radius-lg;
+      object-fit: cover;
+      width: 100%;
+
+      &:first-child {
+        grid-column: 1 / -1;
+        height: 240px;
+      }
+
+      &:nth-child(2) {
+        height: 200px;
+      }
+
+      &:nth-child(3) {
+        height: 200px;
+      }
+    }
+  }
+
+  &__text {
+    h2 {
+      font-size: 2.4rem;
+      color: $primary;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba($dark, 0.65);
+      margin-bottom: 16px;
+    }
+
+    &-features {
+      list-style: none;
+      margin-top: 24px;
+
+      li {
+        padding: 8px 0;
+        font-size: 0.95rem;
+        color: $dark;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        &::before {
+          content: '✦';
+          color: $copper;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// HOME — CAFÉ PREVIEW
+// ─────────────────────────────────────────────
+.cw-cafe-preview {
+  background: #fff;
+  padding: 100px 0;
+
+  @media (max-width: 768px) {
+    padding: 64px 0;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__image {
+    border-radius: $radius-xl;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+  }
+
+  &__text {
+    h2 {
+      font-size: 2.2rem;
+      color: $primary;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba($dark, 0.65);
+      margin-bottom: 24px;
+    }
+  }
+
+  &__menu-highlights {
+    list-style: none;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba($dark, 0.08);
+      font-size: 0.95rem;
+
+      span:last-child {
+        color: $copper;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// HOME — TESTIMONIALS
+// ─────────────────────────────────────────────
+.cw-testimonials {
+  padding: 100px 0;
+
+  @media (max-width: 768px) {
+    padding: 64px 0;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__card {
+    background: #fff;
+    border-radius: $radius-lg;
+    padding: 36px 28px;
+    position: relative;
+
+    &::before {
+      content: '\201C';
+      font-family: $font-heading;
+      font-size: 4rem;
+      color: rgba($primary, 0.12);
+      position: absolute;
+      top: 12px;
+      left: 20px;
+      line-height: 1;
+    }
+
+    blockquote {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba($dark, 0.75);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    &-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      &-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba($primary, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: $primary;
+        font-size: 0.85rem;
+      }
+
+      &-info {
+        strong {
+          display: block;
+          font-size: 0.9rem;
+          color: $dark;
+        }
+
+        span {
+          font-size: 0.8rem;
+          color: rgba($dark, 0.5);
+        }
+      }
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// HOME — EVENTS PREVIEW
+// ─────────────────────────────────────────────
+.cw-events-preview {
+  background: #fff;
+  padding: 100px 0;
+
+  @media (max-width: 768px) {
+    padding: 64px 0;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__cta {
+    text-align: center;
+    margin-top: 32px;
+  }
+}
+
+.cw-event-card {
+  background: $cream;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba($dark, 0.1);
+  }
+
+  &__image {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 4px 12px;
+    border-radius: $radius-pill;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    &--workshop {
+      background: $primary;
+      color: #fff;
+    }
+
+    &--networking {
+      background: $copper;
+      color: #fff;
+    }
+
+    &--masterclass {
+      background: $secondary;
+      color: #fff;
+    }
+
+    &--social {
+      background: #6B5B95;
+      color: #fff;
+    }
+
+    &--completed {
+      background: rgba($dark, 0.5);
+      color: #fff;
+    }
+  }
+
+  &__body {
+    padding: 20px;
+  }
+
+  &__title {
+    font-size: 1.1rem;
+    color: $dark;
+    margin-bottom: 8px;
+  }
+
+  &__meta {
+    font-size: 0.85rem;
+    color: rgba($dark, 0.55);
+    margin-bottom: 4px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+
+    &-price {
+      font-weight: 700;
+      color: $primary;
+      font-size: 0.95rem;
+    }
+
+    &-seats {
+      font-size: 0.8rem;
+      color: $copper;
+    }
+  }
+
+  &__register-btn {
+    margin-top: 12px;
+    width: 100%;
+    padding: 10px;
+    background: $primary;
+    color: #fff;
+    border-radius: $radius-pill;
+    font-weight: 600;
+    font-size: 0.88rem;
+    text-align: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: darken($primary, 8%);
+    }
+
+    &--disabled {
+      background: rgba($dark, 0.2);
+      cursor: not-allowed;
+      color: rgba($dark, 0.5);
+
+      &:hover {
+        background: rgba($dark, 0.2);
+      }
+    }
+  }
+
+  &--past {
+    opacity: 0.65;
+    filter: grayscale(0.3);
+  }
+}
+
+// ─────────────────────────────────────────────
+// HOME — STATS
+// ─────────────────────────────────────────────
+.cw-stats {
+  background: $primary;
+  padding: 72px 0;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    text-align: center;
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .counter-stat {
+    &__number {
+      color: $copper;
+      font-family: $font-heading;
+      font-size: 2.6rem;
+      font-weight: 700;
+    }
+
+    &__label {
+      color: rgba(#fff, 0.8);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// HOME — BOTTOM CTA
+// ─────────────────────────────────────────────
+.cw-bottom-cta {
+  background: $primary;
+  padding: 80px 0;
+  text-align: center;
+
+  h2 {
+    font-size: 2.4rem;
+    color: #fff;
+    margin-bottom: 12px;
+
+    @media (max-width: 768px) {
+      font-size: 1.8rem;
+    }
+  }
+
+  p {
+    color: rgba(#fff, 0.7);
+    font-size: 1.05rem;
+    margin-bottom: 32px;
+  }
+}
+
+// ─────────────────────────────────────────────
+// SPACES PAGE
+// ─────────────────────────────────────────────
+.cw-spaces {
+  padding-top: 72px;
+
+  &__hero {
+    background: $primary;
+    padding: 80px 0;
+    text-align: center;
+
+    h1 {
+      font-size: 3rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: rgba(#fff, 0.7);
+      font-size: 1.1rem;
+      max-width: 550px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.cw-space-section {
+  padding: 80px 0;
+  border-bottom: 1px solid rgba($dark, 0.06);
+
+  &:nth-child(even) {
+    background: #fff;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &:nth-child(even) &__content {
+    direction: rtl;
+
+    > * {
+      direction: ltr;
+    }
+  }
+
+  &__image {
+    border-radius: $radius-xl;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+    }
+  }
+
+  &__info {
+    h2 {
+      font-size: 2rem;
+      color: $primary;
+      margin-bottom: 8px;
+    }
+
+    &-price {
+      font-size: 1.4rem;
+      color: $copper;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    &-capacity {
+      font-size: 0.9rem;
+      color: rgba($dark, 0.5);
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba($dark, 0.65);
+      margin-bottom: 24px;
+    }
+  }
+
+  &__amenities {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
+    margin-bottom: 28px;
+
+    @media (max-width: 500px) {
+      grid-template-columns: 1fr;
+    }
+
+    li {
+      font-size: 0.88rem;
+      color: $dark;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      &::before {
+        content: '✓';
+        color: $primary;
+        font-weight: 700;
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// MEMBERSHIP PAGE
+// ─────────────────────────────────────────────
+.cw-membership {
+  padding-top: 72px;
+
+  &__hero {
+    background: $primary;
+    padding: 80px 0;
+    text-align: center;
+
+    h1 {
+      font-size: 3rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: rgba(#fff, 0.7);
+      font-size: 1.1rem;
+      max-width: 550px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.cw-plans {
+  padding: 80px 0;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-bottom: 48px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.cw-plan-card {
+  background: #fff;
+  border-radius: $radius-lg;
+  padding: 36px 28px;
+  border: 2px solid rgba($dark, 0.06);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &:hover {
+    border-color: $primary;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba($primary, 0.12);
+  }
+
+  &--featured {
+    border-color: $primary;
+    background: $primary;
+    color: #fff;
+
+    .cw-plan-card__name {
+      color: #fff;
+    }
+
+    .cw-plan-card__price {
+      color: $copper;
+    }
+
+    .cw-plan-card__features li {
+      color: rgba(#fff, 0.85);
+
+      &::before {
+        color: $copper;
+      }
+    }
+
+    .cw-plan-card__description {
+      color: rgba(#fff, 0.7);
+    }
+  }
+
+  &__popular {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: $copper;
+    color: #fff;
+    padding: 4px 16px;
+    border-radius: $radius-pill;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  &__name {
+    font-family: $font-heading;
+    font-size: 1.3rem;
+    color: $primary;
+    margin-bottom: 8px;
+  }
+
+  &__price {
+    font-size: 2rem;
+    font-weight: 800;
+    color: $copper;
+    margin-bottom: 4px;
+
+    small {
+      font-size: 0.85rem;
+      font-weight: 400;
+      opacity: 0.7;
+    }
+  }
+
+  &__description {
+    font-size: 0.9rem;
+    color: rgba($dark, 0.55);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  &__features {
+    list-style: none;
+    flex: 1;
+    margin-bottom: 28px;
+
+    li {
+      padding: 6px 0;
+      font-size: 0.88rem;
+      color: rgba($dark, 0.7);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      &::before {
+        content: '✓';
+        color: $primary;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+// ── Add-ons ──
+.cw-addons {
+  background: #fff;
+  padding: 80px 0;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__card {
+    background: $cream;
+    border-radius: $radius-lg;
+    padding: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h4 {
+      font-size: 1.1rem;
+      color: $primary;
+      margin-bottom: 4px;
+    }
+
+    p {
+      font-size: 0.88rem;
+      color: rgba($dark, 0.55);
+    }
+
+    &-price {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: $copper;
+      white-space: nowrap;
+    }
+  }
+}
+
+// ── Feature Table ──
+.cw-feature-table {
+  padding: 80px 0;
+
+  &__wrapper {
+    overflow-x: auto;
+    border-radius: $radius-lg;
+    background: #fff;
+    box-shadow: 0 4px 20px rgba($dark, 0.06);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+
+    th, td {
+      padding: 16px 20px;
+      text-align: center;
+      border-bottom: 1px solid rgba($dark, 0.06);
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: $primary;
+      color: #fff;
+      font-family: $font-heading;
+      font-weight: 600;
+      font-size: 0.95rem;
+
+      &:first-child {
+        text-align: left;
+      }
+    }
+
+    td:first-child {
+      text-align: left;
+      font-weight: 500;
+      color: $dark;
+    }
+
+    tbody tr:hover {
+      background: rgba($primary, 0.03);
+    }
+
+    .check {
+      color: $primary;
+      font-weight: 700;
+    }
+
+    .dash {
+      color: rgba($dark, 0.2);
+    }
+  }
+}
+
+// ── FAQ ──
+.cw-faq {
+  padding: 80px 0;
+  background: #fff;
+
+  &__list {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  &__item {
+    border-bottom: 1px solid rgba($dark, 0.08);
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      background: none;
+      width: 100%;
+      text-align: left;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: $dark;
+      cursor: pointer;
+
+      &-icon {
+        font-size: 1.3rem;
+        color: $primary;
+        transition: transform 0.3s ease;
+
+        &--open {
+          transform: rotate(45deg);
+        }
+      }
+    }
+
+    &-body {
+      overflow: hidden;
+
+      p {
+        padding-bottom: 20px;
+        font-size: 0.95rem;
+        line-height: 1.75;
+        color: rgba($dark, 0.65);
+      }
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// CAFÉ PAGE
+// ─────────────────────────────────────────────
+.cw-cafe {
+  padding-top: 72px;
+
+  &__hero {
+    position: relative;
+    height: 420px;
+    overflow: hidden;
+
+    &-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba($dark, 0.7), rgba($dark, 0.2));
+    }
+
+    &-content {
+      position: absolute;
+      bottom: 60px;
+      left: 0;
+      right: 0;
+      text-align: center;
+
+      h1 {
+        font-size: 3rem;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+
+      p {
+        color: rgba(#fff, 0.8);
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+
+.cw-menu-section {
+  padding: 60px 0 40px;
+
+  &__category {
+    margin-bottom: 48px;
+
+    h3 {
+      font-family: $font-heading;
+      font-size: 1.6rem;
+      color: $primary;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid rgba($primary, 0.15);
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.cw-menu-item {
+  background: #fff;
+  border-radius: $radius-md;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba($dark, 0.06);
+  }
+
+  &__info {
+    flex: 1;
+
+    h4 {
+      font-size: 1rem;
+      color: $dark;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    p {
+      font-size: 0.85rem;
+      color: rgba($dark, 0.55);
+      line-height: 1.6;
+    }
+  }
+
+  &__badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+
+    &--v {
+      background: rgba($primary, 0.12);
+      color: $primary;
+    }
+
+    &--vg {
+      background: rgba(#228B22, 0.12);
+      color: #228B22;
+    }
+
+    &--gf {
+      background: rgba($copper, 0.12);
+      color: $copper;
+    }
+  }
+
+  &__price {
+    font-weight: 700;
+    color: $copper;
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+}
+
+// ── Order form ──
+.cw-order-form {
+  background: $primary;
+  padding: 80px 0;
+
+  &__inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  p {
+    color: rgba(#fff, 0.7);
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  &__field {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      color: rgba(#fff, 0.8);
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: $radius-md;
+      border: 2px solid rgba(#fff, 0.15);
+      background: rgba(#fff, 0.08);
+      color: #fff;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+
+      &:focus {
+        outline: none;
+        border-color: $copper;
+      }
+
+      &::placeholder {
+        color: rgba(#fff, 0.4);
+      }
+
+      option {
+        color: $dark;
+        background: #fff;
+      }
+    }
+  }
+
+  &__submit {
+    width: 100%;
+    padding: 16px;
+    background: $copper;
+    color: #fff;
+    border-radius: $radius-pill;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 8px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: darken($copper, 8%);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// ── Barista / Origin ──
+.cw-barista {
+  padding: 80px 0;
+  background: #fff;
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__image {
+    border-radius: $radius-xl;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+    }
+  }
+
+  &__text {
+    h2 {
+      font-size: 2rem;
+      color: $primary;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 1.02rem;
+      line-height: 1.8;
+      color: rgba($dark, 0.65);
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.cw-origin {
+  padding: 80px 0;
+
+  &__content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 2rem;
+    color: $primary;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba($dark, 0.65);
+    margin-bottom: 16px;
+  }
+}
+
+// ─────────────────────────────────────────────
+// EVENTS PAGE
+// ─────────────────────────────────────────────
+.cw-events {
+  padding-top: 72px;
+
+  &__hero {
+    background: $primary;
+    padding: 80px 0;
+    text-align: center;
+
+    h1 {
+      font-size: 3rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: rgba(#fff, 0.7);
+      font-size: 1.1rem;
+      max-width: 550px;
+      margin: 0 auto;
+    }
+  }
+
+  &__upcoming {
+    padding: 80px 0;
+  }
+
+  &__past {
+    padding: 0 0 80px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// BOOK PAGE — STEPPER
+// ─────────────────────────────────────────────
+.cw-book {
+  padding-top: 72px;
+  min-height: 100vh;
+
+  &__hero {
+    background: $primary;
+    padding: 60px 0 40px;
+    text-align: center;
+
+    h1 {
+      font-size: 2.6rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: rgba(#fff, 0.7);
+      font-size: 1.05rem;
+    }
+  }
+}
+
+.cw-stepper {
+  padding: 48px 0 80px;
+
+  &__progress {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+
+  &__step-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: rgba($dark, 0.35);
+
+    &-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid rgba($dark, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+    }
+
+    &-label {
+      @media (max-width: 700px) {
+        display: none;
+      }
+    }
+
+    &-line {
+      width: 32px;
+      height: 2px;
+      background: rgba($dark, 0.1);
+
+      @media (max-width: 700px) {
+        width: 16px;
+      }
+    }
+
+    &--active {
+      color: $primary;
+
+      .cw-stepper__step-indicator-num {
+        border-color: $primary;
+        background: $primary;
+        color: #fff;
+      }
+    }
+
+    &--completed {
+      color: $primary;
+
+      .cw-stepper__step-indicator-num {
+        border-color: $primary;
+        background: $primary;
+        color: #fff;
+      }
+
+      .cw-stepper__step-indicator-line {
+        background: $primary;
+      }
+    }
+  }
+
+  &__content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 36px;
+    gap: 16px;
+  }
+
+  &__back-btn {
+    padding: 12px 28px;
+    border-radius: $radius-pill;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: transparent;
+    color: $dark;
+    border: 2px solid rgba($dark, 0.15);
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: $primary;
+      color: $primary;
+    }
+  }
+
+  &__next-btn {
+    padding: 12px 28px;
+    border-radius: $radius-pill;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: $primary;
+    color: #fff;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: darken($primary, 8%);
+    }
+
+    &:disabled {
+      background: rgba($dark, 0.15);
+      color: rgba($dark, 0.4);
+      cursor: not-allowed;
+    }
+  }
+}
+
+// ── Step 1: Space type cards ──
+.cw-space-select {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+
+  &__card {
+    background: #fff;
+    border-radius: $radius-lg;
+    padding: 24px;
+    border: 2px solid rgba($dark, 0.08);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+
+    &:hover {
+      border-color: rgba($primary, 0.3);
+      box-shadow: 0 4px 16px rgba($primary, 0.08);
+    }
+
+    &--selected {
+      border-color: $primary;
+      background: rgba($primary, 0.04);
+      box-shadow: 0 4px 20px rgba($primary, 0.12);
+    }
+
+    &-icon {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      color: $primary;
+      margin-bottom: 4px;
+    }
+
+    &-price {
+      font-size: 0.9rem;
+      color: $copper;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 0.85rem;
+      color: rgba($dark, 0.55);
+      line-height: 1.5;
+    }
+  }
+}
+
+// ── Step 2: Date selection ──
+.cw-date-select {
+  background: #fff;
+  border-radius: $radius-lg;
+  padding: 32px;
+
+  h3 {
+    font-size: 1.3rem;
+    color: $primary;
+    margin-bottom: 24px;
+  }
+
+  &__field {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: $dark;
+      margin-bottom: 8px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: $radius-md;
+      border: 2px solid rgba($dark, 0.1);
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      background: #fff;
+      color: $dark;
+
+      &:focus {
+        outline: none;
+        border-color: $primary;
+      }
+    }
+
+    .react-datepicker-wrapper {
+      width: 100%;
+    }
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+
+    @media (max-width: 500px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: $dark;
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: $primary;
+    }
+  }
+}
+
+// ── Step 3: Availability calendar ──
+.cw-availability {
+  h3 {
+    font-size: 1.3rem;
+    color: $primary;
+    margin-bottom: 8px;
+  }
+
+  &__info {
+    font-size: 0.9rem;
+    color: $copper;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  &__legend {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: rgba($dark, 0.6);
+
+      &::before {
+        content: '';
+        width: 14px;
+        height: 14px;
+        border-radius: 4px;
+      }
+
+      &:nth-child(1)::before {
+        background: rgba($primary, 0.2);
+      }
+
+      &:nth-child(2)::before {
+        background: rgba(#dc3545, 0.2);
+      }
+
+      &:nth-child(3)::before {
+        background: $copper;
+      }
+    }
+  }
+
+  &__calendar {
+    overflow-x: auto;
+    border-radius: $radius-lg;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba($dark, 0.06);
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+
+    th {
+      padding: 12px 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: $primary;
+      background: rgba($primary, 0.05);
+      text-align: center;
+
+      &:first-child {
+        text-align: left;
+        padding-left: 16px;
+      }
+    }
+
+    td {
+      padding: 4px;
+      text-align: center;
+
+      &:first-child {
+        text-align: left;
+        padding-left: 16px;
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: $dark;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  &__slot {
+    width: 100%;
+    padding: 8px 4px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &--available {
+      background: rgba($primary, 0.12);
+      color: $primary;
+
+      &:hover {
+        background: rgba($primary, 0.25);
+      }
+    }
+
+    &--booked {
+      background: rgba(#dc3545, 0.12);
+      color: #dc3545;
+      cursor: not-allowed;
+    }
+
+    &--selected {
+      background: $copper;
+      color: #fff;
+    }
+  }
+
+  &__rooms {
+    margin-top: 16px;
+
+    h4 {
+      font-size: 1rem;
+      color: $dark;
+      margin-bottom: 12px;
+    }
+  }
+}
+
+// ── Step 4: Extras ──
+.cw-extras {
+  h3 {
+    font-size: 1.3rem;
+    color: $primary;
+    margin-bottom: 24px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__item {
+    background: #fff;
+    border-radius: $radius-md;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    border: 2px solid rgba($dark, 0.06);
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: rgba($primary, 0.2);
+    }
+
+    &--selected {
+      border-color: $primary;
+      background: rgba($primary, 0.03);
+    }
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: $primary;
+      flex-shrink: 0;
+    }
+
+    &-info {
+      flex: 1;
+
+      h4 {
+        font-size: 0.95rem;
+        color: $dark;
+        margin-bottom: 2px;
+      }
+
+      p {
+        font-size: 0.82rem;
+        color: rgba($dark, 0.5);
+      }
+    }
+
+    &-price {
+      font-weight: 700;
+      color: $copper;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+  }
+
+  &__total {
+    background: $primary;
+    border-radius: $radius-lg;
+    padding: 24px 28px;
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+
+    h4 {
+      font-size: 1rem;
+    }
+
+    &-amount {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: $copper;
+    }
+  }
+}
+
+// ── Step 5: Details ──
+.cw-details {
+  h3 {
+    font-size: 1.3rem;
+    color: $primary;
+    margin-bottom: 24px;
+  }
+
+  &__form {
+    background: #fff;
+    border-radius: $radius-lg;
+    padding: 32px;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+
+    @media (max-width: 500px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__field {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: $dark;
+      margin-bottom: 8px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: $radius-md;
+      border: 2px solid rgba($dark, 0.1);
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      background: #fff;
+      color: $dark;
+
+      &:focus {
+        outline: none;
+        border-color: $primary;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+  }
+
+  &__payment {
+    margin-bottom: 24px;
+
+    h4 {
+      font-size: 1rem;
+      color: $dark;
+      margin-bottom: 12px;
+    }
+
+    &-options {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    &-option {
+      padding: 12px 20px;
+      border-radius: $radius-pill;
+      border: 2px solid rgba($dark, 0.1);
+      background: transparent;
+      font-weight: 500;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: $dark;
+
+      &--selected {
+        border-color: $primary;
+        background: $primary;
+        color: #fff;
+      }
+    }
+  }
+
+  &__terms {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    font-size: 0.9rem;
+    color: rgba($dark, 0.7);
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: $primary;
+    }
+  }
+
+  &__submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: $primary;
+    color: #fff;
+    border-radius: $radius-pill;
+    font-weight: 700;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: darken($primary, 8%);
+      box-shadow: 0 8px 24px rgba($primary, 0.3);
+    }
+
+    &:disabled {
+      background: rgba($dark, 0.15);
+      color: rgba($dark, 0.4);
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+  }
+}
+
+// ── Success screen ──
+.cw-success {
+  text-align: center;
+  padding: 60px 0;
+
+  &__icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba($primary, 0.12);
+    color: $primary;
+    font-size: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+  }
+
+  h2 {
+    font-size: 2rem;
+    color: $primary;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: rgba($dark, 0.55);
+    margin-bottom: 32px;
+  }
+
+  &__ref {
+    font-family: monospace;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: $copper;
+    letter-spacing: 0.15em;
+    margin-bottom: 32px;
+  }
+
+  &__summary {
+    background: #fff;
+    border-radius: $radius-lg;
+    padding: 28px;
+    max-width: 500px;
+    margin: 0 auto 32px;
+    text-align: left;
+
+    h4 {
+      font-size: 1rem;
+      color: $primary;
+      margin-bottom: 16px;
+    }
+
+    &-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 0.9rem;
+      border-bottom: 1px solid rgba($dark, 0.06);
+
+      span:first-child {
+        color: rgba($dark, 0.55);
+      }
+
+      span:last-child {
+        font-weight: 600;
+        color: $dark;
+      }
+    }
+
+    &-total {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 0 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: $primary;
+
+      span:last-child {
+        color: $copper;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+// ─────────────────────────────────────────────
+// CONTACT PAGE
+// ─────────────────────────────────────────────
+.cw-contact {
+  padding-top: 72px;
+
+  &__hero {
+    background: $primary;
+    padding: 80px 0;
+    text-align: center;
+
+    h1 {
+      font-size: 3rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: rgba(#fff, 0.7);
+      font-size: 1.1rem;
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+    padding: 80px 0;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.cw-contact-form {
+  background: #fff;
+  border-radius: $radius-lg;
+  padding: 36px;
+
+  h2 {
+    font-size: 1.6rem;
+    color: $primary;
+    margin-bottom: 24px;
+  }
+
+  &__field {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: $dark;
+      margin-bottom: 8px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: $radius-md;
+      border: 2px solid rgba($dark, 0.1);
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      background: #fff;
+      color: $dark;
+
+      &:focus {
+        outline: none;
+        border-color: $primary;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+  }
+
+  &__submit {
+    width: 100%;
+    padding: 14px;
+    background: $primary;
+    color: #fff;
+    border-radius: $radius-pill;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: darken($primary, 8%);
+      box-shadow: 0 8px 24px rgba($primary, 0.3);
+    }
+  }
+}
+
+.cw-contact-info {
+  h3 {
+    font-size: 1.4rem;
+    color: $primary;
+    margin-bottom: 24px;
+  }
+
+  &__item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+
+    &-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba($primary, 0.1);
+      color: $primary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    &-text {
+      strong {
+        display: block;
+        font-size: 0.9rem;
+        color: $dark;
+        margin-bottom: 4px;
+      }
+
+      span, a {
+        font-size: 0.88rem;
+        color: rgba($dark, 0.55);
+      }
+
+      a:hover {
+        color: $primary;
+      }
+    }
+  }
+
+  &__map {
+    border-radius: $radius-lg;
+    overflow: hidden;
+    height: 220px;
+    background: rgba($dark, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 24px;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  }
+
+  &__social {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+
+    a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba($primary, 0.1);
+      color: $primary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: $primary;
+        color: #fff;
+      }
+    }
+  }
+}

@@ -1,0 +1,1783 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap');
+
+// ─────────────────────────────────────────────
+// VARIABLES
+// ─────────────────────────────────────────────
+:root {
+  --resort-primary: #0B6E6E;
+  --resort-secondary: #E8734A;
+  --resort-sand: #D4B896;
+  --resort-cream: #FAFAF5;
+  --resort-dark: #0A1A1A;
+}
+
+$primary: #0B6E6E;
+$secondary: #E8734A;
+$sand: #D4B896;
+$cream: #FAFAF5;
+$dark: #0A1A1A;
+
+$font-heading: 'Cormorant Garamond', Georgia, serif;
+$font-body: 'Nunito Sans', -apple-system, sans-serif;
+
+// ─────────────────────────────────────────────
+// RESET & BASE
+// ─────────────────────────────────────────────
+.resort-app {
+  font-family: $font-body;
+  color: $dark;
+  background: $cream;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-heading;
+    font-weight: 500;
+    line-height: 1.15;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    font-family: $font-body;
+  }
+
+  input, select, textarea {
+    font-family: $font-body;
+  }
+}
+
+// ─────────────────────────────────────────────
+// UTILITY
+// ─────────────────────────────────────────────
+.resort-text-center {
+  text-align: center;
+}
+
+.resort-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.resort-section {
+  padding: 100px 0;
+
+  @media (max-width: 768px) {
+    padding: 64px 0;
+  }
+}
+
+.resort-section-title {
+  font-family: $font-heading;
+  font-size: 2.8rem;
+  font-weight: 500;
+  color: $dark;
+  text-align: center;
+  margin-bottom: 16px;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.resort-section-subtitle {
+  font-size: 1.05rem;
+  color: rgba($dark, 0.6);
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 48px;
+  line-height: 1.7;
+}
+
+.resort-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  transition: all 0.25s ease;
+
+  &--primary {
+    background: $primary;
+    color: #fff;
+
+    &:hover {
+      background: darken($primary, 8%);
+    }
+  }
+
+  &--secondary {
+    background: $secondary;
+    color: #fff;
+
+    &:hover {
+      background: darken($secondary, 8%);
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    border: 2px solid $primary;
+    color: $primary;
+
+    &:hover {
+      background: $primary;
+      color: #fff;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// NAVIGATION
+// ─────────────────────────────────────────────
+.resort-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px 0;
+  transition: all 0.35s ease;
+
+  &--scrolled {
+    background: $primary;
+    padding: 12px 0;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    font-family: $font-heading;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.01em;
+
+    span {
+      display: block;
+      font-size: 0.65rem;
+      font-family: $font-body;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-top: 2px;
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+
+    @media (max-width: 900px) {
+      display: none;
+    }
+  }
+
+  &__link {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: $secondary;
+      transition: width 0.25s ease;
+    }
+
+    &:hover {
+      color: #fff;
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &--active {
+      color: #fff;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &__book-btn {
+    background: $secondary;
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.03em;
+    transition: all 0.25s ease;
+
+    &:hover {
+      background: darken($secondary, 8%);
+      transform: translateY(-1px);
+    }
+  }
+
+  &__hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    padding: 8px;
+
+    @media (max-width: 900px) {
+      display: flex;
+    }
+
+    span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    &--open {
+      span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+    }
+  }
+}
+
+// Mobile nav overlay
+.resort-mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: rgba($dark, 0.97);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+
+  &__link {
+    font-family: $font-heading;
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 400;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $secondary;
+    }
+  }
+
+  &__book-btn {
+    margin-top: 16px;
+    background: $secondary;
+    color: #fff;
+    padding: 14px 40px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+}
+
+// ─────────────────────────────────────────────
+// HERO
+// ─────────────────────────────────────────────
+.resort-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    object-fit: cover;
+    will-change: transform;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      180deg,
+      rgba($dark, 0.35) 0%,
+      rgba($dark, 0.2) 50%,
+      rgba($dark, 0.55) 100%
+    );
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    padding: 0 24px;
+    margin-bottom: 80px;
+  }
+
+  &__badge {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: $sand;
+    margin-bottom: 20px;
+    border: 1px solid rgba($sand, 0.5);
+    padding: 8px 20px;
+    border-radius: 30px;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: 4.5rem;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.2);
+
+    @media (max-width: 768px) {
+      font-size: 2.8rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 2.2rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.15rem;
+    font-weight: 300;
+    opacity: 0.9;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+}
+
+// Booking widget
+.resort-booking-widget {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 24px 32px;
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 860px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 20px;
+    bottom: 20px;
+  }
+
+  &__field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba($dark, 0.5);
+  }
+
+  &__input {
+    border: 1px solid rgba($dark, 0.12);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 0.92rem;
+    color: $dark;
+    background: #fff;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: $primary;
+    }
+  }
+
+  &__btn {
+    background: $secondary;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transition: all 0.25s;
+
+    &:hover {
+      background: darken($secondary, 8%);
+    }
+  }
+
+  // react-datepicker overrides
+  .react-datepicker-wrapper {
+    width: 100%;
+  }
+
+  .react-datepicker__input-container input {
+    border: 1px solid rgba($dark, 0.12);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 0.92rem;
+    color: $dark;
+    background: #fff;
+    width: 100%;
+    outline: none;
+    font-family: $font-body;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: $primary;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// FEATURED ROOMS
+// ─────────────────────────────────────────────
+.resort-featured-rooms {
+  background: $cream;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.resort-room-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+  }
+
+  &__image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  &__body {
+    padding: 24px;
+  }
+
+  &__type {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: $secondary;
+    margin-bottom: 8px;
+  }
+
+  &__name {
+    font-family: $font-heading;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    color: $dark;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.85rem;
+    color: rgba($dark, 0.55);
+    margin-bottom: 14px;
+  }
+
+  &__amenities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  &__amenity {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    background: rgba($primary, 0.08);
+    color: $primary;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__price {
+    font-family: $font-heading;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: $primary;
+
+    span {
+      font-size: 0.8rem;
+      font-family: $font-body;
+      font-weight: 400;
+      color: rgba($dark, 0.45);
+    }
+  }
+
+  &__book-btn {
+    background: $primary;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.82rem;
+    transition: background 0.2s;
+
+    &:hover {
+      background: darken($primary, 8%);
+    }
+  }
+
+  &__description {
+    font-size: 0.9rem;
+    color: rgba($dark, 0.65);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+}
+
+// ─────────────────────────────────────────────
+// SPLIT SECTION (Dining preview, etc.)
+// ─────────────────────────────────────────────
+.resort-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  &__text {
+    h2 {
+      font-family: $font-heading;
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      color: $dark;
+
+      @media (max-width: 768px) {
+        font-size: 2rem;
+      }
+    }
+
+    p {
+      font-size: 1.02rem;
+      line-height: 1.8;
+      color: rgba($dark, 0.65);
+      margin-bottom: 24px;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 12px;
+
+    @media (max-width: 768px) {
+      height: 280px;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// ACTIVITIES ICON GRID
+// ─────────────────────────────────────────────
+.resort-activities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.resort-activity-icon-card {
+  text-align: center;
+  padding: 32px 16px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  &__emoji {
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+  }
+
+  &__name {
+    font-family: $font-heading;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $dark;
+  }
+}
+
+// ─────────────────────────────────────────────
+// TESTIMONIALS
+// ─────────────────────────────────────────────
+.resort-testimonials {
+  background: $primary;
+
+  .resort-section-title,
+  .resort-section-subtitle {
+    color: #fff;
+  }
+
+  .resort-section-subtitle {
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.resort-testimonial-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 32px;
+
+  &__stars {
+    font-size: 1rem;
+    color: $sand;
+    margin-bottom: 14px;
+    letter-spacing: 2px;
+  }
+
+  &__quote {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  &__author {
+    font-weight: 700;
+    color: #fff;
+    font-size: 0.92rem;
+  }
+
+  &__origin {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 4px;
+  }
+}
+
+// ─────────────────────────────────────────────
+// STATS
+// ─────────────────────────────────────────────
+.resort-stats {
+  background: $sand;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+
+    @media (max-width: 600px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .counter-stat {
+    &__number {
+      font-family: $font-heading;
+      font-size: 3rem;
+      font-weight: 600;
+      color: $dark;
+    }
+
+    &__label {
+      font-size: 0.88rem;
+      color: rgba($dark, 0.65);
+      margin-top: 4px;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// ROOMS PAGE
+// ─────────────────────────────────────────────
+.resort-rooms-page {
+  padding-top: 100px;
+}
+
+.resort-filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.resort-filter-btn {
+  padding: 8px 22px;
+  border-radius: 30px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  background: #fff;
+  color: rgba($dark, 0.6);
+  border: 1px solid rgba($dark, 0.12);
+  transition: all 0.25s;
+
+  &:hover {
+    border-color: $primary;
+    color: $primary;
+  }
+
+  &--active {
+    background: $primary;
+    color: #fff;
+    border-color: $primary;
+  }
+}
+
+.resort-rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.resort-room-expand {
+  background: rgba($primary, 0.03);
+  border-top: 1px solid rgba($primary, 0.1);
+  padding: 20px 24px;
+
+  &__desc {
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: rgba($dark, 0.65);
+  }
+}
+
+// ─────────────────────────────────────────────
+// PAGE HERO (interior pages)
+// ─────────────────────────────────────────────
+.resort-page-hero {
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $primary;
+  position: relative;
+  overflow: hidden;
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba($dark, 0.4), rgba($primary, 0.7));
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: 3.2rem;
+    font-weight: 400;
+    margin-bottom: 12px;
+
+    @media (max-width: 768px) {
+      font-size: 2.4rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    opacity: 0.8;
+    font-weight: 300;
+  }
+}
+
+// ─────────────────────────────────────────────
+// DINING PAGE
+// ─────────────────────────────────────────────
+.resort-dining-page {
+  padding-top: 0;
+}
+
+.resort-restaurant-section {
+  padding: 80px 0;
+
+  &:nth-child(even) {
+    background: #fff;
+  }
+}
+
+.resort-restaurant {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  &--reverse {
+    direction: rtl;
+
+    > * {
+      direction: ltr;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 12px;
+
+    @media (max-width: 768px) {
+      height: 260px;
+    }
+  }
+
+  &__content {
+    h3 {
+      font-family: $font-heading;
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+      color: $dark;
+    }
+  }
+
+  &__cuisine {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: $secondary;
+    margin-bottom: 16px;
+  }
+
+  &__desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba($dark, 0.6);
+    margin-bottom: 24px;
+  }
+
+  &__hours {
+    font-size: 0.9rem;
+    color: rgba($dark, 0.5);
+    margin-bottom: 24px;
+
+    strong {
+      color: $dark;
+    }
+  }
+}
+
+.resort-menu-highlights {
+  margin-top: 32px;
+
+  h4 {
+    font-family: $font-heading;
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    color: $dark;
+  }
+}
+
+.resort-menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba($dark, 0.08);
+
+  &__name {
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: $dark;
+  }
+
+  &__desc {
+    font-size: 0.82rem;
+    color: rgba($dark, 0.5);
+    margin-top: 2px;
+  }
+
+  &__price {
+    font-family: $font-heading;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $primary;
+    white-space: nowrap;
+    margin-left: 16px;
+  }
+}
+
+.resort-reservation-cta {
+  text-align: center;
+  padding: 80px 0;
+  background: $primary;
+
+  h3 {
+    font-family: $font-heading;
+    font-size: 2.4rem;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 28px;
+    font-size: 1.02rem;
+  }
+}
+
+// ─────────────────────────────────────────────
+// SPA PAGE
+// ─────────────────────────────────────────────
+.resort-spa-page {
+  padding-top: 0;
+}
+
+.resort-spa-services {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.resort-spa-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s, box-shadow 0.25s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+
+  &__name {
+    font-family: $font-heading;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: $dark;
+  }
+
+  &__price {
+    font-family: $font-heading;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: $primary;
+  }
+
+  &__duration {
+    font-size: 0.82rem;
+    color: rgba($dark, 0.5);
+    margin-bottom: 10px;
+  }
+
+  &__desc {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: rgba($dark, 0.6);
+  }
+}
+
+.resort-spa-facilities {
+  background: #fff;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+.resort-facility-card {
+  padding: 28px 16px;
+  background: $cream;
+  border-radius: 12px;
+
+  &__icon {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+  }
+
+  &__name {
+    font-family: $font-heading;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $dark;
+    margin-bottom: 6px;
+  }
+
+  &__desc {
+    font-size: 0.82rem;
+    color: rgba($dark, 0.5);
+    line-height: 1.6;
+  }
+}
+
+.resort-spa-cta {
+  text-align: center;
+  padding: 80px 0;
+  background: linear-gradient(135deg, $primary, darken($primary, 10%));
+
+  h3 {
+    font-family: $font-heading;
+    font-size: 2.4rem;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 28px;
+    font-size: 1.02rem;
+  }
+}
+
+// ─────────────────────────────────────────────
+// ACTIVITIES PAGE
+// ─────────────────────────────────────────────
+.resort-activities-page {
+  padding-top: 0;
+}
+
+.resort-activity-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.resort-activity-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  display: flex;
+  transition: transform 0.25s, box-shadow 0.25s;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+  }
+
+  &__image {
+    width: 200px;
+    min-height: 200px;
+    object-fit: cover;
+    flex-shrink: 0;
+
+    @media (max-width: 600px) {
+      width: 100%;
+      height: 180px;
+      min-height: auto;
+    }
+  }
+
+  &__body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__icon {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+  }
+
+  &__name {
+    font-family: $font-heading;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: $dark;
+    margin-bottom: 6px;
+  }
+
+  &__desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: rgba($dark, 0.6);
+    margin-bottom: 14px;
+  }
+
+  &__meta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  &__tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba($primary, 0.08);
+    color: $primary;
+
+    &--difficulty {
+      background: rgba($secondary, 0.1);
+      color: $secondary;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// GALLERY PAGE
+// ─────────────────────────────────────────────
+.resort-gallery-page {
+  padding-top: 0;
+}
+
+.resort-gallery-grid {
+  column-count: 3;
+  column-gap: 20px;
+
+  @media (max-width: 900px) {
+    column-count: 2;
+  }
+
+  @media (max-width: 500px) {
+    column-count: 1;
+  }
+}
+
+.resort-gallery-item {
+  break-inside: avoid;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+
+  &:hover .resort-gallery-item__overlay {
+    opacity: 1;
+  }
+
+  img {
+    width: 100%;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.04);
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba($primary, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &__label {
+    color: #fff;
+    font-family: $font-heading;
+    font-size: 1.2rem;
+  }
+}
+
+// ─────────────────────────────────────────────
+// BOOK PAGE — Multi-step form
+// ─────────────────────────────────────────────
+.resort-book-page {
+  padding-top: 0;
+}
+
+.resort-booking {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+.resort-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 48px;
+
+  &__step-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-width: 120px;
+
+    @media (max-width: 500px) {
+      min-width: 90px;
+    }
+  }
+
+  &__circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba($dark, 0.08);
+    color: rgba($dark, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.92rem;
+    transition: all 0.35s ease;
+    position: relative;
+    z-index: 2;
+
+    &--active {
+      background: $primary;
+      color: #fff;
+    }
+
+    &--done {
+      background: $primary;
+      color: #fff;
+    }
+  }
+
+  &__label {
+    margin-top: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba($dark, 0.4);
+    text-align: center;
+
+    &--active {
+      color: $primary;
+    }
+  }
+
+  &__line {
+    width: 80px;
+    height: 2px;
+    background: rgba($dark, 0.1);
+    margin-bottom: 24px;
+
+    @media (max-width: 500px) {
+      width: 40px;
+    }
+
+    &--active {
+      background: $primary;
+    }
+  }
+}
+
+.resort-step {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+
+  @media (max-width: 500px) {
+    padding: 24px;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: 1.8rem;
+    margin-bottom: 28px;
+    color: $dark;
+  }
+}
+
+.resort-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.resort-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 0;
+
+  &--full {
+    grid-column: 1 / -1;
+  }
+
+  label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba($dark, 0.5);
+  }
+
+  input,
+  select,
+  textarea {
+    border: 1px solid rgba($dark, 0.12);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    color: $dark;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: $primary;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  // react-datepicker overrides inside form
+  .react-datepicker-wrapper {
+    width: 100%;
+  }
+
+  .react-datepicker__input-container input {
+    border: 1px solid rgba($dark, 0.12);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    color: $dark;
+    background: #fff;
+    width: 100%;
+    outline: none;
+    font-family: $font-body;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: $primary;
+    }
+  }
+}
+
+.resort-stepper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid rgba($dark, 0.12);
+  border-radius: 8px;
+  overflow: hidden;
+
+  &__btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: rgba($dark, 0.03);
+    color: $dark;
+    border: none;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba($primary, 0.1);
+      color: $primary;
+    }
+  }
+
+  &__value {
+    flex: 1;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $dark;
+    min-width: 50px;
+  }
+}
+
+.resort-room-select-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.resort-room-select-card {
+  background: $cream;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover {
+    border-color: rgba($primary, 0.3);
+  }
+
+  &--selected {
+    border-color: $primary;
+    box-shadow: 0 0 0 3px rgba($primary, 0.15);
+  }
+
+  &__image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+
+  &__body {
+    padding: 16px;
+  }
+
+  &__name {
+    font-family: $font-heading;
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+    color: $dark;
+  }
+
+  &__price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $primary;
+
+    span {
+      font-weight: 400;
+      font-size: 0.82rem;
+      color: rgba($dark, 0.45);
+    }
+  }
+
+  &__select-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background: rgba($primary, 0.06);
+    color: $primary;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border: none;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba($primary, 0.12);
+    }
+
+    &--selected {
+      background: $primary;
+      color: #fff;
+
+      &:hover {
+        background: darken($primary, 5%);
+      }
+    }
+  }
+}
+
+.resort-price-summary {
+  background: $cream;
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 28px;
+  margin-bottom: 28px;
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 0.95rem;
+    color: rgba($dark, 0.65);
+    border-bottom: 1px solid rgba($dark, 0.06);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &--total {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: $dark;
+      border-top: 2px solid rgba($dark, 0.1);
+      padding-top: 14px;
+      margin-top: 4px;
+    }
+  }
+
+  &__label {
+    // default
+  }
+
+  &__value {
+    font-weight: 600;
+    color: $dark;
+  }
+}
+
+.resort-step-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 28px;
+
+  &--right {
+    justify-content: flex-end;
+  }
+}
+
+// ─────────────────────────────────────────────
+// FOOTER
+// ─────────────────────────────────────────────
+.resort-footer {
+  background: $dark;
+  padding: 64px 0 28px;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 48px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__brand {
+    h3 {
+      font-family: $font-heading;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 1.7;
+      max-width: 320px;
+    }
+  }
+
+  &__col {
+    h4 {
+      font-family: $font-heading;
+      font-size: 1.15rem;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    a {
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.45);
+      transition: color 0.2s;
+
+      &:hover {
+        color: $sand;
+      }
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 24px;
+    text-align: center;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.3);
+  }
+}

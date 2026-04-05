@@ -1,0 +1,1971 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+// ── Variables ──
+$primary: #1B3A6B;
+$secondary: #C9972A;
+$surface: #F8F9FC;
+$dark: #0D1B33;
+$accent: #E84545;
+$text: #1E2A3D;
+$muted: #6B7A8D;
+
+$sm: 480px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
+
+// ── Root CSS Variables ──
+.school-app {
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+  --surface: #{$surface};
+  --dark: #{$dark};
+  --accent: #{$accent};
+  --text: #{$text};
+  --muted: #{$muted};
+  --brand-primary: #{$primary};
+  --brand-muted: #{$muted};
+
+  font-family: 'Source Sans 3', sans-serif;
+  color: $text;
+  background: $surface;
+  overflow-x: hidden;
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Libre Baskerville', serif;
+    line-height: 1.25;
+  }
+}
+
+/* ═══════════════════════════════════════
+   NAVBAR
+   ═══════════════════════════════════════ */
+.sch-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1rem 0;
+  transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+
+  &--transparent {
+    background: transparent;
+  }
+
+  &--scrolled {
+    background: #fff;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    padding: 0.6rem 0;
+  }
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: $primary;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .sch-nav--transparent & {
+      color: #fff;
+    }
+  }
+
+  &__logo-accent {
+    color: $secondary;
+  }
+
+  &__links {
+    display: none;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+
+    @media (min-width: $lg) {
+      display: flex;
+    }
+  }
+
+  &__link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: $text;
+    transition: color 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary;
+    }
+
+    .sch-nav--transparent & {
+      color: rgba(255, 255, 255, 0.85);
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 1.4rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: $accent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    font-family: 'Source Sans 3', sans-serif;
+
+    &:hover {
+      background: darken($accent, 8%);
+    }
+  }
+
+  &__hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+
+    @media (min-width: $lg) {
+      display: none;
+    }
+
+    span {
+      width: 24px;
+      height: 2px;
+      background: $text;
+      border-radius: 2px;
+      transition: background 0.2s;
+
+      .sch-nav--transparent & {
+        background: #fff;
+      }
+    }
+  }
+}
+
+// ── Mobile Nav Overlay ──
+.sch-mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: $dark;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+
+  &__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+  }
+
+  &__link {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $secondary;
+    }
+  }
+
+  &__cta {
+    margin-top: 1rem;
+    padding: 0.7rem 2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: $accent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+}
+
+/* ═══════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════ */
+.sch-footer {
+  background: $dark;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 4rem 1.5rem 2rem;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+  }
+
+  &__brand {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  &__brand-accent {
+    color: $secondary;
+  }
+
+  &__desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 280px;
+  }
+
+  &__col-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  &__col-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  &__col-link {
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $secondary;
+    }
+  }
+
+  &__bottom {
+    max-width: 1200px;
+    margin: 3rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.45);
+  }
+}
+
+/* ═══════════════════════════════════════
+   HOME — HERO
+   ═══════════════════════════════════════ */
+.sch-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba($dark, 0.7) 0%,
+      rgba($dark, 0.55) 50%,
+      rgba($dark, 0.8) 100%
+    );
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 720px;
+    padding: 0 1.5rem;
+  }
+
+  &__title {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    color: #fff;
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+  }
+
+  &__subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  &__ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__btn-primary {
+    padding: 0.85rem 2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: $accent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: background 0.2s;
+
+    &:hover {
+      background: darken($accent, 8%);
+    }
+  }
+
+  &__btn-outline {
+    padding: 0.85rem 2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: border-color 0.2s, background 0.2s;
+
+    &:hover {
+      border-color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+  }
+}
+
+/* ═══════════════════════════════════════
+   HOME — STATS STRIP
+   ═══════════════════════════════════════ */
+.sch-stats {
+  background: $primary;
+  padding: 3rem 1.5rem;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    text-align: center;
+
+    @media (min-width: $md) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .counter-stat {
+    &__number {
+      color: $secondary;
+      font-size: 2.4rem;
+      font-weight: 700;
+      font-family: 'Libre Baskerville', serif;
+    }
+
+    &__label {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+      margin-top: 0.3rem;
+      display: block;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════
+   HOME — FEATURED COURSES
+   ═══════════════════════════════════════ */
+.sch-featured {
+  padding: 5rem 1.5rem;
+  background: $surface;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  &__title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: $primary;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    color: $muted;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  &__card-body {
+    padding: 1.5rem;
+  }
+
+  &__card-dept {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba($primary, 0.1);
+    color: $primary;
+    margin-bottom: 0.6rem;
+  }
+
+  &__card-name {
+    font-size: 1.15rem;
+    color: $dark;
+    margin-bottom: 0.5rem;
+  }
+
+  &__card-meta {
+    font-size: 0.88rem;
+    color: $muted;
+    margin-bottom: 0.75rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &__card-fee {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $secondary;
+  }
+
+  &__cta-wrap {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: $primary;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: background 0.2s;
+
+    &:hover {
+      background: darken($primary, 8%);
+    }
+  }
+}
+
+/* ═══════════════════════════════════════
+   HOME — CAMPUS PREVIEW
+   ═══════════════════════════════════════ */
+.sch-campus-preview {
+  padding: 5rem 1.5rem;
+  background: #fff;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+
+    @media (min-width: $md) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__image {
+    border-radius: 12px;
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+  }
+
+  &__content {}
+
+  &__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: $primary;
+    margin-bottom: 1rem;
+  }
+
+  &__text {
+    font-size: 1.05rem;
+    color: $muted;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  &__features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+
+  &__feature {
+    font-size: 0.95rem;
+    color: $text;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &::before {
+      content: '✓';
+      color: $secondary;
+      font-weight: 700;
+    }
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.8rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    background: $primary;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: background 0.2s;
+
+    &:hover {
+      background: darken($primary, 8%);
+    }
+  }
+}
+
+/* ═══════════════════════════════════════
+   HOME — TESTIMONIALS
+   ═══════════════════════════════════════ */
+.sch-testimonials {
+  padding: 5rem 1.5rem;
+  background: $surface;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    color: $primary;
+    margin-bottom: 3rem;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+    position: relative;
+  }
+
+  &__quote {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: $text;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+
+    &::before {
+      content: '\201C';
+      font-size: 3rem;
+      color: $secondary;
+      font-family: 'Libre Baskerville', serif;
+      line-height: 0;
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      opacity: 0.3;
+    }
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__author-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__author-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: $dark;
+  }
+
+  &__author-program {
+    font-size: 0.82rem;
+    color: $muted;
+  }
+}
+
+/* ═══════════════════════════════════════
+   HOME — CTA BANNER
+   ═══════════════════════════════════════ */
+.sch-cta-banner {
+  padding: 5rem 1.5rem;
+  background: $primary;
+  text-align: center;
+
+  &__title {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  &__text {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 580px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.85rem 2.2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: $accent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: background 0.2s;
+
+    &:hover {
+      background: darken($accent, 8%);
+    }
+  }
+}
+
+/* ═══════════════════════════════════════
+   PAGE HEADER (shared across subpages)
+   ═══════════════════════════════════════ */
+.sch-page-header {
+  background: $primary;
+  padding: 8rem 1.5rem 4rem;
+  text-align: center;
+
+  &__title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+/* ═══════════════════════════════════════
+   COURSES PAGE
+   ═══════════════════════════════════════ */
+.sch-courses {
+  padding: 3rem 1.5rem 5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &__layout {
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+
+    @media (min-width: $lg) {
+      flex-direction: row;
+    }
+  }
+
+  // Sidebar / Filters
+  &__sidebar {
+    flex-shrink: 0;
+
+    @media (min-width: $lg) {
+      width: 260px;
+    }
+  }
+
+  &__filter-group {
+    margin-bottom: 1.5rem;
+  }
+
+  &__filter-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $dark;
+    margin-bottom: 0.5rem;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  &__filter-select {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #d1d8e3;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: 'Source Sans 3', sans-serif;
+    color: $text;
+    background: #fff;
+    cursor: pointer;
+    appearance: auto;
+
+    &:focus {
+      outline: 2px solid $primary;
+      outline-offset: 1px;
+    }
+
+    @media (min-width: $lg) {
+      display: none;
+    }
+  }
+
+  &__filter-buttons {
+    display: none;
+    flex-direction: column;
+    gap: 0.3rem;
+
+    @media (min-width: $lg) {
+      display: flex;
+    }
+  }
+
+  &__filter-btn {
+    padding: 0.5rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-family: 'Source Sans 3', sans-serif;
+    color: $muted;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.2s, background 0.2s;
+
+    &:hover {
+      color: $primary;
+      background: rgba($primary, 0.05);
+    }
+
+    &--active {
+      color: $primary;
+      background: rgba($primary, 0.1);
+      font-weight: 600;
+    }
+  }
+
+  // Grid
+  &__grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    @media (min-width: $sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $xl) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  &__card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  &__card-dept {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: rgba($primary, 0.1);
+    color: $primary;
+    margin-bottom: 0.5rem;
+    width: fit-content;
+  }
+
+  &__card-name {
+    font-size: 1.05rem;
+    color: $dark;
+    margin-bottom: 0.5rem;
+  }
+
+  &__card-meta {
+    font-size: 0.82rem;
+    color: $muted;
+    margin-bottom: 0.5rem;
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  &__card-desc {
+    font-size: 0.88rem;
+    color: $muted;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    flex: 1;
+  }
+
+  &__card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  &__card-fee {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $secondary;
+  }
+
+  &__card-enroll {
+    padding: 0.45rem 1rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    background: $primary;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: background 0.2s;
+
+    &:hover {
+      background: darken($primary, 8%);
+    }
+  }
+
+  // Load More
+  &__load-more-wrap {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem 0 0;
+  }
+
+  &__load-more {
+    padding: 0.75rem 2.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    background: transparent;
+    color: $primary;
+    border: 2px solid $primary;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover {
+      background: $primary;
+      color: #fff;
+    }
+  }
+
+  &__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem 0;
+    color: $muted;
+    font-size: 1.1rem;
+  }
+}
+
+/* ═══════════════════════════════════════
+   ADMISSIONS PAGE
+   ═══════════════════════════════════════ */
+.sch-admissions {
+  // Timeline
+  &__timeline {
+    padding: 4rem 1.5rem;
+    background: $surface;
+  }
+
+  &__timeline-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  &__timeline-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: $primary;
+    margin-bottom: 3rem;
+  }
+
+  &__timeline-steps {
+    position: relative;
+    padding-left: 2.5rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0.9rem;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: rgba($primary, 0.15);
+      border-radius: 2px;
+    }
+  }
+
+  &__step {
+    position: relative;
+    margin-bottom: 2.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__step-number {
+    position: absolute;
+    left: -2.5rem;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: $primary;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__step-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.1rem;
+    color: $dark;
+    margin-bottom: 0.4rem;
+  }
+
+  &__step-desc {
+    font-size: 0.95rem;
+    color: $muted;
+    line-height: 1.6;
+  }
+
+  // Requirements
+  &__requirements {
+    padding: 4rem 1.5rem;
+    background: #fff;
+  }
+
+  &__req-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  &__req-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: $primary;
+    margin-bottom: 2rem;
+  }
+
+  &__table-wrap {
+    overflow-x: auto;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+
+    th, td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid #e8ecf2;
+    }
+
+    th {
+      background: $primary;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+
+      &:first-child {
+        border-radius: 8px 0 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 8px 0 0;
+      }
+    }
+
+    tr:nth-child(even) td {
+      background: rgba($surface, 0.6);
+    }
+
+    tr:hover td {
+      background: rgba($secondary, 0.06);
+    }
+  }
+
+  // Fee Schedule
+  &__fees {
+    padding: 4rem 1.5rem;
+    background: $surface;
+  }
+
+  &__fees-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  &__fees-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: $primary;
+    margin-bottom: 2rem;
+  }
+
+  // Application Form
+  &__form-section {
+    padding: 4rem 1.5rem;
+    background: #fff;
+  }
+
+  &__form-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  &__form-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: $primary;
+    margin-bottom: 0.5rem;
+  }
+
+  &__form-subtitle {
+    text-align: center;
+    font-size: 1rem;
+    color: $muted;
+    margin-bottom: 2.5rem;
+  }
+
+  &__form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+
+    &--full {
+      @media (min-width: $md) {
+        grid-column: 1 / -1;
+      }
+    }
+  }
+
+  &__label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $dark;
+  }
+
+  &__input,
+  &__select {
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #d1d8e3;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-family: 'Source Sans 3', sans-serif;
+    color: $text;
+    background: #fff;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+  }
+
+  &__select {
+    appearance: auto;
+    cursor: pointer;
+  }
+
+  &__file-upload {
+    border: 2px dashed #d1d8e3;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+
+    &:hover {
+      border-color: $primary;
+      background: rgba($primary, 0.02);
+    }
+  }
+
+  &__file-text {
+    font-size: 0.9rem;
+    color: $muted;
+  }
+
+  &__file-text-accent {
+    color: $primary;
+    font-weight: 600;
+  }
+
+  &__submit-wrap {
+    @media (min-width: $md) {
+      grid-column: 1 / -1;
+    }
+
+    text-align: center;
+    padding-top: 0.5rem;
+  }
+
+  &__submit {
+    padding: 0.8rem 2.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: $accent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: background 0.2s;
+
+    &:hover {
+      background: darken($accent, 8%);
+    }
+  }
+
+  // Status Check
+  &__status {
+    padding: 4rem 1.5rem;
+    background: $surface;
+  }
+
+  &__status-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  &__status-title {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    color: $primary;
+    margin-bottom: 0.5rem;
+  }
+
+  &__status-subtitle {
+    font-size: 0.95rem;
+    color: $muted;
+    margin-bottom: 1.5rem;
+  }
+
+  &__status-form {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__status-input {
+    padding: 0.7rem 1rem;
+    border: 1px solid #d1d8e3;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-family: 'Source Sans 3', sans-serif;
+    color: $text;
+    min-width: 260px;
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+  }
+
+  &__status-btn {
+    padding: 0.7rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    background: $primary;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: background 0.2s;
+
+    &:hover {
+      background: darken($primary, 8%);
+    }
+  }
+
+  &__status-card {
+    margin-top: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    text-align: left;
+  }
+
+  &__status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #e8ecf2;
+    font-size: 0.92rem;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__status-label {
+    color: $muted;
+    font-weight: 500;
+  }
+
+  &__status-value {
+    color: $dark;
+    font-weight: 600;
+  }
+
+  &__status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+
+    &--review {
+      background: rgba($secondary, 0.15);
+      color: darken($secondary, 15%);
+    }
+  }
+}
+
+/* ═══════════════════════════════════════
+   FACULTY PAGE
+   ═══════════════════════════════════════ */
+.sch-faculty {
+  padding: 3rem 1.5rem 5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &__filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+
+  &__filter-btn {
+    padding: 0.45rem 1.1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: transparent;
+    color: $muted;
+    border: 1px solid #d1d8e3;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: all 0.2s;
+
+    &:hover {
+      border-color: $primary;
+      color: $primary;
+    }
+
+    &--active {
+      background: $primary;
+      color: #fff;
+      border-color: $primary;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+    @media (min-width: $sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (min-width: $xl) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__card-photo {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  &__card-body {
+    padding: 1.25rem;
+  }
+
+  &__card-name {
+    font-size: 1.05rem;
+    color: $dark;
+    margin-bottom: 0.2rem;
+  }
+
+  &__card-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $secondary;
+    margin-bottom: 0.25rem;
+  }
+
+  &__card-dept {
+    font-size: 0.8rem;
+    color: $muted;
+    margin-bottom: 0.75rem;
+  }
+
+  &__card-bio {
+    font-size: 0.85rem;
+    color: $muted;
+    line-height: 1.5;
+  }
+}
+
+/* ═══════════════════════════════════════
+   CAMPUS PAGE
+   ═══════════════════════════════════════ */
+.sch-campus {
+  // Facilities
+  &__facilities {
+    padding: 4rem 1.5rem;
+    background: $surface;
+  }
+
+  &__facilities-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__facilities-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: $primary;
+    margin-bottom: 3rem;
+  }
+
+  &__facilities-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    @media (min-width: $sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__facility-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
+
+  &__facility-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  &__facility-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.1rem;
+    color: $dark;
+    margin-bottom: 0.5rem;
+  }
+
+  &__facility-desc {
+    font-size: 0.9rem;
+    color: $muted;
+    line-height: 1.5;
+  }
+
+  // Gallery
+  &__gallery {
+    padding: 4rem 1.5rem;
+    background: #fff;
+  }
+
+  &__gallery-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__gallery-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: $primary;
+    margin-bottom: 2.5rem;
+  }
+
+  &__gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+    @media (min-width: $sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__gallery-img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  // Student Life
+  &__student-life {
+    padding: 4rem 1.5rem;
+    background: $surface;
+  }
+
+  &__student-life-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+
+    @media (min-width: $md) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__student-life-content {}
+
+  &__student-life-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: $primary;
+    margin-bottom: 1rem;
+  }
+
+  &__student-life-text {
+    font-size: 1rem;
+    color: $muted;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  &__activities-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  &__activity {
+    font-size: 0.92rem;
+    color: $text;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    &::before {
+      content: '●';
+      color: $secondary;
+      font-size: 0.6rem;
+    }
+  }
+
+  &__student-life-img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+}
+
+/* ═══════════════════════════════════════
+   BLOG PAGE
+   ═══════════════════════════════════════ */
+.sch-blog {
+  padding: 3rem 1.5rem 5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  &__card-body {
+    padding: 1.5rem;
+  }
+
+  &__card-category {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: rgba($secondary, 0.15);
+    color: darken($secondary, 15%);
+    margin-bottom: 0.6rem;
+  }
+
+  &__card-title {
+    font-size: 1.1rem;
+    color: $dark;
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+  }
+
+  &__card-excerpt {
+    font-size: 0.9rem;
+    color: $muted;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+
+  &__card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: $muted;
+  }
+
+  &__card-author {
+    font-weight: 600;
+    color: $text;
+  }
+
+  &__card-link {
+    color: $primary;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════
+   CONTACT PAGE
+   ═══════════════════════════════════════ */
+.sch-contact {
+  padding: 3rem 1.5rem 5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+
+    @media (min-width: $lg) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  // Info
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__info-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: $primary;
+    margin-bottom: 0.5rem;
+  }
+
+  &__info-text {
+    font-size: 1rem;
+    color: $muted;
+    line-height: 1.6;
+  }
+
+  &__info-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  &__info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  &__info-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  &__info-label {
+    font-size: 0.82rem;
+    color: $muted;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.15rem;
+  }
+
+  &__info-value {
+    font-size: 1rem;
+    color: $dark;
+    font-weight: 500;
+  }
+
+  &__map {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 1rem;
+    border: none;
+  }
+
+  &__map-iframe {
+    width: 100%;
+    height: 260px;
+    border: none;
+    border-radius: 12px;
+  }
+
+  // Form
+  &__form-wrap {}
+
+  &__form-title {
+    font-size: clamp(1.3rem, 3vw, 1.6rem);
+    color: $primary;
+    margin-bottom: 1.5rem;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  &__form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  &__label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $dark;
+  }
+
+  &__input,
+  &__select,
+  &__textarea {
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #d1d8e3;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-family: 'Source Sans 3', sans-serif;
+    color: $text;
+    background: #fff;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+  }
+
+  &__textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  &__submit {
+    padding: 0.8rem 2.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: $accent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: background 0.2s;
+    align-self: flex-start;
+
+    &:hover {
+      background: darken($accent, 8%);
+    }
+  }
+}

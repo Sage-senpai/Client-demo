@@ -1,0 +1,1902 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+// ── Variables ──
+$primary: #1C1C1E;
+$accent: #D97706;
+$concrete: #6B7280;
+$surface: #FFFFFF;
+$warm: #FFFBF0;
+$accent-dark: #b56404;
+$accent-light: #f5a623;
+
+$sm: 480px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
+
+// ── Root Scope ──
+.construction-app {
+  --primary: #{$primary};
+  --accent: #{$accent};
+  --concrete: #{$concrete};
+  --surface: #{$surface};
+  --warm: #{$warm};
+
+  font-family: 'Barlow', sans-serif;
+  color: $primary;
+  background: $surface;
+  overflow-x: hidden;
+  line-height: 1.6;
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Barlow Condensed', sans-serif;
+    line-height: 1.15;
+    font-weight: 700;
+  }
+}
+
+// ── Navbar ──
+.con-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: $primary;
+  transition: box-shadow 0.35s ease;
+
+  &--scrolled {
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  &__logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: $surface;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    span {
+      color: $accent;
+    }
+  }
+
+  &__links {
+    display: none;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+
+    @media (min-width: $lg) {
+      display: flex;
+    }
+  }
+
+  &__link {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    transition: color 0.25s ease;
+    text-transform: uppercase;
+
+    &:hover,
+    &--active {
+      color: $accent;
+    }
+  }
+
+  &__cta {
+    background: $accent;
+    color: $surface;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: background 0.25s ease;
+    font-family: 'Barlow', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    &:hover {
+      background: $accent-dark;
+    }
+  }
+
+  &__hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+
+    @media (min-width: $lg) {
+      display: none;
+    }
+
+    span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: $surface;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    &--open {
+      span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+    }
+  }
+
+  &__mobile {
+    display: none;
+    background: $primary;
+    padding: 1rem 1.5rem 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    @media (max-width: #{$lg - 1px}) {
+      &--open {
+        display: block;
+      }
+    }
+  }
+
+  &__mobile-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    a {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      &:hover {
+        color: $accent;
+      }
+    }
+  }
+
+  &__mobile-cta {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    background: $accent;
+    color: $surface;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-family: 'Barlow', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+}
+
+// ── Hero ──
+.con-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=85');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    padding-top: 72px;
+    border-left: 5px solid $accent;
+    padding-left: 2rem;
+
+    @media (max-width: $md) {
+      padding-left: 1.2rem;
+    }
+  }
+
+  &__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    color: $surface;
+    text-transform: uppercase;
+    line-height: 1.05;
+    margin: 0 0 1.2rem;
+    letter-spacing: -1px;
+  }
+
+  &__subtitle {
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 520px;
+    margin: 0 0 2rem;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  &__ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &__btn-primary {
+    background: $accent;
+    color: $surface;
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background 0.25s ease;
+
+    &:hover {
+      background: $accent-dark;
+    }
+  }
+
+  &__btn-outline {
+    background: transparent;
+    color: $surface;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: border-color 0.25s ease, color 0.25s ease;
+
+    &:hover {
+      border-color: $accent;
+      color: $accent;
+    }
+  }
+}
+
+// ── Stats Row ──
+.con-stats {
+  background: $primary;
+  padding: 3rem 1.5rem;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+
+    @media (max-width: $md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .counter-stat {
+    text-align: center;
+
+    &__number {
+      color: $accent;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+    }
+
+    &__label {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: block;
+      margin-top: 0.3rem;
+    }
+  }
+}
+
+// ── Section Styles ──
+.con-section {
+  padding: 5rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (max-width: $md) {
+    padding: 3rem 1.5rem;
+  }
+
+  &--warm {
+    background: $warm;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &--dark {
+    background: $primary;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    color: $surface;
+  }
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+}
+
+.con-section-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.5px;
+
+  &--light {
+    color: $surface;
+  }
+}
+
+.con-section-subtitle {
+  color: $concrete;
+  font-size: 1.05rem;
+  margin: 0 0 2.5rem;
+  max-width: 580px;
+}
+
+.con-accent-bar {
+  width: 60px;
+  height: 4px;
+  background: $accent;
+  margin-bottom: 1.5rem;
+  border: none;
+}
+
+// ── Projects Showcase ──
+.con-projects-showcase {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+
+  @media (max-width: $lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.con-project-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4 / 3;
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  &:hover &__image {
+    transform: scale(1.05);
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    transition: background 0.3s ease;
+  }
+
+  &:hover &__overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 60%);
+  }
+
+  &__sector {
+    display: inline-block;
+    background: $accent;
+    color: $surface;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+    margin-bottom: 0.5rem;
+    width: fit-content;
+  }
+
+  &__name {
+    color: $surface;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem;
+    text-transform: uppercase;
+  }
+
+  &__location {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+  }
+
+  &__value {
+    color: $accent;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 0.25rem;
+  }
+
+  &__status {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+
+    &--completed {
+      background: #059669;
+      color: $surface;
+    }
+
+    &--ongoing {
+      background: $accent;
+      color: $surface;
+    }
+  }
+}
+
+// ── Services Grid ──
+.con-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+
+  @media (max-width: $lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.con-service-card {
+  background: $surface;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  &__icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+  }
+
+  &__desc {
+    color: $concrete;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+// ── Certifications Strip ──
+.con-certs {
+  background: $warm;
+  padding: 3rem 1.5rem;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  &__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: $concrete;
+    letter-spacing: 2px;
+    margin: 0 0 1.5rem;
+  }
+
+  &__badges {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__badge {
+    background: $surface;
+    border: 2px solid $accent;
+    color: $primary;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.6rem 1.5rem;
+    border-radius: 4px;
+  }
+}
+
+// ── CTA Strip ──
+.con-cta-strip {
+  background: $accent;
+  padding: 4rem 1.5rem;
+  text-align: center;
+
+  &__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    color: $surface;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+  }
+
+  &__text {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.05rem;
+    margin: 0 0 2rem;
+  }
+
+  &__btn {
+    background: $primary;
+    color: $surface;
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background 0.25s ease;
+
+    &:hover {
+      background: lighten($primary, 10%);
+    }
+  }
+}
+
+// ── Projects Page ──
+.con-projects-page {
+  padding-top: 100px;
+  min-height: 100vh;
+}
+
+.con-filter-bar {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+
+  &__btn {
+    background: transparent;
+    border: 2px solid #e5e7eb;
+    color: $concrete;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.88rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    &:hover {
+      border-color: $accent;
+      color: $accent;
+    }
+
+    &--active {
+      background: $accent;
+      border-color: $accent;
+      color: $surface;
+    }
+  }
+}
+
+.con-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: $lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Project Modal ──
+.con-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.con-modal {
+  background: $surface;
+  border-radius: 12px;
+  max-width: 720px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+
+  &__image {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+  }
+
+  &__body {
+    padding: 2rem;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  &__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0 0 0.3rem;
+  }
+
+  &__meta {
+    color: $concrete;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: $concrete;
+    padding: 0.25rem;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  &__badges {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.25rem 0.65rem;
+    border-radius: 3px;
+
+    &--sector {
+      background: rgba($accent, 0.15);
+      color: $accent-dark;
+    }
+
+    &--status {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    &--ongoing {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    &--value {
+      background: $primary;
+      color: $surface;
+    }
+  }
+
+  &__section {
+    margin-bottom: 1.5rem;
+
+    h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: $accent;
+      margin: 0 0 0.5rem;
+    }
+
+    p {
+      color: $concrete;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+  }
+
+  &__tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  &__tag {
+    background: #f3f4f6;
+    color: $primary;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+  }
+}
+
+// ── Services Page ──
+.con-services-page {
+  padding-top: 100px;
+  min-height: 100vh;
+}
+
+.con-services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin-top: 2rem;
+}
+
+.con-service-block {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: start;
+
+  @media (max-width: $md) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  &__icon {
+    width: 80px;
+    height: 80px;
+    background: $warm;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+  }
+
+  &__desc {
+    color: $concrete;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0 0 1rem;
+    max-width: 680px;
+  }
+
+  &__deliverables-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: $accent;
+    letter-spacing: 1px;
+    margin: 0 0 0.5rem;
+  }
+
+  &__deliverables {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.3rem 2rem;
+
+    @media (max-width: $sm) {
+      grid-template-columns: 1fr;
+    }
+
+    li {
+      color: $primary;
+      font-size: 0.9rem;
+      padding-left: 1.2rem;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.55rem;
+        width: 6px;
+        height: 6px;
+        background: $accent;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+// ── About Page ──
+.con-about-page {
+  padding-top: 100px;
+  min-height: 100vh;
+}
+
+.con-timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin-top: 2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #e5e7eb;
+  }
+}
+
+.con-timeline-item {
+  position: relative;
+  padding-bottom: 2.5rem;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  &__dot {
+    position: absolute;
+    left: -2rem;
+    top: 0.2rem;
+    width: 14px;
+    height: 14px;
+    background: $accent;
+    border-radius: 50%;
+    transform: translateX(calc(-50% + 1.5px));
+  }
+
+  &__year {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: $accent;
+    text-transform: uppercase;
+    margin: 0 0 0.25rem;
+  }
+
+  &__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.3rem;
+  }
+
+  &__desc {
+    color: $concrete;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 560px;
+  }
+}
+
+// ── Leadership ──
+.con-leaders {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+
+  @media (max-width: $lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.con-leader-card {
+  text-align: center;
+  background: $warm;
+  border-radius: 8px;
+  padding: 2rem 1.5rem;
+
+  &__avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem;
+    border: 3px solid $accent;
+  }
+
+  &__name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 0.2rem;
+    text-transform: uppercase;
+  }
+
+  &__role {
+    color: $accent;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+
+  &__bio {
+    color: $concrete;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+// ── Vision / Mission / Values ──
+.con-vmv {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+
+  @media (max-width: $md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.con-vmv-card {
+  background: $surface;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 2rem;
+  border-top: 4px solid $accent;
+
+  &__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0 0 0.75rem;
+  }
+
+  &__text {
+    color: $concrete;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      color: $concrete;
+      font-size: 0.92rem;
+      padding: 0.3rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.65rem;
+        width: 6px;
+        height: 6px;
+        background: $accent;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+// ── Safety Page ──
+.con-safety-page {
+  padding-top: 100px;
+  min-height: 100vh;
+}
+
+.con-policy-statement {
+  background: $warm;
+  border-left: 5px solid $accent;
+  padding: 2rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 3rem;
+
+  &__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0 0 0.75rem;
+  }
+
+  &__text {
+    color: $concrete;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin: 0;
+  }
+}
+
+.con-safety-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+
+  @media (max-width: $md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.con-safety-stat {
+  background: $primary;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+
+  .counter-stat__number {
+    color: $accent;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+  }
+
+  .counter-stat__label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-top: 0.3rem;
+  }
+}
+
+.con-compliance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+
+  @media (max-width: $md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.con-compliance-card {
+  background: $surface;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+
+  &__icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  &__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0 0 0.4rem;
+  }
+
+  &__desc {
+    color: $concrete;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+.con-training-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+
+  @media (max-width: $md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.con-training-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: $warm;
+  border-radius: 8px;
+  padding: 1.25rem;
+
+  &__number {
+    width: 36px;
+    height: 36px;
+    background: $accent;
+    color: $surface;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 0.2rem;
+  }
+
+  &__desc {
+    color: $concrete;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+.con-incident {
+  background: $primary;
+  border-radius: 12px;
+  padding: 2.5rem;
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+
+  @media (max-width: $md) {
+    grid-template-columns: 1fr;
+  }
+
+  &__content {
+    color: $surface;
+  }
+
+  &__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0 0 0.75rem;
+    color: $surface;
+  }
+
+  &__text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__btn {
+    background: $accent;
+    color: $surface;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    transition: background 0.25s ease;
+
+    &:hover {
+      background: $accent-dark;
+    }
+
+    &--outline {
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: $surface;
+
+      &:hover {
+        border-color: $accent;
+        color: $accent;
+        background: transparent;
+      }
+    }
+  }
+}
+
+// ── Quote Page ──
+.con-quote-page {
+  padding-top: 100px;
+  min-height: 100vh;
+}
+
+.con-quote-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 3rem;
+}
+
+.con-step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &__circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    border: 2px solid #e5e7eb;
+    color: $concrete;
+    background: $surface;
+    transition: all 0.3s ease;
+
+    &--active {
+      background: $accent;
+      border-color: $accent;
+      color: $surface;
+    }
+
+    &--done {
+      background: #059669;
+      border-color: #059669;
+      color: $surface;
+    }
+  }
+
+  &__label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: $concrete;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    @media (max-width: $sm) {
+      display: none;
+    }
+  }
+}
+
+.con-step-line {
+  width: 60px;
+  height: 2px;
+  background: #e5e7eb;
+  margin: 0 0.5rem;
+
+  &--done {
+    background: #059669;
+  }
+
+  @media (max-width: $sm) {
+    width: 30px;
+  }
+}
+
+// ── Quote Form ──
+.con-quote-form {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.con-step-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0 0 1.5rem;
+}
+
+.con-radio-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+
+  @media (max-width: $md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.con-radio-card {
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: $surface;
+
+  &:hover {
+    border-color: $accent;
+  }
+
+  &--active {
+    border-color: $accent;
+    background: rgba($accent, 0.05);
+  }
+
+  &__icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    display: block;
+  }
+}
+
+.con-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+  @media (max-width: $sm) {
+    grid-template-columns: 1fr;
+  }
+
+  &--full {
+    grid-template-columns: 1fr;
+  }
+}
+
+.con-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  &--full {
+    grid-column: 1 / -1;
+  }
+
+  label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: $primary;
+    letter-spacing: 0.5px;
+  }
+
+  input, select, textarea {
+    border: 2px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.92rem;
+    color: $primary;
+    background: $surface;
+    transition: border-color 0.25s ease;
+    outline: none;
+    width: 100%;
+
+    &:focus {
+      border-color: $accent;
+    }
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+}
+
+.con-form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.con-btn {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.8rem 2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s ease;
+
+  &--primary {
+    background: $accent;
+    color: $surface;
+
+    &:hover {
+      background: $accent-dark;
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    border: 2px solid #e5e7eb;
+    color: $concrete;
+
+    &:hover {
+      border-color: $accent;
+      color: $accent;
+    }
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// ── "What Happens After" Process ──
+.con-process {
+  margin-top: 4rem;
+}
+
+.con-process-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+
+  @media (max-width: $md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.con-process-step {
+  text-align: center;
+
+  &__number {
+    width: 56px;
+    height: 56px;
+    background: $accent;
+    color: $surface;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+
+  &__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+  }
+
+  &__desc {
+    color: $concrete;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// ── Contact Page ──
+.con-contact-page {
+  padding-top: 100px;
+  min-height: 100vh;
+}
+
+.con-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+
+  @media (max-width: $md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.con-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &__submit {
+    background: $accent;
+    color: $surface;
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.25s ease;
+    align-self: flex-start;
+
+    &:hover {
+      background: $accent-dark;
+    }
+  }
+}
+
+.con-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.con-office-card {
+  background: $warm;
+  border-radius: 8px;
+  padding: 1.5rem;
+
+  &__name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0 0 0.75rem;
+    color: $accent;
+  }
+
+  &__detail {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    color: $concrete;
+    font-size: 0.9rem;
+
+    span:first-child {
+      flex-shrink: 0;
+    }
+  }
+}
+
+.con-map {
+  margin-top: 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+
+  iframe {
+    width: 100%;
+    height: 350px;
+    border: none;
+  }
+}
+
+// ── Footer ──
+.con-footer {
+  background: $primary;
+  padding: 4rem 1.5rem 2rem;
+  color: $surface;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+
+    @media (max-width: $lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0 0 0.75rem;
+
+    span {
+      color: $accent;
+    }
+  }
+
+  &__tagline {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  &__col-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $accent;
+    margin: 0 0 1rem;
+  }
+
+  &__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $accent;
+      }
+    }
+  }
+
+  &__contact-item {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__bottom {
+    max-width: 1200px;
+    margin: 2.5rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.82rem;
+  }
+}
+
+// ── Page Header (reusable) ──
+.con-page-header {
+  background: $primary;
+  padding: 6rem 1.5rem 3rem;
+  text-align: center;
+  margin-bottom: 3rem;
+
+  &__title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    color: $surface;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+  }
+
+  &__subtitle {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.05rem;
+    margin: 0;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// ── About Certs Section ──
+.con-about-certs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+
+  @media (max-width: $md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.con-cert-card {
+  background: $warm;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+
+  &__icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  &__name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0 0 0.3rem;
+  }
+
+  &__desc {
+    color: $concrete;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+}

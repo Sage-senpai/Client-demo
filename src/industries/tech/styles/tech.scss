@@ -1,0 +1,1685 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+// ── Variables ──
+$primary: #020817;
+$accent: #38BDF8;
+$accent2: #818CF8;
+$surface: #FFFFFF;
+$surface2: #F0F9FF;
+$border: rgba(56, 189, 248, 0.15);
+$text: #334155;
+$text-light: #94A3B8;
+
+$sm: 480px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
+
+// ── Root ──
+.tech-app {
+  --primary: #{$primary};
+  --accent: #{$accent};
+  --accent2: #{$accent2};
+  --surface: #{$surface};
+  --surface2: #{$surface2};
+  --border: #{$border};
+  --brand-primary: #{$accent};
+  --brand-muted: #{$text-light};
+
+  font-family: 'Inter', sans-serif;
+  color: $text;
+  background: $surface;
+  overflow-x: hidden;
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', sans-serif;
+    line-height: 1.15;
+    color: $primary;
+  }
+
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: $accent;
+    margin-bottom: 0.75rem;
+  }
+}
+
+// ── Navbar ──
+.tech-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: $primary;
+  padding: 0.85rem 0;
+  transition: box-shadow 0.3s ease, padding 0.3s ease;
+
+  &--scrolled {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    padding: 0.6rem 0;
+  }
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    span {
+      color: $accent;
+    }
+  }
+
+  &__links {
+    display: none;
+    list-style: none;
+    gap: 1.8rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+
+    @media (min-width: $lg) {
+      display: flex;
+    }
+  }
+
+  &__link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.25s ease;
+    cursor: pointer;
+
+    &:hover,
+    &--active {
+      color: $accent;
+    }
+  }
+
+  &__cta {
+    display: none;
+    padding: 0.6rem 1.4rem;
+    background: $accent;
+    color: $primary;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.25s ease;
+
+    &:hover {
+      background: lighten($accent, 8%);
+    }
+
+    @media (min-width: $lg) {
+      display: inline-flex;
+    }
+  }
+
+  &__hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+
+    @media (min-width: $lg) {
+      display: none;
+    }
+
+    span {
+      width: 24px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    &--open {
+      span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+    }
+  }
+
+  &__mobile {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: $primary;
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    @media (max-width: $lg) {
+      &--open {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    a {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      transition: color 0.2s;
+
+      &:hover {
+        color: $accent;
+      }
+    }
+
+    .tech-nav__cta {
+      display: inline-flex;
+      width: fit-content;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+// ── Hero ──
+.tech-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $primary;
+  overflow: hidden;
+
+  &__bg-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(56, 189, 248, 0.12) 1px, transparent 1px);
+    background-size: 32px 32px;
+    animation: tech-dots-drift 20s linear infinite;
+  }
+
+  &__gradient-orb {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.15;
+
+    &--blue {
+      background: $accent;
+      top: -200px;
+      right: -100px;
+    }
+
+    &--indigo {
+      background: $accent2;
+      bottom: -200px;
+      left: -100px;
+    }
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 6rem 1.5rem 4rem;
+    max-width: 900px;
+  }
+
+  &__brand {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, $accent 0%, $accent2 50%, $accent 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: tech-gradient-shift 4s ease-in-out infinite;
+  }
+
+  &__headline {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  &__sub {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+
+  &__ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__btn-primary {
+    padding: 0.9rem 2rem;
+    background: $accent;
+    color: $primary;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.25s;
+
+    &:hover {
+      background: lighten($accent, 8%);
+    }
+  }
+
+  &__btn-outline {
+    padding: 0.9rem 2rem;
+    background: transparent;
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.25s, color 0.25s;
+
+    &:hover {
+      border-color: $accent;
+      color: $accent;
+    }
+  }
+
+  &__scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 2rem;
+    animation: tech-bounce 2s infinite;
+  }
+}
+
+@keyframes tech-dots-drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 32px 32px; }
+}
+
+@keyframes tech-gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes tech-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+// ── Marquee / Tech Stack ──
+.tech-marquee {
+  background: darken($primary, 2%);
+  padding: 1.2rem 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  &__track {
+    display: flex;
+    gap: 3rem;
+    white-space: nowrap;
+    animation: tech-marquee-scroll 25s linear infinite;
+    width: max-content;
+  }
+
+  &__item {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+
+    &::after {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: $accent;
+      opacity: 0.4;
+    }
+  }
+}
+
+@keyframes tech-marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+// ── Services Overview (Home) ──
+.tech-services-overview {
+  padding: 6rem 1.5rem;
+  background: $surface;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  &__title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    color: $text-light;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__card {
+    background: $surface2;
+    border: 1px solid $border;
+    border-radius: 12px;
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(56, 189, 248, 0.08);
+    }
+  }
+
+  &__card-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  &__card-desc {
+    font-size: 0.92rem;
+    color: $text-light;
+    line-height: 1.65;
+  }
+}
+
+// ── Case Studies Preview (Home) ──
+.tech-case-preview {
+  padding: 6rem 1.5rem;
+  background: $surface2;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  &__title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    @media (min-width: $lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__card {
+    background: $surface;
+    border-radius: 12px;
+    padding: 2rem;
+    border-left: 4px solid $accent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:nth-child(2) {
+      border-left-color: $accent2;
+    }
+
+    &:nth-child(3) {
+      border-left-color: #34D399;
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  &__card-sector {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: $accent;
+    margin-bottom: 0.75rem;
+  }
+
+  &__card-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  &__card-challenge {
+    font-size: 0.9rem;
+    color: $text-light;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  &__card-outcome {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $primary;
+    padding: 0.6rem 0;
+    border-top: 1px solid $border;
+  }
+
+  &__cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  &__btn {
+    padding: 0.85rem 2rem;
+    background: $accent;
+    color: $primary;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.25s;
+
+    &:hover {
+      background: lighten($accent, 8%);
+    }
+  }
+}
+
+// ── Stats Section ──
+.tech-stats {
+  padding: 4rem 1.5rem;
+  background: $primary;
+
+  &__inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .counter-stat {
+    text-align: center;
+
+    &__number {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: $accent;
+    }
+
+    &__label {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 0.3rem;
+      display: block;
+    }
+  }
+}
+
+// ── CTA Section (Home) ──
+.tech-cta-section {
+  padding: 6rem 1.5rem;
+  background: linear-gradient(135deg, $primary 0%, #0C1E3A 100%);
+  text-align: center;
+
+  &__inner {
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1.2rem;
+  }
+
+  &__text {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  &__btn {
+    padding: 1rem 2.5rem;
+    background: $accent;
+    color: $primary;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.25s;
+
+    &:hover {
+      background: lighten($accent, 8%);
+    }
+  }
+}
+
+// ── Services Page ──
+.tech-services-page {
+  padding: 8rem 1.5rem 5rem;
+  background: $surface;
+  min-height: 100vh;
+
+  &__inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    color: $text-light;
+    max-width: 550px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+}
+
+.tech-accordion {
+  &__item {
+    border: 1px solid $border;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.06);
+    }
+
+    &--open {
+      border-color: $accent;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    background: $surface;
+    border: none;
+    width: 100%;
+    text-align: left;
+    transition: background 0.2s;
+
+    &:hover {
+      background: $surface2;
+    }
+  }
+
+  &__header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__icon {
+    font-size: 1.5rem;
+  }
+
+  &__name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: $primary;
+  }
+
+  &__toggle {
+    font-size: 1.4rem;
+    color: $accent;
+    transition: transform 0.3s ease;
+
+    &--open {
+      transform: rotate(45deg);
+    }
+  }
+
+  &__body {
+    padding: 0 2rem 2rem;
+    background: $surface2;
+  }
+
+  &__description {
+    font-size: 0.95rem;
+    color: $text;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  &__meta {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__meta-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: $accent;
+    margin-bottom: 0.6rem;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  &__tag {
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.3rem 0.7rem;
+    background: rgba(56, 189, 248, 0.1);
+    color: $accent;
+    border-radius: 20px;
+    border: 1px solid $border;
+  }
+
+  &__timeline {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: $primary;
+  }
+
+  &__deliverables {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      font-size: 0.88rem;
+      color: $text;
+      padding: 0.25rem 0;
+
+      &::before {
+        content: '→ ';
+        color: $accent;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+// ── Work Page ──
+.tech-work-page {
+  padding: 8rem 1.5rem 5rem;
+  background: $surface;
+  min-height: 100vh;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    color: $text-light;
+    max-width: 550px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+}
+
+.tech-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 3rem;
+
+  &__btn {
+    padding: 0.55rem 1.3rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1.5px solid $border;
+    border-radius: 30px;
+    background: transparent;
+    color: $text;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: 'Inter', sans-serif;
+
+    &:hover {
+      border-color: $accent;
+      color: $accent;
+    }
+
+    &--active {
+      background: $accent;
+      border-color: $accent;
+      color: $primary;
+    }
+  }
+}
+
+.tech-work-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media (min-width: $md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tech-work-card {
+  background: $surface2;
+  border: 1px solid $border;
+  border-radius: 12px;
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(56, 189, 248, 0.08);
+  }
+
+  &__sector {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $surface;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+
+    &--FinTech { background: $accent; }
+    &--HealthTech { background: #34D399; }
+    &--E-Commerce { background: $accent2; }
+    &--EdTech { background: #F59E0B; }
+    &--Web3 { background: #A78BFA; }
+  }
+
+  &__name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  &__challenge {
+    font-size: 0.9rem;
+    color: $text-light;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  &__outcome {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: $primary;
+    padding: 0.75rem 0;
+    border-top: 1px solid $border;
+    border-bottom: 1px solid $border;
+    margin-bottom: 1rem;
+  }
+
+  &__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  &__stack-pill {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.6rem;
+    background: rgba(56, 189, 248, 0.08);
+    color: $accent;
+    border-radius: 4px;
+    border: 1px solid $border;
+  }
+}
+
+// ── Team Page ──
+.tech-team-page {
+  padding: 8rem 1.5rem 5rem;
+  background: $surface;
+  min-height: 100vh;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    color: $text-light;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+}
+
+.tech-team-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 5rem;
+
+  @media (min-width: $sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.tech-team-card {
+  background: $surface2;
+  border: 1px solid $border;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(56, 189, 248, 0.08);
+  }
+
+  &__photo {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+  }
+
+  &__body {
+    padding: 1.5rem;
+  }
+
+  &__name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  &__role {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: $accent;
+    margin-bottom: 0.6rem;
+  }
+
+  &__bio {
+    font-size: 0.85rem;
+    color: $text-light;
+    line-height: 1.6;
+  }
+}
+
+// ── Culture Section ──
+.tech-culture {
+  padding: 5rem 1.5rem;
+  background: $surface2;
+
+  &__inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  &__text {
+    font-size: 1.05rem;
+    color: $text-light;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $lg) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__value {
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  &__value-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  &__value-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: $primary;
+    margin-bottom: 0.5rem;
+  }
+
+  &__value-desc {
+    font-size: 0.85rem;
+    color: $text-light;
+    line-height: 1.6;
+  }
+}
+
+// ── Blog Page ──
+.tech-blog-page {
+  padding: 8rem 1.5rem 5rem;
+  background: $surface;
+  min-height: 100vh;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    color: $text-light;
+    max-width: 550px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+.tech-blog-card {
+  background: $surface2;
+  border: 1px solid $border;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(56, 189, 248, 0.08);
+  }
+
+  &__body {
+    padding: 1.8rem;
+  }
+
+  &__category {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: $accent;
+    margin-bottom: 0.75rem;
+  }
+
+  &__title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    line-height: 1.35;
+  }
+
+  &__date {
+    font-size: 0.8rem;
+    color: $text-light;
+    margin-bottom: 0.75rem;
+  }
+
+  &__excerpt {
+    font-size: 0.9rem;
+    color: $text;
+    line-height: 1.65;
+  }
+
+  &__link {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $accent;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $accent2;
+    }
+  }
+}
+
+// ── Careers Page ──
+.tech-careers-page {
+  padding: 8rem 1.5rem 5rem;
+  background: $surface;
+  min-height: 100vh;
+
+  &__inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    color: $text-light;
+    max-width: 550px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+}
+
+.tech-role-card {
+  border: 1px solid $border;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    box-shadow: 0 4px 20px rgba(56, 189, 248, 0.06);
+  }
+
+  &--open {
+    border-color: $accent;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.3rem 1.8rem;
+    cursor: pointer;
+    background: $surface;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+
+    &:hover {
+      background: $surface2;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  &__role-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: $primary;
+  }
+
+  &__meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &__meta-tag {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: $text-light;
+  }
+
+  &__toggle {
+    font-size: 1.4rem;
+    color: $accent;
+    transition: transform 0.3s;
+
+    &--open {
+      transform: rotate(45deg);
+    }
+  }
+
+  &__body {
+    padding: 0 1.8rem 2rem;
+    background: $surface2;
+  }
+
+  &__description {
+    font-size: 0.92rem;
+    color: $text;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+  }
+
+  &__responsibilities {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+
+    li {
+      font-size: 0.88rem;
+      color: $text;
+      padding: 0.3rem 0;
+
+      &::before {
+        content: '→ ';
+        color: $accent;
+        font-weight: 700;
+      }
+    }
+  }
+
+  &__apply-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: $primary;
+    margin-bottom: 1rem;
+  }
+}
+
+.tech-apply-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  &__label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: $primary;
+  }
+
+  &__input,
+  &__file-label {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    border: 1.5px solid $border;
+    border-radius: 8px;
+    background: $surface;
+    color: $primary;
+    transition: border-color 0.25s;
+
+    &:focus {
+      outline: none;
+      border-color: $accent;
+    }
+  }
+
+  &__file-input {
+    display: none;
+  }
+
+  &__file-label {
+    cursor: pointer;
+    text-align: center;
+    color: $accent;
+    border-style: dashed;
+
+    &:hover {
+      background: $surface2;
+    }
+  }
+
+  &__submit {
+    padding: 0.85rem 2rem;
+    background: $accent;
+    color: $primary;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.25s;
+    align-self: flex-start;
+
+    &:hover {
+      background: lighten($accent, 8%);
+    }
+  }
+}
+
+// ── Contact Page ──
+.tech-contact-page {
+  padding: 8rem 1.5rem 5rem;
+  background: $surface;
+  min-height: 100vh;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  &__subtitle {
+    font-size: 1.05rem;
+    color: $text-light;
+    max-width: 550px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+
+    @media (min-width: $lg) {
+      grid-template-columns: 1.2fr 1fr;
+    }
+  }
+}
+
+.tech-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  &__label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: $primary;
+  }
+
+  &__input,
+  &__textarea {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    border: 1.5px solid $border;
+    border-radius: 8px;
+    background: $surface2;
+    color: $primary;
+    transition: border-color 0.25s;
+
+    &:focus {
+      outline: none;
+      border-color: $accent;
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 140px;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__submit {
+    padding: 0.9rem 2.5rem;
+    background: $accent;
+    color: $primary;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.25s;
+    align-self: flex-start;
+
+    &:hover {
+      background: lighten($accent, 8%);
+    }
+  }
+}
+
+.tech-contact-info {
+  &__section {
+    margin-bottom: 2rem;
+  }
+
+  &__label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: $accent;
+    margin-bottom: 0.5rem;
+  }
+
+  &__text {
+    font-size: 0.95rem;
+    color: $text;
+    line-height: 1.7;
+  }
+
+  &__map {
+    width: 100%;
+    height: 280px;
+    border-radius: 12px;
+    border: 1px solid $border;
+    overflow: hidden;
+    margin-top: 1rem;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  }
+}
+
+// ── Footer ──
+.tech-footer {
+  background: $primary;
+  padding: 4rem 1.5rem 2rem;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $lg) {
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    }
+  }
+
+  &__brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.75rem;
+
+    span {
+      color: $accent;
+    }
+  }
+
+  &__brand-text {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.7;
+    max-width: 280px;
+  }
+
+  &__col-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1rem;
+  }
+
+  &__col-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    a {
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.45);
+      transition: color 0.2s;
+
+      &:hover {
+        color: $accent;
+      }
+    }
+  }
+
+  &__bar {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 1.5rem;
+    text-align: center;
+  }
+
+  &__copy {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+// ── General page image ──
+.tech-page-image {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin: 2rem 0;
+
+  @media (min-width: $md) {
+    height: 400px;
+  }
+}
