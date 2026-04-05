@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Toaster } from 'react-hot-toast';
 import ScrollToTop from '../../components/shared/ScrollToTop';
 import BackToShowcase from '../../components/shared/BackToShowcase';
 import { pageTransition } from '../../styles/_animations';
@@ -47,7 +46,6 @@ export default function CoworkingApp() {
 
   return (
     <div className="coworking-app">
-      <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
       <ScrollToTop />
       <BackToShowcase />
 

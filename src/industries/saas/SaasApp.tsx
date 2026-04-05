@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Toaster } from 'react-hot-toast';
 import ScrollToTop from '../../components/shared/ScrollToTop';
 import BackToShowcase from '../../components/shared/BackToShowcase';
 import { pageTransition } from '../../styles/_animations';
@@ -171,7 +170,6 @@ export default function SaasApp() {
 
   return (
     <div className="saas-app">
-      <Toaster position="top-center" />
       <ScrollToTop />
       <Navbar />
 

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Toaster } from 'react-hot-toast';
 import ScrollToTop from '../../components/shared/ScrollToTop';
 import BackToShowcase from '../../components/shared/BackToShowcase';
 import { pageTransition } from '../../styles/_animations';
@@ -44,7 +43,6 @@ export default function RestaurantApp() {
 
   return (
     <div className="restaurant-app">
-      <Toaster position="top-center" />
       <ScrollToTop />
       <BackToShowcase />
 

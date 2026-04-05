@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Toaster } from 'react-hot-toast';
 import ScrollToTop from '../../components/shared/ScrollToTop';
 import BackToShowcase from '../../components/shared/BackToShowcase';
 import { pageTransition, buttonHover } from '../../styles/_animations';
@@ -171,7 +170,6 @@ export default function SchoolApp() {
 
   return (
     <div className="school-app">
-      <Toaster position="top-right" />
       <ScrollToTop />
       <Navbar />
 

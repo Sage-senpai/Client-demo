@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Toaster } from 'react-hot-toast';
 import ScrollToTop from '../../components/shared/ScrollToTop';
 import BackToShowcase from '../../components/shared/BackToShowcase';
 import { pageTransition } from '../../styles/_animations';
@@ -40,7 +39,6 @@ export default function TechApp() {
 
   return (
     <div className="tech-app">
-      <Toaster position="top-right" />
       <ScrollToTop />
       <BackToShowcase />
 

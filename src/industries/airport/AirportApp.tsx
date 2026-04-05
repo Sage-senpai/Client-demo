@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Toaster } from 'react-hot-toast';
 import ScrollToTop from '../../components/shared/ScrollToTop';
 import BackToShowcase from '../../components/shared/BackToShowcase';
 import Home from './pages/Home';
@@ -172,16 +171,6 @@ export default function AirportApp() {
 
   return (
     <div className="airport-app">
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          duration: 4000,
-          style: {
-            fontFamily: "'Inter', sans-serif",
-            borderRadius: '8px',
-          },
-        }}
-      />
       <ScrollToTop />
       <Navbar />
 
