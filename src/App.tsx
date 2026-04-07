@@ -12,6 +12,7 @@ const TechApp = lazy(() => import('./industries/tech/TechApp'));
 const ConstructionApp = lazy(() => import('./industries/construction/ConstructionApp'));
 const BeautyApp = lazy(() => import('./industries/beauty/BeautyApp'));
 const CoworkingApp = lazy(() => import('./industries/coworking/CoworkingApp'));
+const FitnessApp = lazy(() => import('./industries/fitness/FitnessApp'));
 
 function Loader() {
   return (
@@ -36,6 +37,7 @@ export default function App() {
         <Route path="/construction/*" element={<ConstructionApp />} />
         <Route path="/beauty/*" element={<BeautyApp />} />
         <Route path="/coworking/*" element={<CoworkingApp />} />
+        <Route path="/fitness/*" element={<FitnessApp />} />
       </Routes>
     </Suspense>
   );

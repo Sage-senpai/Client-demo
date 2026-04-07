@@ -99,6 +99,15 @@ const industries: IndustryItem[] = [
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80',
     route: '/coworking',
   },
+  {
+    id: 'fitness',
+    name: 'Fitness & Gym',
+    brand: 'Pulse Athletics',
+    description: 'Premium urban gym with class booking, trainers, and membership plans.',
+    accent: '#AAFF00',
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80',
+    route: '/fitness',
+  },
 ];
 
 export default industries;
