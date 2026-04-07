@@ -5,7 +5,7 @@ import AnimatedSection from '../../../components/shared/AnimatedSection';
 import { fadeUp, buttonHover } from '../../../styles/_animations';
 
 const IMAGES = {
-  hero: 'https://images.unsplash.com/photo-1566576912-4745f17cf5b3?auto=format&fit=crop&w=1400&q=85',
+  hero: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1400&q=85',
   app: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80',
 };
 

@@ -27,7 +27,7 @@ const spacesData: Space[] = [
     description:
       'Grab any available desk in our vibrant open-plan workspace. Surrounded by lush greenery and bathed in natural light, our hot desks are perfect for freelancers, remote workers, and anyone who thrives in a dynamic environment. Come and go as you please — no commitment required.',
     image:
-      'https://images.unsplash.com/photo-1497366811352-aa15ab7f7b8d?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 'dedicated-desk',
@@ -48,7 +48,7 @@ const spacesData: Space[] = [
     description:
       'Your own permanent desk in our premium workspace. Personalise your setup, leave your belongings overnight, and enjoy the consistency of a dedicated spot while still being part of our collaborative community. Ideal for professionals who need a reliable daily workspace.',
     image:
-      'https://images.unsplash.com/photo-1497366811352-aa15ab7f7b8d?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 'private-office',

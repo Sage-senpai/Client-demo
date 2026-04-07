@@ -63,7 +63,7 @@ export default function Home() {
         className="sch-hero"
         style={{
           backgroundImage:
-            'url(https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=85)',
+            'url(https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1400&q=85)',
         }}
       >
         <div className="sch-hero__overlay" />

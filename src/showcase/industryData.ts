@@ -42,7 +42,7 @@ const industries: IndustryItem[] = [
     brand: 'Zinga Delivery',
     description: 'Pan-African same-day delivery with live order tracking.',
     accent: '#F59E0B',
-    image: 'https://images.unsplash.com/photo-1566576912-4745f17cf5b3?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80',
     route: '/delivery',
   },
   {
@@ -51,7 +51,7 @@ const industries: IndustryItem[] = [
     brand: 'Meridian Institute',
     description: 'Pan-African higher education with course catalog and admissions.',
     accent: '#1B3A6B',
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80',
     route: '/school',
   },
   {
@@ -87,7 +87,7 @@ const industries: IndustryItem[] = [
     brand: 'Radiance Studio',
     description: 'Premium urban salon with full appointment booking system.',
     accent: '#C49A8A',
-    image: 'https://images.unsplash.com/photo-1560066984-138daac8a51a?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=600&q=80',
     route: '/beauty',
   },
   {

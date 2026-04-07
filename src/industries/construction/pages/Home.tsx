@@ -9,13 +9,13 @@ const featuredProjects = [
     name: 'Eko Atlantic Tower C',
     location: 'Lagos, Nigeria',
     sector: 'Commercial',
-    image: 'https://images.unsplash.com/photo-1581094794329-c811110e5f8b?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80',
   },
   {
     name: 'Dangote Refinery Access Road',
     location: 'Ibeju-Lekki, Lagos',
     sector: 'Infrastructure',
-    image: 'https://images.unsplash.com/photo-1590644616948-36c7c06e7f2d?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?auto=format&fit=crop&w=800&q=80',
   },
   {
     name: 'Abuja International School',

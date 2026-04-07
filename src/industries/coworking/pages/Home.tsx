@@ -146,7 +146,7 @@ export default function Home() {
                 alt="Lush plants in workspace"
               />
               <img
-                src="https://images.unsplash.com/photo-1497366811352-aa15ab7f7b8d?auto=format&fit=crop&w=800&q=80"
+                src="https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?auto=format&fit=crop&w=800&q=80"
                 alt="Open desk area"
               />
               <img
