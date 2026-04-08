@@ -7,15 +7,15 @@ import './ShowcaseSelector.scss';
 
 const containerVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.07 } },
+  visible: { transition: { staggerChildren: 0.05 } },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.45, ease: [0.4, 0, 0.2, 1] as [number, number, number, number] },
+    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] as [number, number, number, number] },
   },
 };
 
@@ -43,17 +43,13 @@ export default function ShowcaseSelector() {
       return;
     }
     setSending(true);
-
     const subject = encodeURIComponent(
       `Client Inquiry: ${form.industry || 'General'} — ${form.name}`,
     );
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\nIndustry: ${form.industry || 'Not specified'}\nBudget Range: ${form.budget || 'Not specified'}\n\nMessage:\n${form.message}`,
     );
-    window.open(
-      `mailto:anyadikedivine0@gmail.com?subject=${subject}&body=${body}`,
-      '_self',
-    );
+    window.open(`mailto:anyadikedivine0@gmail.com?subject=${subject}&body=${body}`, '_self');
     setSending(false);
     toast.success("Opening your email client — I'll get back to you within 24 hours.");
     setForm({ name: '', email: '', industry: '', budget: '', message: '' });
@@ -61,95 +57,114 @@ export default function ShowcaseSelector() {
 
   return (
     <div className="showcase">
-      {/* ── Hero / Bio Section ── */}
-      <motion.section
-        className="showcase__bio"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <span className="showcase__bio-greeting">Built by</span>
-        <h1 className="showcase__bio-name">Anyadike Divine</h1>
-        <p className="showcase__bio-tagline">
-          Full Stack Engineer who turns business problems into production-grade software.
-        </p>
-        <p className="showcase__bio-text">
-          Every demo below is a real, functional multi-page website — designed, coded, and deployed
-          from scratch. Booking systems, dashboards, e-commerce carts, appointment flows, mortgage
-          calculators — all built to show what&apos;s possible when good design meets clean engineering.
-        </p>
-        <div className="showcase__bio-metrics">
-          <span className="showcase__bio-metric">30+ projects</span>
-          <span className="showcase__bio-metric-sep" />
-          <span className="showcase__bio-metric">17 industries</span>
-          <span className="showcase__bio-metric-sep" />
-          <span className="showcase__bio-metric">4+ years</span>
-          <span className="showcase__bio-metric-sep" />
-          <span className="showcase__bio-metric">Global clients</span>
-        </div>
-        <div className="showcase__bio-actions">
-          <a
-            href="https://portfolio-dvyne.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="showcase__bio-portfolio"
-          >
-            View Full Portfolio &rarr;
-          </a>
-          <a href="#contact" className="showcase__bio-hire">
-            Start a Project
-          </a>
-        </div>
-      </motion.section>
+      {/* ══════ HERO: Bio Left + Cards Right ══════ */}
+      <div className="showcase__hero">
+        {/* ── Left: Bio Sidebar ── */}
+        <motion.aside
+          className="showcase__sidebar"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="showcase__sidebar-inner">
+            <span className="showcase__sidebar-label">Built by</span>
+            <h1 className="showcase__sidebar-name">Anyadike Divine</h1>
+            <p className="showcase__sidebar-role">Full Stack Engineer</p>
 
-      {/* ── Section Header ── */}
-      <motion.header
-        className="showcase__header"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <span className="showcase__label">WEBSITE DEMO SHOWCASE</span>
-        <h2 className="showcase__title">Which industry are we building for?</h2>
-        <p className="showcase__subtitle">
-          Seventeen fully-built, multi-page demo websites — each with unique design, features, and
-          brand identity. Click any card to explore the live demo.
-        </p>
-      </motion.header>
+            <p className="showcase__sidebar-bio">
+              I turn business problems into production-grade software. Every demo here is a real,
+              functional website — designed, coded, and deployed from scratch.
+            </p>
 
-      {/* ── Industry Cards Grid ── */}
-      <motion.div
-        className="showcase__grid"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {industries.map((ind) => (
-          <motion.div
-            key={ind.id}
-            className="showcase-card"
-            variants={cardVariants}
-            style={{ '--card-accent': ind.accent } as React.CSSProperties}
-            onClick={() => navigate(ind.route)}
-          >
-            <div className="showcase-card__image">
-              <img src={ind.image} alt={ind.name} loading="lazy" />
-              <div className="showcase-card__overlay" />
-            </div>
-            <div className="showcase-card__body">
-              <div className="showcase-card__name-row">
-                <span className="showcase-card__dot" />
-                <span className="showcase-card__name">{ind.name}</span>
+            <div className="showcase__sidebar-stats">
+              <div className="showcase__sidebar-stat">
+                <span className="showcase__sidebar-stat-val">30+</span>
+                <span className="showcase__sidebar-stat-key">Projects</span>
               </div>
-              <span className="showcase-card__brand">{ind.brand}</span>
-              <p className="showcase-card__desc">{ind.description}</p>
-              <span className="showcase-card__link">Open demo site &rarr;</span>
+              <div className="showcase__sidebar-stat">
+                <span className="showcase__sidebar-stat-val">17</span>
+                <span className="showcase__sidebar-stat-key">Industries</span>
+              </div>
+              <div className="showcase__sidebar-stat">
+                <span className="showcase__sidebar-stat-val">4+</span>
+                <span className="showcase__sidebar-stat-key">Years</span>
+              </div>
             </div>
-          </motion.div>
-        ))}
-      </motion.div>
 
-      {/* ── Value Proposition ── */}
+            <div className="showcase__sidebar-ctas">
+              <a
+                href="https://portfolio-dvyne.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="showcase__sidebar-btn"
+              >
+                Full Portfolio &rarr;
+              </a>
+              <a href="#contact" className="showcase__sidebar-btn showcase__sidebar-btn--fill">
+                Start a Project
+              </a>
+            </div>
+
+            <div className="showcase__sidebar-links">
+              <a href="https://github.com/Sage-senpai" target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
+              <a href="https://linkedin.com/in/divineanyadike" target="_blank" rel="noopener noreferrer">
+                LinkedIn
+              </a>
+              <a href="https://x.com/sage_senpeak" target="_blank" rel="noopener noreferrer">
+                X
+              </a>
+            </div>
+          </div>
+        </motion.aside>
+
+        {/* ── Right: Industry Grid ── */}
+        <div className="showcase__main">
+          <motion.div
+            className="showcase__main-header"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+          >
+            <span className="showcase__main-label">DEMO SHOWCASE</span>
+            <h2 className="showcase__main-title">Pick an industry. Explore the build.</h2>
+          </motion.div>
+
+          <motion.div
+            className="showcase__cards"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {industries.map((ind) => (
+              <motion.div
+                key={ind.id}
+                className="sc"
+                variants={cardVariants}
+                style={{ '--card-accent': ind.accent } as React.CSSProperties}
+                onClick={() => navigate(ind.route)}
+              >
+                <div className="sc__img">
+                  <img src={ind.image} alt={ind.name} loading="lazy" />
+                  <div className="sc__img-overlay" />
+                </div>
+                <div className="sc__body">
+                  <div className="sc__row">
+                    <span className="sc__dot" />
+                    <span className="sc__name">{ind.name}</span>
+                  </div>
+                  <span className="sc__brand">{ind.brand}</span>
+                  <p className="sc__desc">{ind.description}</p>
+                  <span className="sc__go">Open demo &rarr;</span>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+
+      {/* ══════ VALUE PROPS ══════ */}
       <motion.section
         className="showcase__value"
         initial={{ opacity: 0, y: 30 }}
@@ -162,27 +177,36 @@ export default function ShowcaseSelector() {
           <div className="showcase__value-card">
             <span className="showcase__value-icon">&#9889;</span>
             <h3>Fast Delivery</h3>
-            <p>From concept to deployed product in weeks, not months. Agile process with daily updates.</p>
+            <p>
+              From concept to deployed product in weeks, not months. Agile process with daily
+              updates.
+            </p>
           </div>
           <div className="showcase__value-card">
             <span className="showcase__value-icon">&#127912;</span>
             <h3>Pixel-Perfect Design</h3>
-            <p>Every pixel intentional. Modern UI/UX that converts visitors into customers.</p>
+            <p>
+              Every pixel intentional. Modern UI/UX that converts visitors into customers.
+            </p>
           </div>
           <div className="showcase__value-card">
             <span className="showcase__value-icon">&#128640;</span>
             <h3>Scalable Architecture</h3>
-            <p>Clean code, performance-first. Your product grows seamlessly from day one.</p>
+            <p>
+              Clean code, performance-first. Your product grows seamlessly from day one.
+            </p>
           </div>
           <div className="showcase__value-card">
             <span className="showcase__value-icon">&#127758;</span>
             <h3>Global Standards</h3>
-            <p>Built for the world stage. Responsive, accessible, and optimized for every device.</p>
+            <p>
+              Built for the world stage. Responsive, accessible, and optimized for every device.
+            </p>
           </div>
         </div>
       </motion.section>
 
-      {/* ── Contact Form ── */}
+      {/* ══════ CONTACT ══════ */}
       <motion.section
         id="contact"
         className="showcase__contact"
@@ -219,30 +243,13 @@ export default function ShowcaseSelector() {
           <div className="showcase__contact-row">
             <div className="showcase__contact-field">
               <label htmlFor="c-name">Full Name *</label>
-              <input
-                id="c-name"
-                name="name"
-                type="text"
-                placeholder="Your name"
-                value={form.name}
-                onChange={handleChange}
-                required
-              />
+              <input id="c-name" name="name" type="text" placeholder="Your name" value={form.name} onChange={handleChange} required />
             </div>
             <div className="showcase__contact-field">
               <label htmlFor="c-email">Email *</label>
-              <input
-                id="c-email"
-                name="email"
-                type="email"
-                placeholder="you@company.com"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
+              <input id="c-email" name="email" type="email" placeholder="you@company.com" value={form.email} onChange={handleChange} required />
             </div>
           </div>
-
           <div className="showcase__contact-row">
             <div className="showcase__contact-field">
               <label htmlFor="c-industry">Industry / Niche</label>
@@ -278,24 +285,14 @@ export default function ShowcaseSelector() {
                 <option value="$5k-$10k">$5,000 – $10,000</option>
                 <option value="$10k-$25k">$10,000 – $25,000</option>
                 <option value="$25k+">$25,000+</option>
-                <option value="Discuss">Let's discuss</option>
+                <option value="Discuss">Let&apos;s discuss</option>
               </select>
             </div>
           </div>
-
           <div className="showcase__contact-field">
             <label htmlFor="c-message">Project Details *</label>
-            <textarea
-              id="c-message"
-              name="message"
-              rows={5}
-              placeholder="Tell me about your project — what you need built, your goals, timeline, and any demos above that inspired you..."
-              value={form.message}
-              onChange={handleChange}
-              required
-            />
+            <textarea id="c-message" name="message" rows={5} placeholder="Tell me about your project — what you need built, your goals, timeline, and any demos above that inspired you..." value={form.message} onChange={handleChange} required />
           </div>
-
           <button type="submit" className="showcase__contact-submit" disabled={sending}>
             {sending ? 'Sending...' : 'Send Inquiry'}
           </button>
@@ -306,21 +303,9 @@ export default function ShowcaseSelector() {
       <footer className="showcase__footer">
         <p>
           &copy; 2025 Anyadike Divine &middot; Full Stack Engineer &middot;{' '}
-          <a
-            href="https://github.com/Sage-senpai"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>{' '}
-          &middot;{' '}
-          <a
-            href="https://linkedin.com/in/divineanyadike"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </a>
+          <a href="https://github.com/Sage-senpai" target="_blank" rel="noopener noreferrer">GitHub</a>
+          {' '}&middot;{' '}
+          <a href="https://linkedin.com/in/divineanyadike" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </p>
       </footer>
     </div>
