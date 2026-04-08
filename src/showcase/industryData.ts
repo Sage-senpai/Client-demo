@@ -141,7 +141,7 @@ const industries: IndustryItem[] = [
     brand: 'Kash',
     description: 'Modern neobank with dashboard demo, virtual cards, and transaction tracking.',
     accent: '#00D4AA',
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f2?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80',
     route: '/fintech',
   },
   {
