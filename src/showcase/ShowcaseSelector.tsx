@@ -86,7 +86,7 @@ export default function ShowcaseSelector() {
             <span className="showcase__bio-stat-label">Projects Shipped</span>
           </div>
           <div className="showcase__bio-stat">
-            <span className="showcase__bio-stat-num">11</span>
+            <span className="showcase__bio-stat-num">17</span>
             <span className="showcase__bio-stat-label">Industries Covered</span>
           </div>
           <div className="showcase__bio-stat">
@@ -139,8 +139,8 @@ export default function ShowcaseSelector() {
         <span className="showcase__label">WEBSITE DEMO SHOWCASE</span>
         <h2 className="showcase__title">Which industry are we building for?</h2>
         <p className="showcase__subtitle">
-          Fully-built, multi-page demo websites — each with unique design, features, and brand
-          identity. Click any card to explore the live demo.
+          Seventeen fully-built, multi-page demo websites — each with unique design, features, and
+          brand identity. Click any card to explore the live demo.
         </p>
       </motion.header>
 

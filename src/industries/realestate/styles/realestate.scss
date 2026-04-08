@@ -1,0 +1,1650 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ═══════════════════════════════════════════════════
+   PRESTIGE PROPERTIES — Real Estate Industry Stylesheet
+   Premium property listings, Lagos & Nigeria
+   ═══════════════════════════════════════════════════ */
+
+// ── Variables ──
+$primary: #1B2A4A;
+$accent: #C8A97E;
+$surface: #FAFAFA;
+$dark: #0D1520;
+$text: #333333;
+$text-light: #666666;
+$white: #FFFFFF;
+$muted: #999999;
+$border: rgba(27, 42, 74, 0.12);
+$accent-hover: #B89A6F;
+$accent-soft: rgba(200, 169, 126, 0.15);
+$primary-soft: rgba(27, 42, 74, 0.08);
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+$shadow-md: 0 4px 20px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.12);
+
+$sm: 480px;
+$md: 768px;
+$lg: 1024px;
+
+// ── Mixins ──
+@mixin heading-font {
+  font-family: 'Marcellus', serif;
+}
+
+@mixin body-font {
+  font-family: 'Poppins', sans-serif;
+}
+
+@mixin container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@mixin section-padding {
+  padding: 100px 0;
+  @media (max-width: $md) {
+    padding: 64px 0;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  @media (max-width: $md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@mixin grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  @media (max-width: $lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: $sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@mixin grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  @media (max-width: $lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: $sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@mixin primary-button {
+  @include body-font;
+  background: $accent;
+  color: $white;
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    background: $accent-hover;
+    box-shadow: 0 4px 16px rgba(200, 169, 126, 0.35);
+  }
+}
+
+@mixin outline-button {
+  @include body-font;
+  background: transparent;
+  color: $white;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  padding: 0.85rem 2rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+
+  &:hover {
+    border-color: $accent;
+    color: $accent;
+  }
+}
+
+@mixin navy-button {
+  @include body-font;
+  background: $primary;
+  color: $white;
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    background: $dark;
+    box-shadow: 0 4px 16px rgba(27, 42, 74, 0.35);
+  }
+}
+
+@mixin input-style {
+  @include body-font;
+  width: 100%;
+  background: $white;
+  color: $text;
+  border: 1px solid rgba(27, 42, 74, 0.18);
+  padding: 0.85rem 1rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  outline: none;
+
+  &::placeholder {
+    color: $muted;
+  }
+
+  &:focus {
+    border-color: $accent;
+    box-shadow: 0 0 0 3px rgba(200, 169, 126, 0.2);
+  }
+}
+
+// ── Section Label ──
+.re-section-label {
+  @include body-font;
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: $accent;
+  margin-bottom: 0.75rem;
+}
+
+// ── Root Scope ──
+.realestate-app {
+  @include body-font;
+  color: $text;
+  background: $surface;
+  overflow-x: hidden;
+  line-height: 1.7;
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @include heading-font;
+    line-height: 1.2;
+    font-weight: 400;
+    color: $primary;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   1. NAVBAR
+   ══════════════════════════════════════════════════════ */
+.re-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: transparent;
+  transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  border-bottom: 1px solid transparent;
+
+  &--scrolled {
+    background: $primary;
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(200, 169, 126, 0.15);
+  }
+
+  &__inner {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  &__logo {
+    @include heading-font;
+    font-size: 1.45rem;
+    color: $white;
+    letter-spacing: 1px;
+
+    span {
+      color: $accent;
+    }
+  }
+
+  &__links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @media (max-width: $lg) {
+      display: none;
+    }
+  }
+
+  &__link {
+    @include body-font;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.25s ease;
+    letter-spacing: 0.3px;
+
+    &:hover {
+      color: $accent;
+    }
+
+    &--active {
+      color: $accent;
+    }
+  }
+
+  &__cta {
+    @include primary-button;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.85rem;
+
+    @media (max-width: $lg) {
+      display: none;
+    }
+  }
+
+  // Hamburger
+  &__hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+
+    @media (max-width: $lg) {
+      display: flex;
+    }
+
+    span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: $white;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    &--open {
+      span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+    }
+  }
+
+  // Mobile Overlay
+  &__overlay {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    background: $primary;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+  }
+
+  &__overlay-link {
+    @include body-font;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+
+  &__overlay-cta {
+    @include primary-button;
+    text-align: center;
+    margin-top: 1rem;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   2. HERO
+   ══════════════════════════════════════════════════════ */
+.re-hero {
+  position: relative;
+  min-height: 100vh;
+  @include flex-center;
+  overflow: hidden;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(13, 21, 32, 0.7) 0%,
+      rgba(27, 42, 74, 0.8) 100%
+    );
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 1.5rem;
+  }
+
+  &__title {
+    @include heading-font;
+    font-size: 3.5rem;
+    color: $white;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+
+    @media (max-width: $md) {
+      font-size: 2.4rem;
+    }
+    @media (max-width: $sm) {
+      font-size: 1.9rem;
+    }
+  }
+
+  &__subtitle {
+    @include body-font;
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    line-height: 1.7;
+
+    @media (max-width: $sm) {
+      font-size: 1rem;
+    }
+  }
+
+  // Search Bar
+  &__search {
+    display: flex;
+    gap: 0;
+    background: $white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: $shadow-lg;
+    max-width: 680px;
+    margin: 0 auto;
+
+    @media (max-width: $md) {
+      flex-direction: column;
+      border-radius: 8px;
+    }
+  }
+
+  &__search-input {
+    @include body-font;
+    flex: 1;
+    border: none;
+    padding: 1rem 1.25rem;
+    font-size: 0.95rem;
+    color: $text;
+    outline: none;
+    background: $white;
+
+    &::placeholder {
+      color: $muted;
+    }
+
+    @media (max-width: $md) {
+      border-bottom: 1px solid $border;
+    }
+  }
+
+  &__search-toggle {
+    display: flex;
+    align-items: center;
+    border: none;
+    background: none;
+    padding: 0 0.25rem;
+
+    @media (max-width: $md) {
+      padding: 0.5rem 1.25rem;
+      border-bottom: 1px solid $border;
+    }
+  }
+
+  &__toggle-btn {
+    @include body-font;
+    border: none;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.25s ease, color 0.25s ease;
+    background: transparent;
+    color: $muted;
+
+    &--active {
+      background: $primary;
+      color: $white;
+    }
+  }
+
+  &__search-btn {
+    @include primary-button;
+    border-radius: 0;
+    padding: 1rem 2rem;
+    white-space: nowrap;
+
+    @media (max-width: $md) {
+      border-radius: 0 0 8px 8px;
+      padding: 1rem;
+    }
+  }
+
+  // CTA buttons
+  &__ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+
+    @media (max-width: $sm) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &__btn-primary {
+    @include primary-button;
+  }
+
+  &__btn-outline {
+    @include outline-button;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   3. PAGE HEADER (reused across pages)
+   ══════════════════════════════════════════════════════ */
+.re-page-header {
+  background: $primary;
+  padding: 140px 0 60px;
+  text-align: center;
+
+  &__inner {
+    @include container;
+  }
+
+  &__title {
+    @include heading-font;
+    font-size: 2.8rem;
+    color: $white;
+    margin-bottom: 0.75rem;
+
+    @media (max-width: $md) {
+      font-size: 2rem;
+    }
+  }
+
+  &__subtitle {
+    @include body-font;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   4. PROPERTY CARDS
+   ══════════════════════════════════════════════════════ */
+.re-property-card {
+  background: $white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-md;
+  }
+
+  &__image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: $accent;
+    color: $white;
+    padding: 0.3rem 0.75rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &__status {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: $primary;
+    color: $white;
+    padding: 0.3rem 0.75rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &__body {
+    padding: 1.25rem;
+  }
+
+  &__price {
+    @include heading-font;
+    font-size: 1.35rem;
+    color: $accent;
+    margin-bottom: 0.25rem;
+  }
+
+  &__name {
+    @include heading-font;
+    font-size: 1.15rem;
+    color: $primary;
+    margin-bottom: 0.35rem;
+  }
+
+  &__location {
+    @include body-font;
+    font-size: 0.85rem;
+    color: $muted;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  &__meta {
+    display: flex;
+    gap: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid $border;
+  }
+
+  &__meta-item {
+    @include body-font;
+    font-size: 0.8rem;
+    color: $text-light;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-weight: 500;
+  }
+
+  &__link {
+    @include body-font;
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: $accent;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $accent-hover;
+    }
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   5. FILTERS
+   ══════════════════════════════════════════════════════ */
+.re-filters {
+  @include container;
+  @include section-padding;
+  padding-bottom: 0;
+
+  &__bar {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 1.5rem;
+    background: $white;
+    border-radius: 8px;
+    box-shadow: $shadow-sm;
+    margin-bottom: 2.5rem;
+
+    @media (max-width: $sm) {
+      flex-direction: column;
+    }
+  }
+
+  &__group {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &__btn {
+    @include body-font;
+    border: 1px solid $border;
+    background: $white;
+    color: $text;
+    padding: 0.55rem 1.15rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      border-color: $accent;
+      color: $accent;
+    }
+
+    &--active {
+      background: $primary;
+      color: $white;
+      border-color: $primary;
+    }
+  }
+
+  &__search {
+    @include input-style;
+    max-width: 280px;
+
+    @media (max-width: $sm) {
+      max-width: 100%;
+    }
+  }
+
+  &__count {
+    @include body-font;
+    font-size: 0.9rem;
+    color: $muted;
+    margin-left: auto;
+
+    @media (max-width: $sm) {
+      margin-left: 0;
+    }
+  }
+}
+
+.re-listings-grid {
+  @include container;
+  @include grid-3;
+  padding-bottom: 80px;
+  padding-top: 2rem;
+}
+
+.re-no-results {
+  @include container;
+  text-align: center;
+  padding: 4rem 1.5rem;
+
+  &__text {
+    font-size: 1.1rem;
+    color: $muted;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   6. LISTING DETAIL
+   ══════════════════════════════════════════════════════ */
+.re-detail {
+  @include section-padding;
+  @include container;
+  padding-top: 120px;
+
+  &__grid {
+    @include grid-2;
+    gap: 48px;
+    align-items: start;
+  }
+
+  &__image {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: $shadow-md;
+
+    img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+
+      @media (max-width: $md) {
+        height: 280px;
+      }
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  &__status-badge {
+    @include body-font;
+    display: inline-block;
+    background: $accent-soft;
+    color: $accent;
+    padding: 0.35rem 1rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: fit-content;
+  }
+
+  &__price {
+    @include heading-font;
+    font-size: 2.2rem;
+    color: $accent;
+
+    @media (max-width: $sm) {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__name {
+    @include heading-font;
+    font-size: 1.8rem;
+    color: $primary;
+  }
+
+  &__location {
+    font-size: 0.95rem;
+    color: $muted;
+  }
+
+  &__meta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__meta-item {
+    @include body-font;
+    background: $primary-soft;
+    padding: 0.65rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    color: $primary;
+    font-weight: 500;
+  }
+
+  &__description {
+    font-size: 0.95rem;
+    color: $text-light;
+    line-height: 1.8;
+  }
+
+  &__features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  &__feature-tag {
+    @include body-font;
+    background: $accent-soft;
+    color: $accent-hover;
+    padding: 0.4rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   7. MORTGAGE CALCULATOR
+   ══════════════════════════════════════════════════════ */
+.re-mortgage {
+  @include section-padding;
+  background: $white;
+
+  &__inner {
+    @include container;
+    max-width: 700px;
+    text-align: center;
+  }
+
+  &__heading {
+    @include heading-font;
+    font-size: 2rem;
+    color: $primary;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    font-size: 0.95rem;
+    color: $muted;
+    margin-bottom: 2.5rem;
+  }
+
+  &__form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+
+    @media (max-width: $md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__field {
+    text-align: left;
+
+    label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: $text;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input {
+      @include input-style;
+    }
+  }
+
+  &__btn {
+    @include navy-button;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  &__result {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: $primary;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  &__result-label {
+    @include body-font;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.25rem;
+    display: block;
+  }
+
+  &__result-value {
+    @include heading-font;
+    font-size: 2.4rem;
+    color: $accent;
+
+    @media (max-width: $sm) {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   8. STATS BAR
+   ══════════════════════════════════════════════════════ */
+.re-stats {
+  background: $primary;
+  @include section-padding;
+  padding: 60px 0;
+
+  &__grid {
+    @include container;
+    @include grid-4;
+    text-align: center;
+  }
+
+  .counter-stat {
+    &__number {
+      @include heading-font;
+      font-size: 2.8rem;
+      color: $accent;
+
+      @media (max-width: $sm) {
+        font-size: 2rem;
+      }
+    }
+
+    &__label {
+      @include body-font;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 0.25rem;
+      display: block;
+    }
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   9. FEATURED PROPERTIES
+   ══════════════════════════════════════════════════════ */
+.re-featured {
+  @include section-padding;
+
+  &__inner {
+    @include container;
+    text-align: center;
+  }
+
+  &__heading {
+    @include heading-font;
+    font-size: 2.2rem;
+    color: $primary;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    font-size: 0.95rem;
+    color: $muted;
+    margin-bottom: 3rem;
+  }
+
+  &__grid {
+    @include grid-4;
+
+    @media (max-width: $lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__cta {
+    margin-top: 3rem;
+  }
+
+  &__btn {
+    @include navy-button;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   10. SERVICES SECTION / PAGE
+   ══════════════════════════════════════════════════════ */
+.re-services {
+  @include section-padding;
+  background: $white;
+
+  &__inner {
+    @include container;
+    text-align: center;
+  }
+
+  &__heading {
+    @include heading-font;
+    font-size: 2.2rem;
+    color: $primary;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    font-size: 0.95rem;
+    color: $muted;
+    margin-bottom: 3rem;
+  }
+
+  &__grid {
+    @include grid-3;
+  }
+}
+
+.re-service-card {
+  background: $surface;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: left;
+  border: 1px solid $border;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-md;
+    border-color: $accent;
+  }
+
+  &__icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  &__title {
+    @include heading-font;
+    font-size: 1.25rem;
+    color: $primary;
+    margin-bottom: 0.5rem;
+  }
+
+  &__text {
+    font-size: 0.9rem;
+    color: $text-light;
+    line-height: 1.7;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   11. SERVICES PREVIEW (Home page)
+   ══════════════════════════════════════════════════════ */
+.re-services-preview {
+  @include section-padding;
+
+  &__inner {
+    @include container;
+    text-align: center;
+  }
+
+  &__heading {
+    @include heading-font;
+    font-size: 2.2rem;
+    color: $primary;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    font-size: 0.95rem;
+    color: $muted;
+    margin-bottom: 3rem;
+  }
+
+  &__grid {
+    @include grid-3;
+    margin-bottom: 2.5rem;
+  }
+
+  &__btn {
+    @include navy-button;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   12. CTA SECTION
+   ══════════════════════════════════════════════════════ */
+.re-cta {
+  background: $primary;
+  @include section-padding;
+  text-align: center;
+
+  &__inner {
+    @include container;
+    max-width: 700px;
+  }
+
+  &__heading {
+    @include heading-font;
+    font-size: 2.4rem;
+    color: $white;
+    margin-bottom: 1rem;
+
+    @media (max-width: $sm) {
+      font-size: 1.8rem;
+    }
+  }
+
+  &__text {
+    @include body-font;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  &__btn {
+    @include primary-button;
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   13. AGENT CARDS
+   ══════════════════════════════════════════════════════ */
+.re-agents {
+  @include section-padding;
+
+  &__inner {
+    @include container;
+    text-align: center;
+  }
+
+  &__heading {
+    @include heading-font;
+    font-size: 2.2rem;
+    color: $primary;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    font-size: 0.95rem;
+    color: $muted;
+    margin-bottom: 3rem;
+  }
+
+  &__grid {
+    @include grid-3;
+  }
+}
+
+.re-agent-card {
+  background: $white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-md;
+  }
+
+  &__photo {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+  }
+
+  &__body {
+    padding: 1.5rem;
+  }
+
+  &__name {
+    @include heading-font;
+    font-size: 1.2rem;
+    color: $primary;
+    margin-bottom: 0.25rem;
+  }
+
+  &__specialty {
+    @include body-font;
+    font-size: 0.85rem;
+    color: $accent;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  &__listings {
+    @include body-font;
+    font-size: 0.82rem;
+    color: $muted;
+    margin-bottom: 0.75rem;
+  }
+
+  &__phone {
+    @include body-font;
+    font-size: 0.88rem;
+    color: $text;
+    font-weight: 500;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   14. ABOUT PAGE
+   ══════════════════════════════════════════════════════ */
+.re-about {
+  @include section-padding;
+
+  &__inner {
+    @include container;
+  }
+
+  &__story {
+    @include grid-2;
+    gap: 48px;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+
+  &__story-content {
+    h2 {
+      @include heading-font;
+      font-size: 2rem;
+      color: $primary;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: $text-light;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__story-image {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: $shadow-md;
+
+    img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+    }
+  }
+
+  // Mission & Vision
+  &__pillars {
+    @include grid-2;
+    gap: 32px;
+    margin-bottom: 80px;
+  }
+
+  &__pillar {
+    background: $white;
+    padding: 2.5rem;
+    border-radius: 8px;
+    border-left: 4px solid $accent;
+    box-shadow: $shadow-sm;
+
+    h3 {
+      @include heading-font;
+      font-size: 1.4rem;
+      color: $primary;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: $text-light;
+      line-height: 1.8;
+    }
+  }
+
+  // Timeline
+  &__timeline {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  &__timeline-heading {
+    @include heading-font;
+    font-size: 2rem;
+    color: $primary;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  &__timeline-item {
+    position: relative;
+    padding-left: 40px;
+    padding-bottom: 2.5rem;
+    border-left: 2px solid $border;
+
+    &:last-child {
+      border-left: 2px solid transparent;
+      padding-bottom: 0;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -7px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: $accent;
+    }
+  }
+
+  &__timeline-year {
+    @include body-font;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: $accent;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
+    display: block;
+  }
+
+  &__timeline-title {
+    @include heading-font;
+    font-size: 1.15rem;
+    color: $primary;
+    margin-bottom: 0.35rem;
+  }
+
+  &__timeline-text {
+    font-size: 0.9rem;
+    color: $text-light;
+    line-height: 1.7;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   15. CONTACT PAGE
+   ══════════════════════════════════════════════════════ */
+.re-contact {
+  @include section-padding;
+
+  &__inner {
+    @include container;
+  }
+
+  &__grid {
+    @include grid-2;
+    gap: 48px;
+    align-items: start;
+  }
+
+  // Info
+  &__info {
+    background: $primary;
+    padding: 2.5rem;
+    border-radius: 8px;
+    color: $white;
+  }
+
+  &__info-title {
+    @include heading-font;
+    font-size: 1.6rem;
+    color: $white;
+    margin-bottom: 1.5rem;
+  }
+
+  &__info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  &__info-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  &__info-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  &__info-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+
+    strong {
+      display: block;
+      font-weight: 600;
+      color: $accent;
+      margin-bottom: 0.15rem;
+    }
+  }
+
+  // Form
+  &__form-wrapper {
+    background: $white;
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: $shadow-sm;
+  }
+
+  &__form-title {
+    @include heading-font;
+    font-size: 1.6rem;
+    color: $primary;
+    margin-bottom: 1.5rem;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  &__form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+
+    @media (max-width: $sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+
+    label {
+      @include body-font;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: $text;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input, select, textarea {
+      @include input-style;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    select {
+      cursor: pointer;
+    }
+  }
+
+  &__form-btn {
+    @include primary-button;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   16. MAP
+   ══════════════════════════════════════════════════════ */
+.re-map {
+  @include container;
+  padding-bottom: 80px;
+
+  iframe {
+    width: 100%;
+    height: 350px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: $shadow-sm;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════
+   17. FOOTER
+   ══════════════════════════════════════════════════════ */
+.re-footer {
+  background: $dark;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 64px 0 0;
+
+  &__inner {
+    @include container;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+
+    @media (max-width: $lg) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: $sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__brand {
+    h3 {
+      @include heading-font;
+      font-size: 1.4rem;
+      color: $white;
+      margin-bottom: 1rem;
+
+      span {
+        color: $accent;
+      }
+    }
+
+    p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  &__col {
+    h4 {
+      @include body-font;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: $white;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.25rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 0.6rem;
+    }
+
+    a {
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.6);
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $accent;
+      }
+    }
+
+    p {
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.6;
+    }
+  }
+
+  &__bottom {
+    @include container;
+    text-align: center;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.45);
+  }
+}

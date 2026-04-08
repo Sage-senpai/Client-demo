@@ -352,6 +352,42 @@ $lg: 1024px;
     font-size: 1rem;
     padding: 0.9rem 2.5rem;
   }
+
+  // Mobile overlay (used by AnimatePresence in FitnessApp)
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(13, 13, 13, 0.97);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  &__overlay-link {
+    @include heading-font;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    transition: color 0.25s ease;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+
+  &__overlay-cta {
+    @include lime-button;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    padding: 0.9rem 2.5rem;
+    text-decoration: none;
+  }
 }
 
 @keyframes fit-fadeIn {

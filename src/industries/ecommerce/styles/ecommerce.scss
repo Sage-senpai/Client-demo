@@ -1,0 +1,1949 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ═══════════════════════════════════════════════════
+   NUVORA — Fashion E-Commerce Industry Stylesheet
+   Contemporary African fashion marketplace
+   ═══════════════════════════════════════════════════ */
+
+// ── Variables ──
+$primary: #111111;
+$accent: #E8C547;
+$surface: #FFFFFF;
+$dark: #0A0A0A;
+$text: #FFFFFF;
+$text-dark: #111111;
+$muted: #888888;
+$muted-light: #CCCCCC;
+$border: rgba(232, 197, 71, 0.2);
+$border-light: #E5E5E5;
+$surface-alt: #F7F7F5;
+$accent-hover: #D4B13E;
+$accent-glow: rgba(232, 197, 71, 0.25);
+
+$sm: 480px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
+
+// ── Mixins ──
+@mixin heading-font {
+  font-family: 'Outfit', sans-serif;
+}
+
+@mixin body-font {
+  font-family: 'Inter', sans-serif;
+}
+
+@mixin container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@mixin section-padding {
+  padding: 100px 0;
+  @media (max-width: $md) {
+    padding: 64px 0;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  @media (max-width: $md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@mixin grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  @media (max-width: $lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: $sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@mixin grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  @media (max-width: $lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: $sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@mixin gold-button {
+  @include heading-font;
+  background: $accent;
+  color: $dark;
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    background: $accent-hover;
+    box-shadow: 0 0 20px $accent-glow;
+  }
+}
+
+@mixin outline-button {
+  @include heading-font;
+  background: transparent;
+  color: $text;
+  border: 1.5px solid $accent;
+  padding: 0.85rem 2rem;
+  border-radius: 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: background 0.25s ease, color 0.25s ease;
+
+  &:hover {
+    background: $accent;
+    color: $dark;
+  }
+}
+
+@mixin dark-outline-button {
+  @include heading-font;
+  background: transparent;
+  color: $text-dark;
+  border: 1.5px solid $primary;
+  padding: 0.85rem 2rem;
+  border-radius: 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: background 0.25s ease, color 0.25s ease;
+
+  &:hover {
+    background: $primary;
+    color: $text;
+  }
+}
+
+.section-label {
+  @include heading-font;
+  color: $accent;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.section-label--dark {
+  color: $accent;
+}
+
+/* ═══════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════ */
+
+.ecom-app {
+  @include body-font;
+  background: $surface;
+  color: $text-dark;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════════ */
+
+.ecom-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: $dark;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+
+  &--scrolled {
+    background: rgba(10, 10, 10, 0.97);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  &__inner {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  &__logo {
+    @include heading-font;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: $text;
+    text-decoration: none;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    span {
+      color: $accent;
+    }
+  }
+
+  &__links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+
+    @media (max-width: $lg) {
+      display: none;
+    }
+  }
+
+  &__link {
+    @include heading-font;
+    color: $muted-light;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.25s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: $accent;
+      transition: width 0.3s ease;
+    }
+
+    &:hover,
+    &--active {
+      color: $accent;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  &__cart-btn {
+    position: relative;
+    background: none;
+    border: none;
+    color: $text;
+    font-size: 1.35rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+
+  &__cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: $accent;
+    color: $dark;
+    font-size: 0.65rem;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    @include flex-center;
+    @include heading-font;
+  }
+
+  &__hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+
+    @media (max-width: $lg) {
+      display: flex;
+    }
+
+    span {
+      width: 24px;
+      height: 2px;
+      background: $text;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    &--open {
+      span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+    }
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $dark;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    z-index: 999;
+  }
+
+  &__overlay-link {
+    @include heading-font;
+    color: $text;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+
+  &__overlay-cta {
+    @include gold-button;
+    margin-top: 1rem;
+    text-decoration: none;
+    display: inline-block;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════════ */
+
+.ecom-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(10, 10, 10, 0.85) 0%,
+      rgba(10, 10, 10, 0.55) 50%,
+      rgba(10, 10, 10, 0.3) 100%
+    );
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    @include container;
+    max-width: 700px;
+    padding-top: 72px;
+  }
+
+  &__tag {
+    @include heading-font;
+    color: $accent;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    @include heading-font;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    color: $text;
+    line-height: 1.08;
+    margin-bottom: 1.25rem;
+  }
+
+  &__subtitle {
+    @include body-font;
+    font-size: 1.15rem;
+    color: $muted-light;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+  }
+
+  &__ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &__btn-primary {
+    @include gold-button;
+  }
+
+  &__btn-outline {
+    @include outline-button;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   TRENDING PRODUCTS (Home)
+   ═══════════════════════════════════════════════════ */
+
+.ecom-trending {
+  @include section-padding;
+  background: $surface;
+
+  &__inner {
+    @include container;
+    text-align: center;
+  }
+
+  &__heading {
+    @include heading-font;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: $text-dark;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    color: $muted;
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  &__grid {
+    @include grid-4;
+    text-align: left;
+  }
+
+  &__view-all {
+    @include dark-outline-button;
+    margin-top: 3rem;
+    display: inline-block;
+    text-decoration: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   PRODUCT CARDS
+   ═══════════════════════════════════════════════════ */
+
+.ecom-product-card {
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+
+  &__image-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    background: $surface-alt;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+  }
+
+  &__hover-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  &__image-wrap:hover &__image {
+    opacity: 0;
+  }
+
+  &__image-wrap:hover &__hover-image {
+    opacity: 1;
+  }
+
+  &__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: $accent;
+    color: $dark;
+    @include heading-font;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+
+  &__quick-add {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $dark;
+    color: $text;
+    @include heading-font;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.75rem;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 2;
+
+    &:hover {
+      background: $accent;
+      color: $dark;
+    }
+  }
+
+  &__image-wrap:hover &__quick-add {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &__info {
+    padding: 0.85rem 0 0;
+  }
+
+  &__name {
+    @include heading-font;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $text-dark;
+    margin-bottom: 0.25rem;
+  }
+
+  &__price {
+    @include body-font;
+    font-size: 0.95rem;
+    color: $muted;
+    font-weight: 500;
+  }
+
+  &__rating {
+    font-size: 0.85rem;
+    color: $accent;
+    margin-top: 0.2rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   CATEGORIES (Home)
+   ═══════════════════════════════════════════════════ */
+
+.ecom-categories {
+  @include section-padding;
+  background: $surface-alt;
+
+  &__inner {
+    @include container;
+    text-align: center;
+  }
+
+  &__heading {
+    @include heading-font;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: $text-dark;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    color: $muted;
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    @media (max-width: $md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.ecom-category-card {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+  text-decoration: none;
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  &:hover &__image {
+    transform: scale(1.06);
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(10, 10, 10, 0.75) 0%,
+      rgba(10, 10, 10, 0.15) 100%
+    );
+    @include flex-center;
+    transition: background 0.3s ease;
+  }
+
+  &:hover &__overlay {
+    background: linear-gradient(
+      to top,
+      rgba(10, 10, 10, 0.85) 0%,
+      rgba(10, 10, 10, 0.3) 100%
+    );
+  }
+
+  &__label {
+    @include heading-font;
+    color: $text;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   NEWSLETTER (Home)
+   ═══════════════════════════════════════════════════ */
+
+.ecom-newsletter {
+  @include section-padding;
+  background: $dark;
+  text-align: center;
+
+  &__inner {
+    @include container;
+    max-width: 600px;
+  }
+
+  &__heading {
+    @include heading-font;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: $text;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    color: $muted;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  &__form {
+    display: flex;
+    gap: 0;
+    max-width: 480px;
+    margin: 0 auto;
+
+    @media (max-width: $sm) {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+
+  &__input {
+    flex: 1;
+    padding: 0.85rem 1.25rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: $text;
+    font-size: 0.95rem;
+    @include body-font;
+    outline: none;
+    transition: border-color 0.25s ease;
+
+    &::placeholder {
+      color: $muted;
+    }
+
+    &:focus {
+      border-color: $accent;
+    }
+  }
+
+  &__btn {
+    @include gold-button;
+    white-space: nowrap;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   SHOP PAGE
+   ═══════════════════════════════════════════════════ */
+
+.ecom-shop {
+  padding-top: 100px;
+  padding-bottom: 80px;
+
+  &__inner {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  &__heading {
+    @include heading-font;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: $text-dark;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    color: $muted;
+    font-size: 1rem;
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid $border-light;
+  }
+
+  &__filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__filter-btn {
+    @include heading-font;
+    padding: 0.5rem 1.25rem;
+    background: transparent;
+    border: 1px solid $border-light;
+    color: $muted;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+
+    &:hover {
+      border-color: $primary;
+      color: $text-dark;
+    }
+
+    &--active {
+      background: $primary;
+      color: $text;
+      border-color: $primary;
+    }
+  }
+
+  &__sort-search {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__sort {
+    @include body-font;
+    padding: 0.5rem 1rem;
+    background: $surface;
+    border: 1px solid $border-light;
+    color: $text-dark;
+    font-size: 0.85rem;
+    cursor: pointer;
+    outline: none;
+
+    &:focus {
+      border-color: $accent;
+    }
+  }
+
+  &__search {
+    @include body-font;
+    padding: 0.5rem 1rem;
+    background: $surface;
+    border: 1px solid $border-light;
+    color: $text-dark;
+    font-size: 0.85rem;
+    width: 200px;
+    outline: none;
+
+    &::placeholder {
+      color: $muted;
+    }
+
+    &:focus {
+      border-color: $accent;
+    }
+
+    @media (max-width: $sm) {
+      width: 140px;
+    }
+  }
+
+  &__grid {
+    @include grid-4;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 4rem 0;
+    color: $muted;
+    font-size: 1.1rem;
+    grid-column: 1 / -1;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   PRODUCT DETAIL PAGE
+   ═══════════════════════════════════════════════════ */
+
+.ecom-product {
+  padding-top: 100px;
+  padding-bottom: 80px;
+
+  &__inner {
+    @include container;
+  }
+
+  &__layout {
+    @include grid-2;
+    gap: 48px;
+    align-items: start;
+  }
+
+  &__image-section {
+    position: relative;
+  }
+
+  &__main-image {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    background: $surface-alt;
+  }
+
+  &__details {
+    padding-top: 1rem;
+  }
+
+  &__breadcrumb {
+    @include body-font;
+    font-size: 0.8rem;
+    color: $muted;
+    margin-bottom: 1rem;
+
+    a {
+      color: $muted;
+      text-decoration: none;
+
+      &:hover {
+        color: $accent;
+      }
+    }
+  }
+
+  &__name {
+    @include heading-font;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: $text-dark;
+    margin-bottom: 0.5rem;
+  }
+
+  &__price {
+    @include heading-font;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $text-dark;
+    margin-bottom: 0.5rem;
+  }
+
+  &__rating-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__stars {
+    color: $accent;
+    font-size: 1rem;
+  }
+
+  &__rating-text {
+    font-size: 0.85rem;
+    color: $muted;
+  }
+
+  &__description {
+    font-size: 0.95rem;
+    color: $muted;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  &__option-group {
+    margin-bottom: 1.5rem;
+  }
+
+  &__option-label {
+    @include heading-font;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: $text-dark;
+    margin-bottom: 0.75rem;
+  }
+
+  &__sizes {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__size-btn {
+    @include heading-font;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid $border-light;
+    color: $text-dark;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    min-width: 48px;
+    text-align: center;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      border-color: $primary;
+    }
+
+    &--active {
+      background: $primary;
+      color: $text;
+      border-color: $primary;
+    }
+  }
+
+  &__colors {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  &__color-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
+    }
+
+    &--active {
+      border-color: $accent;
+      box-shadow: 0 0 0 2px $accent-glow;
+    }
+  }
+
+  &__quantity {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid $border-light;
+    display: inline-flex;
+  }
+
+  &__qty-btn {
+    @include heading-font;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: $text-dark;
+    @include flex-center;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: $surface-alt;
+    }
+  }
+
+  &__qty-val {
+    @include heading-font;
+    width: 48px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    border-left: 1px solid $border-light;
+    border-right: 1px solid $border-light;
+    line-height: 44px;
+  }
+
+  &__add-to-cart {
+    @include gold-button;
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  &__tabs {
+    margin-top: 4rem;
+  }
+
+  &__tab-headers {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid $border-light;
+  }
+
+  &__tab-btn {
+    @include heading-font;
+    padding: 1rem 2rem;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: $muted;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: color 0.25s ease, border-color 0.25s ease;
+
+    &:hover {
+      color: $text-dark;
+    }
+
+    &--active {
+      color: $text-dark;
+      border-bottom-color: $accent;
+    }
+  }
+
+  &__tab-content {
+    padding: 2rem 0;
+    font-size: 0.95rem;
+    color: $muted;
+    line-height: 1.8;
+
+    h4 {
+      @include heading-font;
+      color: $text-dark;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      font-size: 1.05rem;
+    }
+
+    ul {
+      padding-left: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   CART PAGE
+   ═══════════════════════════════════════════════════ */
+
+.ecom-cart {
+  padding-top: 100px;
+  padding-bottom: 80px;
+
+  &__inner {
+    @include container;
+  }
+
+  &__heading {
+    @include heading-font;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: $text-dark;
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 48px;
+    align-items: start;
+
+    @media (max-width: $md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid $border-light;
+
+    @media (max-width: $sm) {
+      grid-template-columns: 80px 1fr;
+      gap: 1rem;
+    }
+  }
+
+  &__item-image {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    background: $surface-alt;
+  }
+
+  &__item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  &__item-name {
+    @include heading-font;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: $text-dark;
+  }
+
+  &__item-meta {
+    font-size: 0.8rem;
+    color: $muted;
+  }
+
+  &__item-price {
+    @include heading-font;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $text-dark;
+  }
+
+  &__item-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    @media (max-width: $sm) {
+      grid-column: 1 / -1;
+      justify-content: space-between;
+    }
+  }
+
+  &__item-qty {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid $border-light;
+  }
+
+  &__item-qty-btn {
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    @include flex-center;
+    color: $text-dark;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: $surface-alt;
+    }
+  }
+
+  &__item-qty-val {
+    @include heading-font;
+    width: 36px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-left: 1px solid $border-light;
+    border-right: 1px solid $border-light;
+    line-height: 32px;
+  }
+
+  &__item-remove {
+    background: none;
+    border: none;
+    color: $muted;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-decoration: underline;
+    @include body-font;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #c0392b;
+    }
+  }
+
+  &__summary {
+    background: $surface-alt;
+    padding: 2rem;
+    position: sticky;
+    top: 100px;
+  }
+
+  &__summary-title {
+    @include heading-font;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $text-dark;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  &__summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    font-size: 0.95rem;
+
+    &--label {
+      color: $muted;
+    }
+
+    &--value {
+      @include heading-font;
+      font-weight: 600;
+      color: $text-dark;
+    }
+
+    &--total {
+      border-top: 2px solid $primary;
+      margin-top: 0.75rem;
+      padding-top: 1rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    &--discount {
+      color: #27ae60;
+    }
+  }
+
+  &__promo {
+    display: flex;
+    gap: 0;
+    margin: 1.5rem 0;
+  }
+
+  &__promo-input {
+    @include body-font;
+    flex: 1;
+    padding: 0.65rem 1rem;
+    border: 1px solid $border-light;
+    background: $surface;
+    color: $text-dark;
+    font-size: 0.85rem;
+    outline: none;
+
+    &::placeholder {
+      color: $muted;
+    }
+
+    &:focus {
+      border-color: $accent;
+    }
+  }
+
+  &__promo-btn {
+    @include heading-font;
+    padding: 0.65rem 1.25rem;
+    background: $primary;
+    color: $text;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.25s ease;
+
+    &:hover {
+      background: $accent;
+      color: $dark;
+    }
+  }
+
+  &__checkout-btn {
+    @include gold-button;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 4rem 0;
+
+    h3 {
+      @include heading-font;
+      font-size: 1.5rem;
+      color: $text-dark;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: $muted;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__continue-btn {
+    @include dark-outline-button;
+    text-decoration: none;
+    display: inline-block;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   ABOUT PAGE
+   ═══════════════════════════════════════════════════ */
+
+.ecom-about {
+  padding-top: 100px;
+
+  &__hero {
+    @include section-padding;
+    background: $dark;
+    text-align: center;
+  }
+
+  &__hero-inner {
+    @include container;
+    max-width: 700px;
+  }
+
+  &__hero-title {
+    @include heading-font;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: $text;
+    margin-bottom: 1rem;
+  }
+
+  &__hero-text {
+    color: $muted-light;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  &__story {
+    @include section-padding;
+    background: $surface;
+  }
+
+  &__story-inner {
+    @include container;
+    @include grid-2;
+    align-items: center;
+  }
+
+  &__story-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  &__story-content {
+    h3 {
+      @include heading-font;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: $text-dark;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: $muted;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__sustainability {
+    @include section-padding;
+    background: $surface-alt;
+  }
+
+  &__sustainability-inner {
+    @include container;
+    text-align: center;
+  }
+
+  &__sustainability-heading {
+    @include heading-font;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: $text-dark;
+    margin-bottom: 0.5rem;
+  }
+
+  &__sustainability-subtitle {
+    color: $muted;
+    font-size: 1rem;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__sustainability-grid {
+    @include grid-3;
+    text-align: left;
+  }
+
+  &__sustainability-card {
+    background: $surface;
+    padding: 2rem;
+    border: 1px solid $border-light;
+
+    h4 {
+      @include heading-font;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: $text-dark;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      color: $muted;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+  }
+
+  &__sustainability-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__team {
+    @include section-padding;
+    background: $surface;
+  }
+
+  &__team-inner {
+    @include container;
+    text-align: center;
+  }
+
+  &__team-heading {
+    @include heading-font;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: $text-dark;
+    margin-bottom: 3rem;
+  }
+
+  &__team-grid {
+    @include grid-4;
+  }
+
+  &__team-card {
+    text-align: center;
+  }
+
+  &__team-photo {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    filter: grayscale(20%);
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: grayscale(0%);
+    }
+  }
+
+  &__team-name {
+    @include heading-font;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: $text-dark;
+    margin-bottom: 0.2rem;
+  }
+
+  &__team-role {
+    font-size: 0.85rem;
+    color: $muted;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   LOOKBOOK PAGE
+   ═══════════════════════════════════════════════════ */
+
+.ecom-lookbook {
+  padding-top: 100px;
+
+  &__header {
+    @include section-padding;
+    background: $dark;
+    text-align: center;
+    padding-bottom: 60px;
+  }
+
+  &__header-inner {
+    @include container;
+  }
+
+  &__heading {
+    @include heading-font;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: $text;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    color: $muted-light;
+    font-size: 1.05rem;
+  }
+
+  &__grid-section {
+    @include section-padding;
+    background: $surface;
+  }
+
+  &__grid-inner {
+    @include container;
+  }
+
+  &__season-label {
+    @include heading-font;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $text-dark;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid $accent;
+    display: inline-block;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 4rem;
+
+    @media (max-width: $md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__image-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    cursor: pointer;
+
+    &:nth-child(1) {
+      grid-row: span 2;
+
+      @media (max-width: $sm) {
+        grid-row: span 1;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  &__image-label {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: $dark;
+    color: $text;
+    @include heading-font;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   CONTACT PAGE
+   ═══════════════════════════════════════════════════ */
+
+.ecom-contact {
+  padding-top: 100px;
+
+  &__header {
+    @include section-padding;
+    background: $dark;
+    text-align: center;
+    padding-bottom: 60px;
+  }
+
+  &__header-inner {
+    @include container;
+  }
+
+  &__heading {
+    @include heading-font;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: $text;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    color: $muted-light;
+    font-size: 1.05rem;
+  }
+
+  &__main {
+    @include section-padding;
+    background: $surface;
+  }
+
+  &__main-inner {
+    @include container;
+    @include grid-2;
+    align-items: start;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  &__form-title {
+    @include heading-font;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $text-dark;
+    margin-bottom: 0.5rem;
+  }
+
+  &__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  &__form-label {
+    @include heading-font;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $text-dark;
+  }
+
+  &__form-input,
+  &__form-textarea,
+  &__form-select {
+    @include body-font;
+    padding: 0.75rem 1rem;
+    border: 1px solid $border-light;
+    background: $surface;
+    color: $text-dark;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.25s ease;
+
+    &::placeholder {
+      color: $muted;
+    }
+
+    &:focus {
+      border-color: $accent;
+    }
+  }
+
+  &__form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  &__form-btn {
+    @include gold-button;
+    align-self: flex-start;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  &__info-section {
+    h3 {
+      @include heading-font;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: $text-dark;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+  }
+
+  &__info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    color: $muted;
+
+    strong {
+      color: $text-dark;
+      min-width: 70px;
+    }
+  }
+
+  &__faq-item {
+    margin-bottom: 1.25rem;
+
+    h4 {
+      @include heading-font;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: $text-dark;
+      margin-bottom: 0.3rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: $muted;
+      line-height: 1.7;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════ */
+
+.ecom-footer {
+  background: $dark;
+  color: $text;
+
+  &__inner {
+    @include container;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding: 80px 0 48px;
+
+    @media (max-width: $lg) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: $sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__brand {
+    h3 {
+      @include heading-font;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+
+      span {
+        color: $accent;
+      }
+    }
+
+    p {
+      color: $muted;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+  }
+
+  &__col {
+    h4 {
+      @include heading-font;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: $accent;
+      margin-bottom: 1.25rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 0.6rem;
+    }
+
+    a {
+      color: $muted;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $accent;
+      }
+    }
+  }
+
+  &__bottom {
+    @include container;
+    text-align: center;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.8rem;
+    color: $muted;
+    @include heading-font;
+    letter-spacing: 1px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   TOAST OVERRIDES
+   ═══════════════════════════════════════════════════ */
+
+.ecom-app {
+  [data-sonner-toaster],
+  .Toastify__toast-container {
+    z-index: 9999;
+  }
+}

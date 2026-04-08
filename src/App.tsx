@@ -13,6 +13,12 @@ const ConstructionApp = lazy(() => import('./industries/construction/Constructio
 const BeautyApp = lazy(() => import('./industries/beauty/BeautyApp'));
 const CoworkingApp = lazy(() => import('./industries/coworking/CoworkingApp'));
 const FitnessApp = lazy(() => import('./industries/fitness/FitnessApp'));
+const RealEstateApp = lazy(() => import('./industries/realestate/RealEstateApp'));
+const EcommerceApp = lazy(() => import('./industries/ecommerce/EcommerceApp'));
+const HealthcareApp = lazy(() => import('./industries/healthcare/HealthcareApp'));
+const FintechApp = lazy(() => import('./industries/fintech/FintechApp'));
+const AgencyApp = lazy(() => import('./industries/agency/AgencyApp'));
+const AgritechApp = lazy(() => import('./industries/agritech/AgritechApp'));
 
 function Loader() {
   return (
@@ -38,6 +44,12 @@ export default function App() {
         <Route path="/beauty/*" element={<BeautyApp />} />
         <Route path="/coworking/*" element={<CoworkingApp />} />
         <Route path="/fitness/*" element={<FitnessApp />} />
+        <Route path="/realestate/*" element={<RealEstateApp />} />
+        <Route path="/ecommerce/*" element={<EcommerceApp />} />
+        <Route path="/healthcare/*" element={<HealthcareApp />} />
+        <Route path="/fintech/*" element={<FintechApp />} />
+        <Route path="/agency/*" element={<AgencyApp />} />
+        <Route path="/agritech/*" element={<AgritechApp />} />
       </Routes>
     </Suspense>
   );
