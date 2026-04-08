@@ -68,63 +68,36 @@ export default function ShowcaseSelector() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <div className="showcase__bio-avatar">AD</div>
-        <span className="showcase__bio-greeting">Hello, I&apos;m</span>
+        <span className="showcase__bio-greeting">Built by</span>
         <h1 className="showcase__bio-name">Anyadike Divine</h1>
-        <p className="showcase__bio-role">
-          Full Stack Engineer &middot; Smart Contract Developer &middot; Technical Architect
+        <p className="showcase__bio-tagline">
+          Full Stack Engineer who turns business problems into production-grade software.
         </p>
         <p className="showcase__bio-text">
-          I design and build production-grade web applications for businesses across every industry.
-          From restaurant booking systems to SaaS dashboards, fintech platforms to e-commerce stores
-          — I ship fast, scalable, pixel-perfect products that drive real results.
-          <strong> 30+ projects shipped. Global clients served.</strong>
+          Every demo below is a real, functional multi-page website — designed, coded, and deployed
+          from scratch. Booking systems, dashboards, e-commerce carts, appointment flows, mortgage
+          calculators — all built to show what&apos;s possible when good design meets clean engineering.
         </p>
-        <div className="showcase__bio-stats">
-          <div className="showcase__bio-stat">
-            <span className="showcase__bio-stat-num">30+</span>
-            <span className="showcase__bio-stat-label">Projects Shipped</span>
-          </div>
-          <div className="showcase__bio-stat">
-            <span className="showcase__bio-stat-num">17</span>
-            <span className="showcase__bio-stat-label">Industries Covered</span>
-          </div>
-          <div className="showcase__bio-stat">
-            <span className="showcase__bio-stat-num">4+</span>
-            <span className="showcase__bio-stat-label">Years Experience</span>
-          </div>
-          <div className="showcase__bio-stat">
-            <span className="showcase__bio-stat-num">100%</span>
-            <span className="showcase__bio-stat-label">Client Satisfaction</span>
-          </div>
+        <div className="showcase__bio-metrics">
+          <span className="showcase__bio-metric">30+ projects</span>
+          <span className="showcase__bio-metric-sep" />
+          <span className="showcase__bio-metric">17 industries</span>
+          <span className="showcase__bio-metric-sep" />
+          <span className="showcase__bio-metric">4+ years</span>
+          <span className="showcase__bio-metric-sep" />
+          <span className="showcase__bio-metric">Global clients</span>
         </div>
-        <div className="showcase__bio-links">
+        <div className="showcase__bio-actions">
           <a
-            href="https://github.com/Sage-senpai"
+            href="https://portfolio-dvyne.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="showcase__bio-link"
+            className="showcase__bio-portfolio"
           >
-            GitHub
+            View Full Portfolio &rarr;
           </a>
-          <a
-            href="https://linkedin.com/in/divineanyadike"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="showcase__bio-link"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="https://x.com/sage_senpeak"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="showcase__bio-link"
-          >
-            X / Twitter
-          </a>
-          <a href="#contact" className="showcase__bio-link showcase__bio-link--cta">
-            Hire Me
+          <a href="#contact" className="showcase__bio-hire">
+            Start a Project
           </a>
         </div>
       </motion.section>
