@@ -1,2144 +1,448 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* ═══════════════════════════════════════════════════
-   PULSE ATHLETICS — Fitness / Gym Industry Stylesheet
-   Premium urban gym, Lagos
-   ═══════════════════════════════════════════════════ */
-
-// ── Variables ──
 $primary: #0D0D0D;
 $accent: #AAFF00;
-$accent2: #FF4D4D;
 $surface: #141414;
 $surface2: #1C1C1C;
 $text: #FFFFFF;
-$muted: #888888;
-$border: rgba(170, 255, 0, 0.15);
-
+$muted: #888;
+$border: rgba(170, 255, 0, 0.12);
 $accent-hover: #90dd00;
-$accent2-hover: #e63e3e;
-$accent-glow: rgba(170, 255, 0, 0.25);
-
+$accent-glow: rgba(170, 255, 0, 0.2);
 $sm: 480px;
 $md: 768px;
 $lg: 1024px;
 
-// ── Mixins ──
-@mixin heading-font {
-  font-family: 'Rajdhani', sans-serif;
-}
-
-@mixin body-font {
-  font-family: 'Inter', sans-serif;
-}
-
-@mixin container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-@mixin section-padding {
-  padding: 100px 0;
-  @media (max-width: $md) {
-    padding: 64px 0;
-  }
-}
-
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@mixin grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  @media (max-width: $md) {
-    grid-template-columns: 1fr;
-  }
-}
-
-@mixin grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  @media (max-width: $lg) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (max-width: $sm) {
-    grid-template-columns: 1fr;
-  }
-}
-
-@mixin grid-4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
-  @media (max-width: $lg) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (max-width: $sm) {
-    grid-template-columns: 1fr;
-  }
-}
-
-@mixin lime-button {
-  @include heading-font;
-  background: $accent;
-  color: $primary;
-  border: none;
-  padding: 0.85rem 2rem;
-  border-radius: 4px;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  transition: background 0.25s ease, box-shadow 0.25s ease;
-
-  &:hover {
-    background: $accent-hover;
-    box-shadow: 0 0 20px $accent-glow;
-  }
-}
-
-@mixin outline-button {
-  @include heading-font;
-  background: transparent;
-  color: $text;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  padding: 0.85rem 2rem;
-  border-radius: 4px;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  transition: border-color 0.25s ease, color 0.25s ease;
-
-  &:hover {
-    border-color: $accent;
-    color: $accent;
-  }
-}
-
-@mixin dark-input {
-  @include body-font;
-  width: 100%;
-  background: $surface;
-  color: $text;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.85rem 1rem;
-  border-radius: 4px;
-  font-size: 0.95rem;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-  outline: none;
-
-  &::placeholder {
-    color: $muted;
-  }
-
-  &:focus {
-    border-color: $accent;
-    box-shadow: 0 0 0 3px $accent-glow;
-  }
-}
-
-// ── Root Scope ──
 .fitness-app {
-  @include body-font;
+  font-family: 'Inter', sans-serif;
   color: $text;
   background: $primary;
   overflow-x: hidden;
   line-height: 1.6;
-
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  img {
-    max-width: 100%;
-    display: block;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @include heading-font;
-    line-height: 1.15;
-    font-weight: 700;
-  }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { text-decoration: none; color: inherit; }
+  button { border: none; cursor: pointer; font-family: inherit; }
+  img { max-width: 100%; display: block; }
+  h1, h2, h3, h4, h5, h6 { font-family: 'Rajdhani', sans-serif; line-height: 1.15; font-weight: 700; }
 }
 
+.section-label {
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: $accent;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
 
-/* ══════════════════════════════════════════════════════
-   1. NAVBAR
-   ══════════════════════════════════════════════════════ */
+// ── NAVBAR ──
 .fit-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: $primary;
-  transition: background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  background: rgba(13, 13, 13, 0.7);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
-
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
   &--scrolled {
-    background: rgba(13, 13, 13, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid $border;
-    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+    background: rgba(13, 13, 13, 0.95);
+    border-bottom-color: $border;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
   }
-
   &__inner {
-    @include container;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 72px;
+    max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+    display: flex; align-items: center; justify-content: space-between; height: 68px;
   }
-
   &__logo {
-    @include heading-font;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: $text;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-
-    span {
-      color: $accent;
-    }
+    font-family: 'Rajdhani', sans-serif; font-size: 1.6rem; font-weight: 700;
+    color: $text; text-transform: uppercase; letter-spacing: 2px;
+    span { color: $accent; }
   }
-
   &__links {
-    display: none;
-    list-style: none;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-
-    @media (min-width: $md) {
-      display: flex;
-    }
+    display: none; list-style: none; gap: 2rem; margin: 0; padding: 0; align-items: center;
+    @media (min-width: $lg) { display: flex; }
   }
-
   &__link {
-    color: rgba(255, 255, 255, 0.75);
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: color 0.25s ease;
-    text-transform: uppercase;
-    @include heading-font;
-
-    &:hover,
-    &--active {
-      color: $accent;
-    }
+    color: rgba(255, 255, 255, 0.7); font-size: 0.82rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.25s;
+    &:hover, &--active { color: $accent; }
   }
-
   &__cta {
-    @include lime-button;
-    padding: 0.55rem 1.4rem;
-    font-size: 0.85rem;
+    display: none; background: $accent; color: $primary; padding: 0.55rem 1.3rem;
+    border-radius: 6px; font-weight: 700; font-size: 0.82rem; text-transform: uppercase;
+    letter-spacing: 0.5px; transition: background 0.25s;
+    &:hover { background: $accent-hover; }
+    @media (min-width: $lg) { display: inline-block; }
   }
-
-  // Hamburger (mobile)
   &__hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-
-    @media (min-width: $md) {
-      display: none;
-    }
-
-    span {
-      display: block;
-      width: 26px;
-      height: 2px;
-      background: $text;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
+    display: flex; flex-direction: column; gap: 5px; background: none; padding: 4px;
+    @media (min-width: $lg) { display: none; }
+    span { display: block; width: 24px; height: 2px; background: $text; transition: transform 0.3s, opacity 0.3s; }
     &--open {
-      span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-      }
-      span:nth-child(2) {
-        opacity: 0;
-      }
-      span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-      }
+      span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+      span:nth-child(2) { opacity: 0; }
+      span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
     }
   }
-
-  // Full-screen mobile overlay
-  &__mobile {
-    display: none;
-
-    @media (max-width: #{$md - 1px}) {
-      &--open {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        inset: 0;
-        background: rgba(13, 13, 13, 0.97);
-        z-index: 999;
-        animation: fit-fadeIn 0.3s ease;
-      }
-    }
-  }
-
-  &__mobile-close {
-    position: absolute;
-    top: 1.2rem;
-    right: 1.5rem;
-    background: none;
-    border: none;
-    color: $text;
-    font-size: 2rem;
-    cursor: pointer;
-    line-height: 1;
-    @include heading-font;
-  }
-
-  &__mobile-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-
-    li {
-      padding: 1rem 0;
-    }
-
-    a {
-      @include heading-font;
-      color: rgba(255, 255, 255, 0.85);
-      font-size: 1.5rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      transition: color 0.25s ease;
-
-      &:hover {
-        color: $accent;
-      }
-    }
-  }
-
-  &__mobile-cta {
-    @include lime-button;
-    margin-top: 2rem;
-    font-size: 1rem;
-    padding: 0.9rem 2.5rem;
-  }
-
-  // Mobile overlay (used by AnimatePresence in FitnessApp)
   &__overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 999;
-    background: rgba(13, 13, 13, 0.97);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
+    position: fixed; top: 68px; left: 0; width: 100%; height: calc(100vh - 68px);
+    background: rgba(13, 13, 13, 0.97); backdrop-filter: blur(16px);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem; z-index: 999;
   }
-
   &__overlay-link {
-    @include heading-font;
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 1.5rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-decoration: none;
-    transition: color 0.25s ease;
-
-    &:hover {
-      color: $accent;
-    }
+    font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; font-weight: 600;
+    color: rgba(255, 255, 255, 0.8); text-transform: uppercase; letter-spacing: 1px;
+    transition: color 0.2s; &:hover { color: $accent; }
   }
-
   &__overlay-cta {
-    @include lime-button;
-    margin-top: 1.5rem;
-    font-size: 1rem;
-    padding: 0.9rem 2.5rem;
-    text-decoration: none;
+    margin-top: 1rem; background: $accent; color: $primary; padding: 0.75rem 2rem;
+    border-radius: 6px; font-weight: 700; font-size: 1rem; text-transform: uppercase;
   }
 }
 
-@keyframes fit-fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-
-/* ══════════════════════════════════════════════════════
-   2. HERO
-   ══════════════════════════════════════════════════════ */
+// ── HERO ──
+.fit-home { min-height: 100vh; }
 .fit-hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1400&q=85');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  &__overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.75);
-    z-index: 1;
-  }
-
-  &__content {
-    position: relative;
-    z-index: 2;
-    @include container;
-    padding-top: 72px;
-    max-width: 800px;
-
-    @media (max-width: $md) {
-      text-align: center;
-    }
-  }
-
-  &__tag {
-    @include heading-font;
-    display: inline-block;
-    color: $accent;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 1rem;
-    border: 1px solid $border;
-    padding: 0.4rem 1rem;
-    border-radius: 2px;
-  }
-
-  &__title {
-    @include heading-font;
-    font-size: clamp(3rem, 8vw, 5.5rem);
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    line-height: 1.0;
-    margin: 0 0 1.2rem;
-    letter-spacing: -1px;
-
-    span {
-      color: $accent;
-    }
-  }
-
-  &__subtitle {
-    font-size: clamp(1rem, 2.2vw, 1.2rem);
-    color: rgba(255, 255, 255, 0.7);
-    max-width: 560px;
-    margin: 0 0 2.5rem;
-    font-weight: 400;
-    line-height: 1.7;
-
-    @media (max-width: $md) {
-      margin-left: auto;
-      margin-right: auto;
-    }
-  }
-
-  &__ctas {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-
-    @media (max-width: $md) {
-      justify-content: center;
-    }
-  }
-
+  position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  &__bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+  &__overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.75); }
+  &__content { position: relative; z-index: 2; text-align: center; padding: 0 1.5rem; max-width: 800px; }
+  &__title { font-size: clamp(2.5rem, 7vw, 4.5rem); text-transform: uppercase; letter-spacing: 2px; line-height: 1.05; margin: 0 0 1rem; }
+  &__subtitle { font-size: clamp(0.9rem, 2vw, 1.1rem); color: rgba(255, 255, 255, 0.7); max-width: 550px; margin: 0 auto 2rem; }
+  &__ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
   &__btn-primary {
-    @include lime-button;
+    background: $accent; color: $primary; padding: 0.85rem 2rem; border-radius: 6px;
+    font-weight: 700; font-size: 0.95rem; text-transform: uppercase; transition: background 0.25s;
+    &:hover { background: $accent-hover; }
   }
-
   &__btn-outline {
-    @include outline-button;
-  }
-
-  &__scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    color: $muted;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    @include heading-font;
-    text-align: center;
-
-    &::after {
-      content: '';
-      display: block;
-      width: 1px;
-      height: 40px;
-      background: $accent;
-      margin: 0.5rem auto 0;
-      animation: fit-scroll-pulse 2s infinite;
-    }
+    background: transparent; color: $text; padding: 0.85rem 2rem; border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.3); font-weight: 600; font-size: 0.95rem;
+    text-transform: uppercase; transition: border-color 0.25s, color 0.25s;
+    &:hover { border-color: $accent; color: $accent; }
   }
 }
 
-@keyframes fit-scroll-pulse {
-  0%, 100% { opacity: 1; height: 40px; }
-  50%      { opacity: 0.3; height: 20px; }
-}
-
-
-/* ══════════════════════════════════════════════════════
-   3. STATS ROW
-   ══════════════════════════════════════════════════════ */
+// ── STATS ──
 .fit-stats {
-  background: $surface2;
-  padding: 3.5rem 0;
-  border-top: 1px solid $border;
-  border-bottom: 1px solid $border;
-
-  &__inner {
-    @include container;
-    @include grid-4;
-    text-align: center;
-  }
-
-  &__item {
-    padding: 1rem 0;
-  }
-
-  &__number {
-    @include heading-font;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    color: $accent;
-    line-height: 1.1;
-    margin-bottom: 0.3rem;
-  }
-
-  &__label {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.8);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-weight: 500;
-  }
-}
-
-
-/* ══════════════════════════════════════════════════════
-   4. CLASSES SECTION
-   ══════════════════════════════════════════════════════ */
-.fit-classes {
-  @include section-padding;
-  background: $primary;
-
-  &__inner {
-    @include container;
-  }
-
-  &__header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  &__title {
-    @include heading-font;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    margin: 0 0 0.5rem;
-
-    span {
-      color: $accent;
-    }
-  }
-
-  &__subtitle {
-    color: $muted;
-    font-size: 1rem;
-    max-width: 520px;
-    margin: 0 auto;
-  }
-
-  // Category filter buttons
-  &__filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    justify-content: center;
-    margin-bottom: 2.5rem;
-  }
-
-  &__filter-btn {
-    @include heading-font;
-    background: $surface;
-    color: $muted;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 0.5rem 1.2rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.25s ease;
-
-    &:hover {
-      color: $text;
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    &--active {
-      background: $accent;
-      color: $primary;
-      border-color: $accent;
-    }
-  }
-
-  // Class cards grid
+  background: $surface; padding: 2.5rem 1.5rem; border-bottom: 1px solid $border;
   &__grid {
-    @include grid-2;
+    max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; text-align: center;
+    @media (max-width: $sm) { grid-template-columns: repeat(2, 1fr); }
   }
+}
 
+// ── CLASSES PREVIEW (Home) ──
+.fit-classes-preview {
+  padding: 4rem 1.5rem; background: $primary;
+  &__inner { max-width: 1100px; margin: 0 auto; }
+  &__heading { font-size: clamp(1.5rem, 3vw, 2.2rem); margin: 0.3rem 0 0.5rem; }
+  &__subtitle { color: $muted; font-size: 0.9rem; margin: 0 0 2rem; max-width: 500px; }
+  &__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; @media (max-width: $md) { grid-template-columns: 1fr; } }
+}
+
+// ── CLASS CARD ──
+.fit-class-card {
+  background: $surface; border: 1px solid rgba(255, 255, 255, 0.06); border-left: 3px solid $accent;
+  border-radius: 10px; padding: 1.25rem; transition: transform 0.25s, box-shadow 0.25s;
+  &:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); }
+  &--full { opacity: 0.5; pointer-events: none; }
+  &__header { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.4rem; }
+  &__name { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; }
+  &__intensity {
+    font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+    padding: 0.2rem 0.6rem; border-radius: 20px; white-space: nowrap;
+    &--beginner { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+    &--intermediate { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+    &--advanced { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+    &--all-levels { background: $accent-glow; color: $accent; }
+  }
+  &__category-pill {
+    display: inline-block; font-size: 0.65rem; background: rgba(170, 255, 0, 0.1); color: $accent;
+    padding: 0.15rem 0.5rem; border-radius: 4px; margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;
+  }
+  &__instructor { font-size: 0.82rem; color: $muted; margin: 0 0 0.15rem; }
+  &__duration { font-size: 0.78rem; color: rgba(255, 255, 255, 0.4); margin: 0 0 0.4rem; }
+  &__description { font-size: 0.82rem; color: rgba(255, 255, 255, 0.6); line-height: 1.5; margin: 0 0 0.6rem; }
+  &__meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; font-size: 0.78rem; color: $muted; }
+  &__days { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+  &__day-pill { font-size: 0.62rem; background: $surface2; color: rgba(255, 255, 255, 0.6); padding: 0.15rem 0.45rem; border-radius: 4px; text-transform: uppercase; }
+  &__footer { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-top: 0.5rem; }
+  &__spots { font-size: 0.75rem; color: $muted; }
+  &__book-btn {
+    background: $accent; color: $primary; padding: 0.45rem 1rem; border-radius: 6px;
+    font-size: 0.78rem; font-weight: 700; transition: background 0.25s; &:hover { background: $accent-hover; }
+  }
+  &__link { font-size: 0.82rem; font-weight: 600; color: $accent; &:hover { opacity: 0.8; } }
+}
+
+// ── TRAINERS PREVIEW (Home) ──
+.fit-trainers-preview {
+  padding: 4rem 1.5rem; background: $surface;
+  &__inner { max-width: 1100px; margin: 0 auto; }
+  &__heading { font-size: clamp(1.5rem, 3vw, 2.2rem); margin: 0.3rem 0 2rem; }
+  &__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; @media (max-width: $md) { grid-template-columns: 1fr; } }
   &__card {
-    background: $surface;
-    border-radius: 6px;
-    padding: 1.5rem;
-    border-left: 3px solid $accent;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-    }
+    text-align: center; padding: 1.5rem; background: $surface2; border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05); transition: transform 0.25s; &:hover { transform: translateY(-4px); }
   }
-
-  &__card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-
-  &__card-name {
-    @include heading-font;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    margin: 0;
-  }
-
-  &__card-intensity {
-    @include heading-font;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 0.25rem 0.65rem;
-    border-radius: 3px;
-    white-space: nowrap;
-
-    &--beginner {
-      background: rgba(34, 197, 94, 0.15);
-      color: #22c55e;
-    }
-
-    &--intermediate {
-      background: rgba(245, 158, 11, 0.15);
-      color: #f59e0b;
-    }
-
-    &--advanced {
-      background: rgba(255, 77, 77, 0.15);
-      color: $accent2;
-    }
-
-    &--all {
-      background: rgba(170, 255, 0, 0.12);
-      color: $accent;
-    }
-  }
-
-  &__card-instructor {
-    font-size: 0.9rem;
-    color: $muted;
-
-    strong {
-      color: rgba(255, 255, 255, 0.9);
-      font-weight: 600;
-    }
-  }
-
-  &__card-time {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-    @include heading-font;
-    font-weight: 500;
-  }
-
-  &__card-days {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-
-  &__card-day {
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    background: $surface2;
-    color: rgba(255, 255, 255, 0.7);
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  &__card-spots {
-    font-size: 0.8rem;
-    color: $muted;
-
-    strong {
-      color: $accent;
-      font-weight: 700;
-    }
-
-    &--full strong {
-      color: $accent2;
-    }
-  }
-
-  &__card-book {
-    @include lime-button;
-    font-size: 0.8rem;
-    padding: 0.6rem 1.2rem;
-    align-self: flex-start;
-    margin-top: 0.25rem;
-
-    &:disabled,
-    &--full {
-      background: #333333;
-      color: $muted;
-      cursor: not-allowed;
-      box-shadow: none;
-
-      &:hover {
-        background: #333333;
-        box-shadow: none;
-      }
-    }
-  }
+  &__card-photo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem; border: 3px solid $accent; }
+  &__card-name { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; margin: 0 0 0.2rem; }
+  &__card-specialty { font-size: 0.82rem; color: $accent; margin: 0; }
 }
 
-
-/* ══════════════════════════════════════════════════════
-   5. SCHEDULE PAGE
-   ══════════════════════════════════════════════════════ */
-.fit-schedule {
-  @include section-padding;
-  background: $primary;
-
-  &__inner {
-    @include container;
-  }
-
-  &__header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  &__title {
-    @include heading-font;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    margin: 0 0 0.5rem;
-
-    span {
-      color: $accent;
-    }
-  }
-
-  &__subtitle {
-    color: $muted;
-    font-size: 1rem;
-  }
-
-  // Filter buttons
-  &__filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    justify-content: center;
-    margin-bottom: 2.5rem;
-  }
-
-  &__filter-btn {
-    @include heading-font;
-    background: $surface;
-    color: $muted;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 0.5rem 1.2rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.25s ease;
-
-    &:hover {
-      color: $text;
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    &--active {
-      background: $accent;
-      color: $primary;
-      border-color: $accent;
-    }
-  }
-
-  // Weekly grid table
-  &__table-wrap {
-    overflow-x: auto;
-    border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  &__table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 800px;
-
-    th, td {
-      padding: 0.75rem 0.5rem;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    th {
-      @include heading-font;
-      background: $surface2;
-      color: $accent;
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-  }
-
-  &__time-label {
-    @include heading-font;
-    background: $surface;
-    color: $muted;
-    font-size: 0.8rem;
-    font-weight: 600;
-    white-space: nowrap;
-    min-width: 90px;
-  }
-
-  &__cell {
-    background: $surface;
-    cursor: default;
-    vertical-align: top;
-    min-height: 60px;
-    transition: background 0.2s ease;
-
-    &--available {
-      cursor: pointer;
-      background: rgba(170, 255, 0, 0.05);
-      border: 1px solid $border !important;
-
-      &:hover {
-        background: rgba(170, 255, 0, 0.1);
-      }
-    }
-
-    &--full {
-      background: rgba(255, 77, 77, 0.05);
-      border: 1px solid rgba(255, 77, 77, 0.15) !important;
-    }
-
-    &--empty {
-      background: $surface;
-    }
-  }
-
-  &__cell-class {
-    @include heading-font;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    line-height: 1.3;
-  }
-
-  &__cell-trainer {
-    font-size: 0.65rem;
-    color: $muted;
-    margin-top: 0.15rem;
-  }
-
-  &__cell-badge {
-    display: inline-block;
-    font-size: 0.6rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 0.1rem 0.4rem;
-    border-radius: 2px;
-    margin-top: 0.25rem;
-
-    &--open {
-      background: rgba(170, 255, 0, 0.15);
-      color: $accent;
-    }
-
-    &--full {
-      background: rgba(255, 77, 77, 0.15);
-      color: $accent2;
-    }
-  }
-}
-
-
-/* ══════════════════════════════════════════════════════
-   6. TRAINERS
-   ══════════════════════════════════════════════════════ */
-.fit-trainers {
-  @include section-padding;
-  background: $surface;
-
-  &__inner {
-    @include container;
-  }
-
-  &__header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  &__title {
-    @include heading-font;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    margin: 0 0 0.5rem;
-
-    span {
-      color: $accent;
-    }
-  }
-
-  &__subtitle {
-    color: $muted;
-    font-size: 1rem;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-
+// ── GALLERY STRIP (Home) ──
+.fit-gallery-strip {
+  padding: 3rem 1.5rem; background: $primary;
+  &__inner { max-width: 1100px; margin: 0 auto; }
   &__grid {
-    @include grid-3;
-  }
-
-  &__card {
-    background: $surface2;
-    border-radius: 8px;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.04);
-
-    &:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
-    }
-  }
-
-  &__card-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid $accent;
-    margin: 0 auto 1.2rem;
-    display: block;
-  }
-
-  &__card-name {
-    @include heading-font;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    margin: 0 0 0.25rem;
-  }
-
-  &__card-specialty {
-    font-size: 0.85rem;
-    color: $accent;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 0.75rem;
-  }
-
-  &__card-certs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    justify-content: center;
-    margin-bottom: 1rem;
-  }
-
-  &__card-cert {
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    background: rgba(170, 255, 0, 0.08);
-    color: $accent;
-    padding: 0.2rem 0.6rem;
-    border-radius: 3px;
-    border: 1px solid $border;
-  }
-
-  &__card-bio {
-    font-size: 0.9rem;
-    color: $muted;
-    line-height: 1.6;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+    @media (max-width: $md) { grid-template-columns: 1fr; }
+    img { width: 100%; height: 240px; object-fit: cover; border-radius: 10px; filter: brightness(0.7); transition: filter 0.3s; &:hover { filter: brightness(1); } }
   }
 }
 
-
-/* ══════════════════════════════════════════════════════
-   7. MEMBERSHIP / PRICING
-   ══════════════════════════════════════════════════════ */
-.fit-pricing {
-  @include section-padding;
-  background: $primary;
-
-  &__inner {
-    @include container;
-  }
-
-  &__header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  &__title {
-    @include heading-font;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    margin: 0 0 0.5rem;
-
-    span {
-      color: $accent;
-    }
-  }
-
-  &__subtitle {
-    color: $muted;
-    font-size: 1rem;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-
-  &__grid {
-    @include grid-3;
-    align-items: stretch;
-  }
-
-  &__card {
-    background: $surface;
-    border-radius: 8px;
-    padding: 2.5rem 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    &:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
-    }
-
-    &--featured {
-      border: 2px solid $accent;
-      box-shadow: 0 0 40px rgba(170, 255, 0, 0.08);
-
-      &:hover {
-        box-shadow: 0 0 60px rgba(170, 255, 0, 0.12), 0 16px 48px rgba(0, 0, 0, 0.4);
-      }
-    }
-  }
-
-  &__badge {
-    position: absolute;
-    top: -1px;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    @include heading-font;
-    background: $accent;
-    color: $primary;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    padding: 0.35rem 1rem;
-    border-radius: 3px;
-    white-space: nowrap;
-  }
-
-  &__card-tier {
-    @include heading-font;
-    font-size: 1rem;
-    font-weight: 600;
-    color: $accent;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 0.75rem;
-  }
-
-  &__card-price {
-    @include heading-font;
-    font-size: 3rem;
-    font-weight: 700;
-    color: $text;
-    line-height: 1;
-    margin-bottom: 0.25rem;
-
-    span {
-      font-size: 1rem;
-      color: $muted;
-      font-weight: 500;
-    }
-  }
-
-  &__card-period {
-    font-size: 0.85rem;
-    color: $muted;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  &__card-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 2rem;
-    flex: 1;
-
-    li {
-      padding: 0.5rem 0;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-
-      &::before {
-        content: '\2713';
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: rgba(170, 255, 0, 0.12);
-        color: $accent;
-        font-size: 0.7rem;
-        font-weight: 700;
-        flex-shrink: 0;
-      }
-    }
-  }
-
-  &__card-btn {
-    @include lime-button;
-    width: 100%;
-    text-align: center;
-    font-size: 0.9rem;
-  }
-
-  &__card-btn--outline {
-    @include outline-button;
-    width: 100%;
-    text-align: center;
-    font-size: 0.9rem;
-  }
-}
-
-
-/* ══════════════════════════════════════════════════════
-   8. BOOKING PAGE — 3-STEP FORM
-   ══════════════════════════════════════════════════════ */
-.fit-book {
-  @include section-padding;
-  background: $primary;
-
-  &__inner {
-    @include container;
-    max-width: 720px;
-  }
-
-  &__header {
-    text-align: center;
-    margin-bottom: 2.5rem;
-  }
-
-  &__title {
-    @include heading-font;
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    margin: 0 0 0.5rem;
-
-    span {
-      color: $accent;
-    }
-  }
-
-  &__subtitle {
-    color: $muted;
-    font-size: 1rem;
-  }
-
-  // Stepper
-  &__stepper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 3rem;
-    gap: 0;
-  }
-
-  &__step {
-    display: flex;
-    align-items: center;
-    gap: 0;
-  }
-
-  &__step-circle {
-    @include heading-font;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    @include flex-center;
-    font-size: 0.9rem;
-    font-weight: 700;
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    color: $muted;
-    background: $surface;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-
-    &--active {
-      border-color: $accent;
-      color: $primary;
-      background: $accent;
-      box-shadow: 0 0 16px $accent-glow;
-    }
-
-    &--done {
-      border-color: $accent;
-      color: $primary;
-      background: $accent;
-    }
-  }
-
-  &__step-label {
-    @include heading-font;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: $muted;
-    margin-top: 0.5rem;
-    text-align: center;
-    position: absolute;
-    bottom: -1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-
-    &--active {
-      color: $accent;
-    }
-  }
-
-  &__step-line {
-    width: 80px;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.1);
-    margin: 0 0.75rem;
-    flex-shrink: 0;
-
-    &--done {
-      background: $accent;
-    }
-
-    @media (max-width: $sm) {
-      width: 40px;
-    }
-  }
-
-  // Step content
-  &__step-content {
-    background: $surface;
-    border-radius: 8px;
-    padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-
-    @media (max-width: $sm) {
-      padding: 1.5rem 1rem;
-    }
-  }
-
-  &__step-title {
-    @include heading-font;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    margin: 0 0 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  // Form fields
-  &__form-group {
-    margin-bottom: 1.25rem;
-  }
-
-  &__label {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 0.5rem;
-    @include heading-font;
-  }
-
-  &__input {
-    @include dark-input;
-  }
-
-  &__select {
-    @include dark-input;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23888' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    padding-right: 2.5rem;
-  }
-
-  &__textarea {
-    @include dark-input;
-    resize: vertical;
-    min-height: 100px;
-  }
-
-  &__form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-
-    @media (max-width: $sm) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  // Step navigation
-  &__actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2rem;
-    gap: 1rem;
-  }
-
-  &__btn-back {
-    @include outline-button;
-    font-size: 0.85rem;
-    padding: 0.7rem 1.5rem;
-  }
-
-  &__btn-next {
-    @include lime-button;
-    font-size: 0.85rem;
-    padding: 0.7rem 1.5rem;
-  }
-
-  &__btn-submit {
-    @include lime-button;
-    width: 100%;
-    font-size: 1rem;
-    padding: 0.9rem 2rem;
-    margin-top: 1.5rem;
-  }
-
-  // Class selection cards (step 1)
-  &__class-option {
-    background: $surface2;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 6px;
-    padding: 1rem 1.25rem;
-    margin-bottom: 0.75rem;
-    cursor: pointer;
-    transition: border-color 0.25s ease, background 0.25s ease;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-
-    &:hover {
-      border-color: rgba(170, 255, 0, 0.3);
-    }
-
-    &--selected {
-      border-color: $accent;
-      background: rgba(170, 255, 0, 0.04);
-    }
-  }
-
-  &__class-radio {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    flex-shrink: 0;
-    position: relative;
-
-    .fit-book__class-option--selected & {
-      border-color: $accent;
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 3px;
-        left: 3px;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: $accent;
-      }
-    }
-  }
-
-  &__class-info {
-    flex: 1;
-  }
-
-  &__class-name {
-    @include heading-font;
-    font-size: 1rem;
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-  }
-
-  &__class-meta {
-    font-size: 0.8rem;
-    color: $muted;
-  }
-}
-
-
-/* ══════════════════════════════════════════════════════
-   9. CONTACT
-   ══════════════════════════════════════════════════════ */
-.fit-contact {
-  @include section-padding;
-  background: $surface;
-
-  &__inner {
-    @include container;
-    @include grid-2;
-    align-items: start;
-  }
-
-  // Info card (left)
-  &__info {
-    background: $surface2;
-    border-radius: 8px;
-    padding: 2.5rem 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.04);
-  }
-
-  &__info-title {
-    @include heading-font;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    margin: 0 0 1.5rem;
-
-    span {
-      color: $accent;
-    }
-  }
-
-  &__info-item {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    align-items: flex-start;
-  }
-
-  &__info-icon {
-    @include flex-center;
-    width: 40px;
-    height: 40px;
-    border-radius: 6px;
-    background: rgba(170, 255, 0, 0.08);
-    color: $accent;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-  }
-
-  &__info-label {
-    font-size: 0.75rem;
-    color: $muted;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 0.2rem;
-    @include heading-font;
-    font-weight: 600;
-  }
-
-  &__info-value {
-    font-size: 0.95rem;
-    color: $text;
-    line-height: 1.5;
-  }
-
-  &__info-hours {
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  &__info-hours-title {
-    @include heading-font;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 0.75rem;
-  }
-
-  &__info-hours-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85rem;
-    padding: 0.35rem 0;
-    color: rgba(255, 255, 255, 0.7);
-
-    span:first-child {
-      color: $muted;
-    }
-  }
-
-  // Social links
-  &__socials {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-  }
-
-  &__social-link {
-    @include flex-center;
-    width: 40px;
-    height: 40px;
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.05);
-    color: $muted;
-    font-size: 1.1rem;
-    transition: background 0.25s ease, color 0.25s ease;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-
-    &:hover {
-      background: $accent;
-      color: $primary;
-      border-color: $accent;
-    }
-  }
-
-  // Form (right)
-  &__form {
-    background: $surface2;
-    border-radius: 8px;
-    padding: 2.5rem 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.04);
-  }
-
-  &__form-title {
-    @include heading-font;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    margin: 0 0 1.5rem;
-  }
-
-  &__form-group {
-    margin-bottom: 1.25rem;
-  }
-
-  &__form-label {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 0.5rem;
-    @include heading-font;
-  }
-
-  &__form-input {
-    @include dark-input;
-  }
-
-  &__form-select {
-    @include dark-input;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23888' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    padding-right: 2.5rem;
-  }
-
-  &__form-textarea {
-    @include dark-input;
-    resize: vertical;
-    min-height: 120px;
-  }
-
-  &__form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-
-    @media (max-width: $sm) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  &__form-submit {
-    @include lime-button;
-    width: 100%;
-    margin-top: 0.5rem;
-    text-align: center;
-  }
-}
-
-
-/* ══════════════════════════════════════════════════════
-   10. FOOTER
-   ══════════════════════════════════════════════════════ */
-.fit-footer {
-  background: #080808;
-  padding: 4rem 0 0;
-  border-top: 1px solid $border;
-
-  &__inner {
-    @include container;
-    @include grid-4;
-    padding-bottom: 3rem;
-  }
-
-  &__brand {
-    @media (max-width: $lg) {
-      grid-column: 1 / -1;
-      margin-bottom: 1rem;
-    }
-  }
-
-  &__logo {
-    @include heading-font;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 0.75rem;
-
-    span {
-      color: $accent;
-    }
-  }
-
-  &__brand-text {
-    font-size: 0.85rem;
-    color: $muted;
-    line-height: 1.6;
-    max-width: 260px;
-  }
-
-  &__col-title {
-    @include heading-font;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 1.2rem;
-  }
-
-  &__links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    li {
-      margin-bottom: 0.6rem;
-    }
-
-    a {
-      font-size: 0.85rem;
-      color: $muted;
-      transition: color 0.25s ease;
-
-      &:hover {
-        color: $accent;
-      }
-    }
-  }
-
-  &__contact-item {
-    font-size: 0.85rem;
-    color: $muted;
-    margin-bottom: 0.6rem;
-    line-height: 1.5;
-
-    strong {
-      color: rgba(255, 255, 255, 0.7);
-      font-weight: 600;
-    }
-  }
-
-  &__socials {
-    display: flex;
-    gap: 0.6rem;
-    margin-top: 1rem;
-  }
-
-  &__social {
-    @include flex-center;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.05);
-    color: $muted;
-    font-size: 1rem;
-    transition: background 0.25s ease, color 0.25s ease;
-
-    &:hover {
-      background: $accent;
-      color: $primary;
-    }
-  }
-
-  // Bottom bar
-  &__bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 1.5rem 0;
-  }
-
-  &__bottom-inner {
-    @include container;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-
-    @media (max-width: $sm) {
-      flex-direction: column;
-      text-align: center;
-    }
-  }
-
-  &__copyright {
-    font-size: 0.8rem;
-    color: $muted;
-  }
-
-  &__bottom-links {
-    display: flex;
-    gap: 1.5rem;
-
-    a {
-      font-size: 0.8rem;
-      color: $muted;
-      transition: color 0.25s ease;
-
-      &:hover {
-        color: $accent;
-      }
-    }
-  }
-}
-
-
-/* ══════════════════════════════════════════════════════
-   11. PAGE HEADER (Inner Pages)
-   ══════════════════════════════════════════════════════ */
-.fit-page-header {
-  position: relative;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  background: $surface;
-  overflow: hidden;
-
-  &__bg {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  &__overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 1;
-  }
-
-  &__content {
-    position: relative;
-    z-index: 2;
-    @include container;
-    padding-top: 72px;
-  }
-
-  &__breadcrumb {
-    font-size: 0.8rem;
-    color: $muted;
-    margin-bottom: 0.5rem;
-    @include heading-font;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-
-    a {
-      color: $muted;
-      transition: color 0.25s ease;
-
-      &:hover {
-        color: $accent;
-      }
-    }
-
-    span {
-      color: $accent;
-    }
-  }
-
-  &__title {
-    @include heading-font;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    margin: 0;
-    line-height: 1.1;
-  }
-}
-
-
-/* ══════════════════════════════════════════════════════
-   UTILITY & SHARED SECTION STYLES
-   ══════════════════════════════════════════════════════ */
-
-// Section heading utility (used in multiple sections)
-.fit-section-header {
-  text-align: center;
-  margin-bottom: 3rem;
-
-  &__title {
-    @include heading-font;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    margin: 0 0 0.5rem;
-
-    span {
-      color: $accent;
-    }
-  }
-
-  &__subtitle {
-    color: $muted;
-    font-size: 1rem;
-    max-width: 520px;
-    margin: 0 auto;
-  }
-}
-
-// CTA banner (reusable)
-.fit-cta-banner {
-  background: $surface2;
-  border-top: 1px solid $border;
-  border-bottom: 1px solid $border;
-  padding: 4rem 0;
-  text-align: center;
-
-  &__inner {
-    @include container;
-  }
-
-  &__title {
-    @include heading-font;
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: 700;
-    color: $text;
-    text-transform: uppercase;
-    margin: 0 0 0.75rem;
-
-    span {
-      color: $accent;
-    }
-  }
-
-  &__text {
-    font-size: 1rem;
-    color: $muted;
-    max-width: 480px;
-    margin: 0 auto 2rem;
-  }
-
+// ── MEMBERSHIP CTA (Home) ──
+.fit-membership-cta {
+  padding: 4rem 1.5rem; background: $surface; text-align: center;
+  &__inner { max-width: 600px; margin: 0 auto; }
+  &__heading { font-size: clamp(1.5rem, 3vw, 2.2rem); margin: 0 0 0.75rem; }
+  &__text { color: $muted; font-size: 0.92rem; margin: 0 0 1.5rem; line-height: 1.6; }
   &__btn {
-    @include lime-button;
+    background: $accent; color: $primary; padding: 0.85rem 2rem; border-radius: 6px;
+    font-weight: 700; font-size: 0.95rem; text-transform: uppercase; transition: background 0.25s; &:hover { background: $accent-hover; }
   }
 }
 
-// Testimonial card
-.fit-testimonial {
-  background: $surface;
-  border-radius: 8px;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-
-  &__text {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.7;
-    font-style: italic;
-    margin-bottom: 1.25rem;
-    position: relative;
-    padding-left: 1.5rem;
-    border-left: 2px solid $accent;
-  }
-
-  &__author {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  &__avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid $border;
-  }
-
-  &__name {
-    @include heading-font;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: $text;
-  }
-
-  &__role {
-    font-size: 0.8rem;
-    color: $muted;
-  }
+// ── PAGE HEADER ──
+.fit-page-header {
+  background: $surface; padding: 7rem 1.5rem 3rem; text-align: center; border-bottom: 1px solid $border;
+  &__inner { max-width: 700px; margin: 0 auto; }
+  &__title { font-size: clamp(2rem, 5vw, 3rem); text-transform: uppercase; margin: 0 0 0.5rem; }
+  &__subtitle { color: $muted; font-size: 0.95rem; margin: 0; }
 }
 
-// Toast / notifications
-.fit-toast {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 9999;
-  background: $surface2;
-  border: 1px solid $border;
-  border-radius: 6px;
-  padding: 1rem 1.5rem;
-  color: $text;
-  font-size: 0.9rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  animation: fit-slideUp 0.3s ease;
-
-  &--success {
-    border-color: $accent;
-  }
-
-  &--error {
-    border-color: $accent2;
-  }
-
-  &__icon {
-    font-size: 1.2rem;
-  }
-}
-
-@keyframes fit-slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to   { transform: translateY(0); opacity: 1; }
-}
-
-// Loading / skeleton
-.fit-skeleton {
-  background: $surface2;
-  border-radius: 4px;
-  animation: fit-pulse 1.5s infinite ease-in-out;
-
-  &--text {
-    height: 14px;
-    width: 80%;
-    margin-bottom: 0.5rem;
-  }
-
-  &--title {
-    height: 28px;
-    width: 50%;
-    margin-bottom: 1rem;
-  }
-
-  &--card {
-    height: 200px;
-    width: 100%;
-    border-radius: 8px;
-  }
-
-  &--circle {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-  }
-}
-
-@keyframes fit-pulse {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0.4; }
-}
-
-
-/* ══════════════════════════════════════════════════════
-   SCROLLBAR STYLES (webkit)
-   ══════════════════════════════════════════════════════ */
-.fitness-app {
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: $primary;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #333333;
-    border-radius: 4px;
-
-    &:hover {
-      background: #444444;
+// ── FILTERS ──
+.fit-classes-page { min-height: 100vh; }
+.fit-filters {
+  background: $surface; padding: 1.25rem 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  &__inner { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: center; }
+  &__group { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+  &__label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; color: $muted; font-weight: 600; white-space: nowrap; }
+  &__pills {
+    display: flex; gap: 0.4rem; flex-wrap: wrap;
+    button {
+      background: $surface2; color: rgba(255, 255, 255, 0.6); padding: 0.35rem 0.85rem;
+      border-radius: 20px; font-size: 0.75rem; font-weight: 500; transition: all 0.2s; &:hover { color: $text; }
     }
   }
+  &__pill--active { background: $accent !important; color: $primary !important; font-weight: 700 !important; }
 }
 
+// ── CLASSES GRID ──
+.fit-classes-grid {
+  padding: 2rem 1.5rem 4rem;
+  &__inner { max-width: 1100px; margin: 0 auto; }
+  &__cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; @media (max-width: $md) { grid-template-columns: 1fr; } }
+  &__empty { text-align: center; color: $muted; padding: 3rem 0; font-size: 0.95rem; }
+}
 
-/* ══════════════════════════════════════════════════════
-   GLOBAL RESPONSIVE ADJUSTMENTS
-   ══════════════════════════════════════════════════════ */
+// ── SCHEDULE ──
+.fit-schedule-page { min-height: 100vh; }
+.fit-schedule {
+  padding: 2rem 1.5rem 4rem;
+  &__wrapper { max-width: 1100px; margin: 0 auto; overflow-x: auto; }
+  &__table { width: 100%; min-width: 800px; border-collapse: collapse; }
+  &__time-header { padding: 0.6rem; font-size: 0.72rem; font-weight: 600; color: $muted; text-transform: uppercase; text-align: left; background: $surface; border-bottom: 1px solid rgba(255, 255, 255, 0.05); white-space: nowrap; }
+  &__day-header { padding: 0.75rem; font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; text-align: center; background: $surface; border-bottom: 1px solid rgba(255, 255, 255, 0.05); color: $accent; }
+  &__time-cell { padding: 0.5rem; font-size: 0.72rem; color: $muted; border-bottom: 1px solid rgba(255, 255, 255, 0.03); vertical-align: top; background: $primary; }
+  &__cell--occupied { background: rgba(170, 255, 0, 0.05); border-left: 2px solid $accent; }
+  &__class { padding: 0.3rem; }
+  &__class-name { font-size: 0.75rem; font-weight: 600; color: $text; }
+  &__class-instructor { font-size: 0.65rem; color: $muted; }
+}
 
-// Mobile (<= 480px)
-@media (max-width: $sm) {
-  .fit-stats__inner {
-    grid-template-columns: repeat(2, 1fr);
+// ── TRAINERS PAGE ──
+.fit-trainers-page { min-height: 100vh; }
+.fit-trainers-grid {
+  padding: 2.5rem 1.5rem 4rem;
+  &__inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; @media (max-width: $md) { grid-template-columns: repeat(2, 1fr); } @media (max-width: $sm) { grid-template-columns: 1fr; } }
+}
+.fit-trainer-card {
+  background: $surface; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; overflow: hidden;
+  transition: transform 0.25s; &:hover { transform: translateY(-4px); }
+  &__photo { width: 100%; height: 220px; object-fit: cover; }
+  &__body { padding: 1.25rem; }
+  &__name { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 700; margin: 0 0 0.15rem; }
+  &__specialty { font-size: 0.82rem; color: $accent; margin: 0 0 0.6rem; }
+  &__certs { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.6rem; }
+  &__cert-pill { font-size: 0.62rem; background: $surface2; color: $muted; padding: 0.2rem 0.5rem; border-radius: 4px; text-transform: uppercase; }
+  &__bio { font-size: 0.82rem; color: rgba(255, 255, 255, 0.6); line-height: 1.55; margin: 0 0 1rem; }
+  &__btn { display: block; width: 100%; text-align: center; background: $accent; color: $primary; padding: 0.6rem; border-radius: 6px; font-weight: 700; font-size: 0.82rem; transition: background 0.25s; &:hover { background: $accent-hover; } }
+}
+
+// ── MEMBERSHIP PAGE ──
+.fit-membership-page { min-height: 100vh; }
+.fit-plans {
+  padding: 2.5rem 1.5rem;
+  &__grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; @media (max-width: $md) { grid-template-columns: 1fr; } }
+}
+.fit-plan-card {
+  background: $surface; border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px;
+  padding: 2rem 1.5rem; position: relative; transition: transform 0.25s; &:hover { transform: translateY(-4px); }
+  &--featured { border-color: $accent; background: $surface2; box-shadow: 0 0 30px $accent-glow; }
+  &__badge { position: absolute; top: -1px; right: 1.5rem; background: $accent; color: $primary; padding: 0.3rem 0.8rem; border-radius: 0 0 6px 6px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; }
+  &__name { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700; margin: 0 0 0.5rem; }
+  &__price { font-size: 0.85rem; color: $accent; font-weight: 600; margin: 0 0 1.25rem; }
+  &__features {
+    list-style: none; padding: 0; margin: 0 0 1.5rem;
+    li { display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.35rem 0; font-size: 0.82rem; color: rgba(255, 255, 255, 0.7); border-bottom: 1px solid rgba(255, 255, 255, 0.03); }
   }
+  &__check { color: $accent; font-size: 0.82rem; flex-shrink: 0; }
+  &__btn--featured { background: $accent; color: $primary; &:hover { background: $accent-hover; } }
+}
 
-  .fit-page-header {
-    height: 240px;
-  }
-
-  .fit-book__stepper {
-    gap: 0;
+// ── COMPARISON TABLE ──
+.fit-comparison {
+  padding: 2rem 1.5rem 4rem;
+  &__inner { max-width: 900px; margin: 0 auto; }
+  &__heading { font-size: clamp(1.3rem, 3vw, 1.8rem); text-align: center; margin: 0 0 0.4rem; }
+  &__subtitle { text-align: center; color: $muted; font-size: 0.88rem; margin: 0 0 2rem; }
+  &__wrapper { overflow-x: auto; }
+  &__table {
+    width: 100%; border-collapse: collapse;
+    th, td { padding: 0.75rem 1rem; font-size: 0.82rem; text-align: center; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+    th { font-family: 'Rajdhani', sans-serif; font-weight: 700; color: $accent; text-transform: uppercase; font-size: 0.78rem; background: $surface; }
+    td:first-child { text-align: left; font-weight: 500; color: rgba(255, 255, 255, 0.8); }
+    td { color: rgba(255, 255, 255, 0.6); }
   }
 }
 
-// Tablet (<= 768px)
-@media (max-width: $md) {
-  .fit-hero__content {
-    padding-top: 80px;
+// ── FAQ ──
+.fit-faq {
+  padding: 2rem 1.5rem 4rem;
+  &__inner { max-width: 750px; margin: 0 auto; }
+  &__heading { font-size: clamp(1.3rem, 3vw, 1.8rem); text-align: center; margin: 0 0 2rem; }
+  &__list { display: flex; flex-direction: column; gap: 0.5rem; }
+  &__item { background: $surface; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 10px; overflow: hidden; }
+  &__item-header {
+    display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem;
+    cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: color 0.2s; &:hover { color: $accent; }
+    .fit-faq__item-icon--open { color: $accent; }
   }
+  &__item-body { padding: 0 1.25rem 1rem; font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); line-height: 1.6; }
+}
 
-  .fit-contact__inner {
-    grid-template-columns: 1fr;
+// ── BOOKING PAGE ──
+.fit-book-page { min-height: 100vh; }
+.fit-book {
+  padding: 2rem 1.5rem 4rem;
+  &__inner { max-width: 800px; margin: 0 auto; }
+  &__stepper { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 2rem; }
+  &__stepper-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    .fit-book__stepper-circle {
+      width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; font-weight: 700; background: $surface2; color: $muted; border: 2px solid rgba(255, 255, 255, 0.1); transition: all 0.3s;
+      &--active { background: $accent; color: $primary; border-color: $accent; }
+      &--done { background: $accent; color: $primary; border-color: $accent; }
+    }
+    .fit-book__stepper-line { width: 40px; height: 2px; background: rgba(255, 255, 255, 0.1); &--done { background: $accent; } @media (max-width: $sm) { width: 20px; } }
   }
+  &__stepper-label { font-size: 0.68rem; color: $muted; text-transform: uppercase; letter-spacing: 0.5px; display: none; @media (min-width: $md) { display: block; } }
+  &__step { min-height: 300px; }
+  &__step-heading { font-size: 1.3rem; margin: 0 0 1.5rem; text-align: center; }
+  &__class-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; @media (max-width: $sm) { grid-template-columns: 1fr; }
+    .fit-book__class-card {
+      background: $surface; border: 2px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 1rem; cursor: pointer; transition: border-color 0.25s;
+      &:hover { border-color: rgba(170, 255, 0, 0.3); }
+      &--selected { border-color: $accent; background: rgba(170, 255, 0, 0.05); }
+    }
+  }
+  &__class-card-name { font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700; margin: 0 0 0.2rem; }
+  &__class-card-category { font-size: 0.72rem; color: $accent; margin: 0 0 0.2rem; text-transform: uppercase; }
+  &__class-card-instructor { font-size: 0.8rem; color: $muted; margin: 0 0 0.15rem; }
+  &__class-card-meta { font-size: 0.75rem; color: rgba(255, 255, 255, 0.4); margin: 0; }
+  &__datetime { margin-top: 1rem; }
+  &__datetime-label { font-size: 0.78rem; font-weight: 600; color: $muted; margin-bottom: 0.5rem; display: block; text-transform: uppercase; letter-spacing: 0.5px; }
+  &__datetime-calendar {
+    margin-bottom: 1.5rem;
+    .react-datepicker-wrapper { width: 100%; }
+    input { width: 100%; background: $surface; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 0.75rem 1rem; color: $text; font-size: 0.9rem; font-family: inherit; outline: none; &:focus { border-color: $accent; } }
+  }
+  &__datetime-slots { margin-top: 1rem; }
+  &__datetime-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; @media (max-width: $sm) { grid-template-columns: repeat(3, 1fr); }
+    button { background: $surface; color: rgba(255, 255, 255, 0.7); padding: 0.6rem; border-radius: 6px; font-size: 0.82rem; font-weight: 500; border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.2s; &:hover { border-color: $accent; color: $text; } }
+    .fit-book__time-slot--selected { background: $accent; color: $primary; border-color: $accent; font-weight: 700; }
+  }
+  &__form { margin-top: 1rem; }
+  &__form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; @media (max-width: $sm) { grid-template-columns: 1fr; } }
+  &__form-field {
+    display: flex; flex-direction: column; gap: 0.3rem;
+    label { font-size: 0.72rem; font-weight: 600; color: $muted; text-transform: uppercase; letter-spacing: 0.5px; }
+    input, select, textarea { background: $surface; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 0.7rem 1rem; color: $text; font-size: 0.88rem; font-family: inherit; outline: none; width: 100%; &:focus { border-color: $accent; } &::placeholder { color: rgba(255, 255, 255, 0.25); } }
+    textarea { resize: vertical; min-height: 80px; }
+    select { appearance: none; }
+  }
+  &__nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
+  &__nav-btn { padding: 0.7rem 1.5rem; border-radius: 6px; font-weight: 700; font-size: 0.85rem; background: $surface2; color: rgba(255, 255, 255, 0.7); transition: all 0.2s; &:hover { color: $text; } &--submit { background: $accent; color: $primary; &:hover { background: $accent-hover; } } }
+  &__back { font-size: 0.82rem; color: $muted; background: none; padding: 0; transition: color 0.2s; &:hover { color: $accent; } }
+}
 
-  .fit-pricing__grid {
-    grid-template-columns: 1fr;
-    max-width: 420px;
-    margin: 0 auto;
+// ── CONTACT PAGE ──
+.fit-contact-page { min-height: 100vh; }
+.fit-contact {
+  padding: 2.5rem 1.5rem 2rem;
+  &__grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 2.5rem; @media (max-width: $md) { grid-template-columns: 1fr; } }
+  &__info { background: $surface; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; }
+  &__info-title { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; margin: 0 0 1.5rem; }
+  &__info-grid { display: flex; flex-direction: column; gap: 1.25rem; }
+  &__info-row { display: flex; align-items: flex-start; gap: 0.75rem; }
+  &__info-icon { font-size: 1.1rem; flex-shrink: 0; }
+  &__info-text { font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); line-height: 1.5; strong { color: $text; display: block; margin-bottom: 0.1rem; } }
+  &__form-wrapper { }
+  &__form-title { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; margin: 0 0 1.25rem; }
+  &__form { display: flex; flex-direction: column; gap: 0.75rem; }
+  &__form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; @media (max-width: $sm) { grid-template-columns: 1fr; } }
+  &__form-field {
+    display: flex; flex-direction: column; gap: 0.3rem;
+    label { font-size: 0.72rem; font-weight: 600; color: $muted; text-transform: uppercase; letter-spacing: 0.5px; }
+    input, select, textarea { background: $surface; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 0.7rem 1rem; color: $text; font-size: 0.88rem; font-family: inherit; outline: none; width: 100%; &:focus { border-color: $accent; } &::placeholder { color: rgba(255, 255, 255, 0.25); } }
+    textarea { resize: vertical; min-height: 90px; }
+    select { appearance: none; }
   }
+  &__form-btn { background: $accent; color: $primary; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 700; font-size: 0.88rem; align-self: flex-start; transition: background 0.25s; &:hover { background: $accent-hover; } }
+}
+.fit-social {
+  padding: 2rem 1.5rem; text-align: center;
+  &__inner { max-width: 600px; margin: 0 auto; }
+  &__heading { font-size: 1.1rem; margin: 0 0 1rem; }
+  &__links { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+  &__link { padding: 0.5rem 1.2rem; border-radius: 8px; background: $surface; border: 1px solid rgba(255, 255, 255, 0.06); font-size: 0.82rem; font-weight: 500; color: $muted; transition: all 0.25s; &:hover { border-color: $accent; color: $accent; } }
+}
+.fit-map {
+  padding: 0 1.5rem 3rem; max-width: 1000px; margin: 0 auto;
+  iframe { width: 100%; height: 300px; border: none; border-radius: 10px; filter: brightness(0.8) contrast(1.1); }
+}
+
+// ── FOOTER ──
+.fit-footer {
+  background: #080808; padding: 3rem 1.5rem 0; border-top: 1px solid $border;
+  &__inner {
+    max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 2rem; padding-bottom: 2.5rem;
+    @media (max-width: $md) { grid-template-columns: 1fr 1fr; }
+    @media (max-width: $sm) { grid-template-columns: 1fr; }
+  }
+  &__brand {
+    h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 0.75rem; span { color: $accent; } }
+    p { font-size: 0.82rem; color: $muted; line-height: 1.6; margin: 0; }
+  }
+  &__col {
+    h4 { font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 1rem; color: $accent; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    li { margin-bottom: 0.5rem; }
+    a { font-size: 0.82rem; color: $muted; transition: color 0.2s; &:hover { color: $accent; } }
+    p { font-size: 0.82rem; color: $muted; line-height: 1.6; margin: 0 0 0.3rem; }
+  }
+  &__bottom { text-align: center; padding: 1.25rem 0; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.75rem; color: rgba(255, 255, 255, 0.35); }
 }
