@@ -61,19 +61,19 @@ export default function Marketplace() {
   }, [category, sort, search]);
 
   return (
-    <div className="ag-marketplace">
-      <AnimatedSection className="ag-marketplace__header">
-        <span className="ag-section-label">TerraYield Marketplace</span>
-        <h1 className="ag-section-heading">Product Marketplace</h1>
-        <p className="ag-section-subtitle">
+    <div className="terra-marketplace">
+      <AnimatedSection className="terra-marketplace__header">
+        <span className="terra-section-label">TerraYield Marketplace</span>
+        <h1 className="terra-section-heading">Product Marketplace</h1>
+        <p className="terra-section-subtitle">
           Browse fresh produce from verified farms across Nigeria. Direct from farm to you.
         </p>
       </AnimatedSection>
 
-      <div className="ag-marketplace__body">
+      <div className="terra-marketplace__body">
         {/* Sidebar */}
-        <aside className="ag-marketplace__sidebar">
-          <div className="ag-marketplace__sidebar-section">
+        <aside className="terra-marketplace__sidebar">
+          <div className="terra-marketplace__sidebar-section">
             <h4>Categories</h4>
             {categories.map((cat) => (
               <button
@@ -87,9 +87,9 @@ export default function Marketplace() {
               </button>
             ))}
           </div>
-          <div className="ag-marketplace__sidebar-section">
+          <div className="terra-marketplace__sidebar-section">
             <h4>Price Guide</h4>
-            <div className="ag-marketplace__price-indicator">
+            <div className="terra-marketplace__price-indicator">
               <strong>Grains:</strong> ₦55K – ₦85K/tonne<br />
               <strong>Tubers:</strong> ₦35K – ₦120K/tonne<br />
               <strong>Fruits:</strong> ₦2.8K – ₦4.5K/crate<br />
@@ -101,9 +101,9 @@ export default function Marketplace() {
         {/* Main Content */}
         <div>
           {/* Filter Bar */}
-          <div className="ag-marketplace__filters">
+          <div className="terra-marketplace__filters">
             <select
-              className="ag-marketplace__filter-select"
+              className="terra-marketplace__filter-select"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             >
@@ -115,7 +115,7 @@ export default function Marketplace() {
             </select>
 
             <select
-              className="ag-marketplace__filter-select"
+              className="terra-marketplace__filter-select"
               value={sort}
               onChange={(e) => setSort(e.target.value)}
             >
@@ -126,7 +126,7 @@ export default function Marketplace() {
             </select>
 
             <input
-              className="ag-marketplace__filter-input"
+              className="terra-marketplace__filter-input"
               type="text"
               placeholder="Search produce..."
               value={search}
@@ -135,37 +135,37 @@ export default function Marketplace() {
           </div>
 
           {/* Product Grid */}
-          <div className="ag-marketplace__grid">
+          <div className="terra-marketplace__grid">
             {filtered.length === 0 && (
-              <div className="ag-marketplace__no-results">
+              <div className="terra-marketplace__no-results">
                 No products found matching your criteria. Try adjusting filters.
               </div>
             )}
             {filtered.map((product) => (
-              <div className="ag-product-card" key={product.id}>
-                <div className="ag-product-card__image">
+              <div className="terra-product-card" key={product.id}>
+                <div className="terra-product-card__image">
                   <img src={product.image} alt={product.name} loading="lazy" />
-                  <span className="ag-product-card__category-badge">{product.category}</span>
+                  <span className="terra-product-card__category-badge">{product.category}</span>
                 </div>
-                <div className="ag-product-card__body">
-                  <h3 className="ag-product-card__name">{product.name}</h3>
-                  <p className="ag-product-card__location">{product.location}</p>
-                  <p className="ag-product-card__price">
+                <div className="terra-product-card__body">
+                  <h3 className="terra-product-card__name">{product.name}</h3>
+                  <p className="terra-product-card__location">{product.location}</p>
+                  <p className="terra-product-card__price">
                     {product.price}<span>{product.unit}</span>
                   </p>
-                  <p className="ag-product-card__farmer">{product.farmer}</p>
-                  <div className="ag-product-card__rating">
-                    <span className="ag-product-card__rating-stars">{renderStars(product.rating)}</span>
-                    <span className="ag-product-card__rating-count">({product.reviews})</span>
+                  <p className="terra-product-card__farmer">{product.farmer}</p>
+                  <div className="terra-product-card__rating">
+                    <span className="terra-product-card__rating-stars">{renderStars(product.rating)}</span>
+                    <span className="terra-product-card__rating-count">({product.reviews})</span>
                   </div>
-                  <div className="ag-product-card__tags">
+                  <div className="terra-product-card__tags">
                     {product.tags.map((tag) => (
                       <span className={`ag-product-card__tag ${getTagClass(tag)}`} key={tag}>
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <motion.button className="ag-product-card__order-btn" {...buttonHover}>
+                  <motion.button className="terra-product-card__order-btn" {...buttonHover}>
                     Order Now
                   </motion.button>
                 </div>

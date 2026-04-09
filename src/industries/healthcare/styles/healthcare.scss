@@ -385,13 +385,10 @@ $lg: 1024px;
   &__title {
     @include heading-font;
     color: $white;
-    font-size: 3rem;
+    font-size: clamp(2rem, 6vw, 3rem);
     font-weight: 400;
     margin: 0 0 1rem;
-
-    @media (max-width: $md) {
-      font-size: 2.2rem;
-    }
+    word-break: break-word;
   }
 
   &__subtitle {
@@ -457,18 +454,11 @@ $lg: 1024px;
   &__title {
     @include heading-font;
     color: $white;
-    font-size: 3.8rem;
+    font-size: clamp(2rem, 7vw, 3.8rem);
     font-weight: 400;
     line-height: 1.15;
     margin: 0 0 1.5rem;
-
-    @media (max-width: $md) {
-      font-size: 2.6rem;
-    }
-
-    @media (max-width: $sm) {
-      font-size: 2rem;
-    }
+    word-break: break-word;
   }
 
   &__subtitle {

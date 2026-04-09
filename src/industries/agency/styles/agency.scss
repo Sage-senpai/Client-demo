@@ -279,12 +279,14 @@ $xl: 1280px;
   }
 
   &__title {
-    font-size: clamp(2.8rem, 8vw, 6rem);
+    font-size: clamp(2rem, 7vw, 5.5rem);
     font-weight: 800;
     color: $surface;
     line-height: 1.05;
     letter-spacing: -2px;
     margin-bottom: 1.5rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
 
     span {
       background: linear-gradient(135deg, $accent, $accent2);
@@ -295,7 +297,7 @@ $xl: 1280px;
   }
 
   &__subtitle {
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-size: clamp(0.9rem, 2vw, 1.25rem);
     color: $text-muted;
     max-width: 560px;
     line-height: 1.7;

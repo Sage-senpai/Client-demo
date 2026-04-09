@@ -34,12 +34,12 @@ const sdgs = [
 
 export default function About() {
   return (
-    <div className="ag-about">
+    <div className="terra-about">
       {/* ── Hero ── */}
-      <section className="ag-about-hero">
+      <section className="terra-about-hero">
         <AnimatedSection>
-          <h1 className="ag-about-hero__title">Feeding Africa, Empowering Farmers</h1>
-          <p className="ag-about-hero__subtitle">
+          <h1 className="terra-about-hero__title">Feeding Africa, Empowering Farmers</h1>
+          <p className="terra-about-hero__subtitle">
             TerraYield exists to bridge the gap between smallholder farmers and premium markets
             using technology. We believe every farmer deserves fair prices, modern tools, and
             access to the global food system.
@@ -48,11 +48,11 @@ export default function About() {
       </section>
 
       {/* ── Stats ── */}
-      <section className="ag-about-stats">
-        <AnimatedSection className="ag-about-stats__inner">
-          <span className="ag-section-label">Our Impact</span>
-          <h2 className="ag-section-heading">Numbers That Tell Our Story</h2>
-          <div className="ag-about-stats__grid" style={{ marginTop: '36px' }}>
+      <section className="terra-about-stats">
+        <AnimatedSection className="terra-about-stats__inner">
+          <span className="terra-section-label">Our Impact</span>
+          <h2 className="terra-section-heading">Numbers That Tell Our Story</h2>
+          <div className="terra-about-stats__grid" style={{ marginTop: '36px' }}>
             <CounterStat end={12400} suffix="+" label="Farmers Empowered" />
             <CounterStat end={85000} suffix="+" label="Tonnes Traded" />
             <CounterStat end={24} suffix="" label="States Covered" />
@@ -62,17 +62,17 @@ export default function About() {
       </section>
 
       {/* ── Timeline ── */}
-      <section className="ag-timeline">
-        <AnimatedSection className="ag-timeline__inner">
-          <span className="ag-section-label">Our Journey</span>
-          <h2 className="ag-section-heading">Milestones</h2>
-          <div className="ag-timeline__items">
+      <section className="terra-timeline">
+        <AnimatedSection className="terra-timeline__inner">
+          <span className="terra-section-label">Our Journey</span>
+          <h2 className="terra-section-heading">Milestones</h2>
+          <div className="terra-timeline__items">
             {milestones.map((m, i) => (
-              <div className="ag-timeline-item" key={i}>
-                <div className="ag-timeline-item__dot" />
-                <span className="ag-timeline-item__year">{m.year}</span>
-                <h3 className="ag-timeline-item__title">{m.title}</h3>
-                <p className="ag-timeline-item__desc">{m.desc}</p>
+              <div className="terra-timeline-item" key={i}>
+                <div className="terra-timeline-item__dot" />
+                <span className="terra-timeline-item__year">{m.year}</span>
+                <h3 className="terra-timeline-item__title">{m.title}</h3>
+                <p className="terra-timeline-item__desc">{m.desc}</p>
               </div>
             ))}
           </div>
@@ -80,23 +80,23 @@ export default function About() {
       </section>
 
       {/* ── Team ── */}
-      <section className="ag-team">
-        <AnimatedSection className="ag-team__inner">
-          <span className="ag-section-label">Leadership</span>
-          <h2 className="ag-section-heading">Meet Our Team</h2>
-          <div className="ag-team__grid">
+      <section className="terra-team">
+        <AnimatedSection className="terra-team__inner">
+          <span className="terra-section-label">Leadership</span>
+          <h2 className="terra-section-heading">Meet Our Team</h2>
+          <div className="terra-team__grid">
             {teamMembers.map((member, i) => (
-              <div className="ag-team-card" key={i}>
+              <div className="terra-team-card" key={i}>
                 <img
-                  className="ag-team-card__photo"
+                  className="terra-team-card__photo"
                   src={member.image}
                   alt={member.name}
                   loading="lazy"
                 />
-                <div className="ag-team-card__body">
-                  <h3 className="ag-team-card__name">{member.name}</h3>
-                  <p className="ag-team-card__role">{member.role}</p>
-                  <p className="ag-team-card__bio">{member.bio}</p>
+                <div className="terra-team-card__body">
+                  <h3 className="terra-team-card__name">{member.name}</h3>
+                  <p className="terra-team-card__role">{member.role}</p>
+                  <p className="terra-team-card__bio">{member.bio}</p>
                 </div>
               </div>
             ))}
@@ -105,19 +105,19 @@ export default function About() {
       </section>
 
       {/* ── SDGs ── */}
-      <section className="ag-sdg">
-        <AnimatedSection className="ag-sdg__inner">
-          <span className="ag-section-label">Global Goals</span>
-          <h2 className="ag-section-heading">SDG Alignment</h2>
-          <p className="ag-section-subtitle">
+      <section className="terra-sdg">
+        <AnimatedSection className="terra-sdg__inner">
+          <span className="terra-section-label">Global Goals</span>
+          <h2 className="terra-section-heading">SDG Alignment</h2>
+          <p className="terra-section-subtitle">
             Our work directly contributes to four UN Sustainable Development Goals.
           </p>
-          <div className="ag-sdg__grid">
+          <div className="terra-sdg__grid">
             {sdgs.map((sdg, i) => (
-              <div className="ag-sdg__card" key={i}>
-                <div className="ag-sdg__card-icon">{sdg.icon}</div>
-                <div className="ag-sdg__card-number">{sdg.number}</div>
-                <div className="ag-sdg__card-title">{sdg.title}</div>
+              <div className="terra-sdg__card" key={i}>
+                <div className="terra-sdg__card-icon">{sdg.icon}</div>
+                <div className="terra-sdg__card-number">{sdg.number}</div>
+                <div className="terra-sdg__card-title">{sdg.title}</div>
               </div>
             ))}
           </div>

@@ -85,11 +85,11 @@ const services = [
 
 export default function Services() {
   return (
-    <div className="ag-services">
-      <AnimatedSection className="ag-services__hero">
-        <span className="ag-section-label">What We Offer</span>
-        <h1 className="ag-section-heading">Farm Services</h1>
-        <p className="ag-section-subtitle">
+    <div className="terra-services">
+      <AnimatedSection className="terra-services__hero">
+        <span className="terra-section-label">What We Offer</span>
+        <h1 className="terra-section-heading">Farm Services</h1>
+        <p className="terra-section-subtitle">
           End-to-end agricultural solutions from soil preparation to market delivery.
         </p>
       </AnimatedSection>
@@ -99,20 +99,20 @@ export default function Services() {
           className={`ag-service-block ${i % 2 !== 0 ? 'ag-service-block--reverse' : ''}`}
           key={i}
         >
-          <AnimatedSection className="ag-service-block__inner">
-            <div className="ag-service-block__image">
+          <AnimatedSection className="terra-service-block__inner">
+            <div className="terra-service-block__image">
               <img src={service.image} alt={service.title} loading="lazy" />
             </div>
-            <div className="ag-service-block__content">
-              <div className="ag-service-block__icon">{service.icon}</div>
-              <h2 className="ag-service-block__title">{service.title}</h2>
-              <p className="ag-service-block__desc">{service.desc}</p>
-              <ul className="ag-service-block__features">
+            <div className="terra-service-block__content">
+              <div className="terra-service-block__icon">{service.icon}</div>
+              <h2 className="terra-service-block__title">{service.title}</h2>
+              <p className="terra-service-block__desc">{service.desc}</p>
+              <ul className="terra-service-block__features">
                 {service.features.map((f, j) => (
                   <li key={j}>{f}</li>
                 ))}
               </ul>
-              <motion.button className="ag-btn-primary" {...buttonHover}>
+              <motion.button className="terra-btn-primary" {...buttonHover}>
                 Learn More
               </motion.button>
             </div>

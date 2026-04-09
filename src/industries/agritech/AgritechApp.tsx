@@ -43,12 +43,12 @@ export default function AgritechApp() {
       <ScrollToTop />
 
       <nav className={`ag-nav ${scrolled ? 'ag-nav--scrolled' : ''}`}>
-        <div className="ag-nav__inner">
-          <Link to="/agritech" className="ag-nav__logo">
+        <div className="terra-nav__inner">
+          <Link to="/agritech" className="terra-nav__logo">
             Terra<span>Yield</span>
           </Link>
 
-          <ul className="ag-nav__links">
+          <ul className="terra-nav__links">
             {navLinks.map((link) => (
               <li key={link.path}>
                 <Link
@@ -63,7 +63,7 @@ export default function AgritechApp() {
             ))}
           </ul>
 
-          <Link to="/agritech/marketplace" className="ag-nav__cta">
+          <Link to="/agritech/marketplace" className="terra-nav__cta">
             Browse Produce
           </Link>
 
@@ -81,18 +81,18 @@ export default function AgritechApp() {
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
-              className="ag-nav__overlay"
+              className="terra-nav__overlay"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.25 }}
             >
               {navLinks.map((link) => (
-                <Link key={link.path} to={link.path} className="ag-nav__overlay-link">
+                <Link key={link.path} to={link.path} className="terra-nav__overlay-link">
                   {link.label}
                 </Link>
               ))}
-              <Link to="/agritech/marketplace" className="ag-nav__overlay-cta">
+              <Link to="/agritech/marketplace" className="terra-nav__overlay-cta">
                 Browse Produce
               </Link>
             </motion.div>
@@ -120,9 +120,9 @@ export default function AgritechApp() {
         </motion.div>
       </AnimatePresence>
 
-      <footer className="ag-footer">
-        <div className="ag-footer__inner">
-          <div className="ag-footer__brand">
+      <footer className="terra-footer">
+        <div className="terra-footer__inner">
+          <div className="terra-footer__brand">
             <h3>Terra<span>Yield</span></h3>
             <p>
               Africa&apos;s smartest agritech platform — connecting farmers,
@@ -130,7 +130,7 @@ export default function AgritechApp() {
             </p>
           </div>
 
-          <div className="ag-footer__col">
+          <div className="terra-footer__col">
             <h4>Platform</h4>
             <ul>
               <li><Link to="/agritech/marketplace">Marketplace</Link></li>
@@ -140,7 +140,7 @@ export default function AgritechApp() {
             </ul>
           </div>
 
-          <div className="ag-footer__col">
+          <div className="terra-footer__col">
             <h4>Company</h4>
             <ul>
               <li><Link to="/agritech/about">About Us</Link></li>
@@ -150,7 +150,7 @@ export default function AgritechApp() {
             </ul>
           </div>
 
-          <div className="ag-footer__col">
+          <div className="terra-footer__col">
             <h4>Contact</h4>
             <p>14 Adeola Odeku Street, Victoria Island, Lagos</p>
             <p>+234 (0) 812 345 6789</p>
@@ -158,7 +158,7 @@ export default function AgritechApp() {
           </div>
         </div>
 
-        <div className="ag-footer__bottom">
+        <div className="terra-footer__bottom">
           &copy; 2025 TerraYield &middot; Built by Anyadike Divine
         </div>
       </footer>

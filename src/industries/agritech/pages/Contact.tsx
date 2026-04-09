@@ -35,22 +35,22 @@ export default function Contact() {
   };
 
   return (
-    <div className="ag-contact">
-      <AnimatedSection className="ag-contact__header">
-        <span className="ag-section-label">Get In Touch</span>
-        <h1 className="ag-section-heading">Contact &amp; Partnerships</h1>
-        <p className="ag-section-subtitle">
+    <div className="terra-contact">
+      <AnimatedSection className="terra-contact__header">
+        <span className="terra-section-label">Get In Touch</span>
+        <h1 className="terra-section-heading">Contact &amp; Partnerships</h1>
+        <p className="terra-section-subtitle">
           Whether you&apos;re a farmer, buyer, investor, or development partner — we&apos;d love to hear from you.
         </p>
       </AnimatedSection>
 
-      <div className="ag-contact__body">
+      <div className="terra-contact__body">
         {/* Form */}
-        <form className="ag-contact__form" onSubmit={handleSubmit}>
-          <div className="ag-contact__field">
-            <label htmlFor="ag-name">Full Name *</label>
+        <form className="terra-contact__form" onSubmit={handleSubmit}>
+          <div className="terra-contact__field">
+            <label htmlFor="terra-name">Full Name *</label>
             <input
-              id="ag-name"
+              id="terra-name"
               name="name"
               type="text"
               placeholder="Your full name"
@@ -60,10 +60,10 @@ export default function Contact() {
             />
           </div>
 
-          <div className="ag-contact__field">
-            <label htmlFor="ag-email">Email Address *</label>
+          <div className="terra-contact__field">
+            <label htmlFor="terra-email">Email Address *</label>
             <input
-              id="ag-email"
+              id="terra-email"
               name="email"
               type="email"
               placeholder="you@example.com"
@@ -73,10 +73,10 @@ export default function Contact() {
             />
           </div>
 
-          <div className="ag-contact__field">
-            <label htmlFor="ag-type">I am a...</label>
+          <div className="terra-contact__field">
+            <label htmlFor="terra-type">I am a...</label>
             <select
-              id="ag-type"
+              id="terra-type"
               name="userType"
               value={form.userType}
               onChange={handleChange}
@@ -90,10 +90,10 @@ export default function Contact() {
             </select>
           </div>
 
-          <div className="ag-contact__field">
-            <label htmlFor="ag-phone">Phone Number</label>
+          <div className="terra-contact__field">
+            <label htmlFor="terra-phone">Phone Number</label>
             <input
-              id="ag-phone"
+              id="terra-phone"
               name="phone"
               type="tel"
               placeholder="+234 8XX XXX XXXX"
@@ -102,10 +102,10 @@ export default function Contact() {
             />
           </div>
 
-          <div className="ag-contact__field">
-            <label htmlFor="ag-message">Message *</label>
+          <div className="terra-contact__field">
+            <label htmlFor="terra-message">Message *</label>
             <textarea
-              id="ag-message"
+              id="terra-message"
               name="message"
               placeholder="Tell us about your inquiry or partnership interest..."
               value={form.message}
@@ -116,7 +116,7 @@ export default function Contact() {
 
           <motion.button
             type="submit"
-            className="ag-contact__submit"
+            className="terra-contact__submit"
             disabled={sending}
             {...buttonHover}
           >
@@ -125,20 +125,20 @@ export default function Contact() {
         </form>
 
         {/* Info */}
-        <div className="ag-contact__info">
-          <div className="ag-contact__info-card">
+        <div className="terra-contact__info">
+          <div className="terra-contact__info-card">
             <h4>Office Address</h4>
             <p>14 Adeola Odeku Street</p>
             <p>Victoria Island, Lagos, Nigeria</p>
           </div>
 
-          <div className="ag-contact__info-card">
+          <div className="terra-contact__info-card">
             <h4>Phone</h4>
             <p>+234 (0) 812 345 6789</p>
             <p>+234 (0) 901 234 5678</p>
           </div>
 
-          <div className="ag-contact__info-card">
+          <div className="terra-contact__info-card">
             <h4>Email</h4>
             <p>
               General: <a href="mailto:hello@terrayield.ng">hello@terrayield.ng</a>
@@ -148,7 +148,7 @@ export default function Contact() {
             </p>
           </div>
 
-          <div className="ag-contact__info-card">
+          <div className="terra-contact__info-card">
             <h4>Partnership Inquiries</h4>
             <p>
               We partner with development agencies, government bodies, financial institutions,
@@ -159,7 +159,7 @@ export default function Contact() {
       </div>
 
       {/* Map */}
-      <div className="ag-contact__map">
+      <div className="terra-contact__map">
         <iframe
           title="TerraYield Office Location"
           src="https://www.openstreetmap.org/export/embed.html?bbox=3.41%2C6.42%2C3.44%2C6.44&layer=mapnik&marker=6.4305%2C3.4235"

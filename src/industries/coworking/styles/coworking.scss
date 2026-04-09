@@ -458,15 +458,12 @@ $radius-pill: 999px;
 
   &__title {
     font-family: $font-heading;
-    font-size: 4rem;
+    font-size: clamp(2rem, 6vw, 4rem);
     font-weight: 800;
     color: $primary;
     line-height: 1.1;
     margin-bottom: 24px;
-
-    @media (max-width: 768px) {
-      font-size: 2.6rem;
-    }
+    word-break: break-word;
   }
 
   &__subtitle {
@@ -961,6 +958,10 @@ $radius-pill: 999px;
 
     @media (max-width: 600px) {
       grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 430px) {
+      grid-template-columns: 1fr;
     }
   }
 

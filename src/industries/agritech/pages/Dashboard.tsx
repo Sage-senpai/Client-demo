@@ -39,14 +39,14 @@ export default function Dashboard() {
   const [period, setPeriod] = useState('This Month');
 
   return (
-    <div className="ag-dashboard">
-      <AnimatedSection className="ag-dashboard__header">
-        <span className="ag-section-label">Farm Management</span>
-        <h1 className="ag-section-heading">Farm Dashboard</h1>
-        <p className="ag-section-subtitle">
+    <div className="terra-dashboard">
+      <AnimatedSection className="terra-dashboard__header">
+        <span className="terra-section-label">Farm Management</span>
+        <h1 className="terra-section-heading">Farm Dashboard</h1>
+        <p className="terra-section-subtitle">
           Monitor your farm performance, track orders, and view weather forecasts.
         </p>
-        <div className="ag-dashboard__period-toggle">
+        <div className="terra-dashboard__period-toggle">
           {periods.map((p) => (
             <button
               key={p}
@@ -61,14 +61,14 @@ export default function Dashboard() {
         </div>
       </AnimatedSection>
 
-      <div className="ag-dashboard__body">
+      <div className="terra-dashboard__body">
         {/* ── Metrics ── */}
-        <AnimatedSection className="ag-dashboard__metrics">
+        <AnimatedSection className="terra-dashboard__metrics">
           {metrics.map((m, i) => (
-            <div className="ag-metric-card" key={i}>
-              <span className="ag-metric-card__icon">{m.icon}</span>
-              <span className="ag-metric-card__value">{m.value}</span>
-              <span className="ag-metric-card__label">{m.label}</span>
+            <div className="terra-metric-card" key={i}>
+              <span className="terra-metric-card__icon">{m.icon}</span>
+              <span className="terra-metric-card__value">{m.value}</span>
+              <span className="terra-metric-card__label">{m.label}</span>
               <span
                 className={`ag-metric-card__trend ${
                   m.up ? 'ag-metric-card__trend--up' : 'ag-metric-card__trend--down'
@@ -81,36 +81,36 @@ export default function Dashboard() {
         </AnimatedSection>
 
         {/* ── Charts ── */}
-        <AnimatedSection className="ag-dashboard__charts">
+        <AnimatedSection className="terra-dashboard__charts">
           {/* Bar Chart */}
-          <div className="ag-chart-card">
-            <h3 className="ag-chart-card__title">Monthly Revenue (\u20A6&apos;000)</h3>
-            <div className="ag-bar-chart">
+          <div className="terra-chart-card">
+            <h3 className="terra-chart-card__title">Monthly Revenue (\u20A6&apos;000)</h3>
+            <div className="terra-bar-chart">
               {revenueData.map((d) => (
-                <div className="ag-bar-chart__bar-wrapper" key={d.month}>
+                <div className="terra-bar-chart__bar-wrapper" key={d.month}>
                   <div
-                    className="ag-bar-chart__bar"
+                    className="terra-bar-chart__bar"
                     data-value={`\u20A6${d.value}K`}
                     style={{ height: `${d.pct}%` }}
                   />
-                  <span className="ag-bar-chart__label">{d.month}</span>
+                  <span className="terra-bar-chart__label">{d.month}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Horizontal Bar Chart */}
-          <div className="ag-chart-card">
-            <h3 className="ag-chart-card__title">Crop Distribution</h3>
-            <div className="ag-h-bars">
+          <div className="terra-chart-card">
+            <h3 className="terra-chart-card__title">Crop Distribution</h3>
+            <div className="terra-h-bars">
               {cropDistribution.map((crop) => (
-                <div className="ag-h-bar" key={crop.name}>
-                  <div className="ag-h-bar__header">
-                    <span className="ag-h-bar__name">{crop.name}</span>
-                    <span className="ag-h-bar__pct">{crop.pct}%</span>
+                <div className="terra-h-bar" key={crop.name}>
+                  <div className="terra-h-bar__header">
+                    <span className="terra-h-bar__name">{crop.name}</span>
+                    <span className="terra-h-bar__pct">{crop.pct}%</span>
                   </div>
-                  <div className="ag-h-bar__track">
-                    <div className="ag-h-bar__fill" style={{ width: `${crop.pct}%` }} />
+                  <div className="terra-h-bar__track">
+                    <div className="terra-h-bar__fill" style={{ width: `${crop.pct}%` }} />
                   </div>
                 </div>
               ))}
@@ -119,12 +119,12 @@ export default function Dashboard() {
         </AnimatedSection>
 
         {/* ── Bottom Row ── */}
-        <AnimatedSection className="ag-dashboard__bottom">
+        <AnimatedSection className="terra-dashboard__bottom">
           {/* Orders Table */}
-          <div className="ag-orders-card">
-            <h3 className="ag-orders-card__title">Recent Orders</h3>
-            <div className="ag-table-scroll">
-              <table className="ag-orders-card__table">
+          <div className="terra-orders-card">
+            <h3 className="terra-orders-card__title">Recent Orders</h3>
+            <div className="terra-table-scroll">
+              <table className="terra-orders-card__table">
                 <thead>
                   <tr>
                     <th>Order ID</th>
@@ -145,7 +145,7 @@ export default function Dashboard() {
                       <td>{order.amount}</td>
                       <td>
                         <span
-                          className={`ag-orders-card__status ag-orders-card__status--${order.status.toLowerCase()}`}
+                          className={`ag-orders-card__status terra-orders-card__status--${order.status.toLowerCase()}`}
                         >
                           {order.status}
                         </span>
@@ -158,16 +158,16 @@ export default function Dashboard() {
           </div>
 
           {/* Weather */}
-          <div className="ag-weather-card">
-            <h3 className="ag-weather-card__title">Weather Forecast</h3>
-            <div className="ag-weather-card__grid">
+          <div className="terra-weather-card">
+            <h3 className="terra-weather-card__title">Weather Forecast</h3>
+            <div className="terra-weather-card__grid">
               {weatherData.map((day) => (
-                <div className="ag-weather-day" key={day.day}>
-                  <span className="ag-weather-day__name">{day.day}</span>
-                  <span className="ag-weather-day__icon">{getWeatherIcon(day.condition)}</span>
-                  <span className="ag-weather-day__temp">{day.temp}&deg;C</span>
-                  <span className="ag-weather-day__condition">{day.condition}</span>
-                  <span className="ag-weather-day__wind">{day.wind}</span>
+                <div className="terra-weather-day" key={day.day}>
+                  <span className="terra-weather-day__name">{day.day}</span>
+                  <span className="terra-weather-day__icon">{getWeatherIcon(day.condition)}</span>
+                  <span className="terra-weather-day__temp">{day.temp}&deg;C</span>
+                  <span className="terra-weather-day__condition">{day.condition}</span>
+                  <span className="terra-weather-day__wind">{day.wind}</span>
                 </div>
               ))}
             </div>

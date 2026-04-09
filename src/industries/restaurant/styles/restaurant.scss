@@ -252,10 +252,11 @@ $xl: 1280px;
 
   &__title {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
+    font-size: clamp(2rem, 6vw, 3rem);
     color: #fff;
     margin-bottom: 1.2rem;
     line-height: 1.15;
+    word-break: break-word;
 
     @media (min-width: $md) {
       font-size: 4.5rem;
