@@ -162,6 +162,24 @@ const industries: IndustryItem[] = [
     image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=600&q=80',
     route: '/agritech',
   },
+  {
+    id: 'insurance',
+    name: 'Insurance',
+    brand: 'Aegis Cover',
+    description: 'Modern insurance platform with instant quotes, claims tracking, and policy management.',
+    accent: '#1D4ED8',
+    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=80',
+    route: '/insurance',
+  },
+  {
+    id: 'consulting',
+    name: 'Consulting Firm',
+    brand: 'Vertex Advisory',
+    description: 'Global consulting firm with service offerings, case results, team profiles, and booking.',
+    accent: '#9333EA',
+    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80',
+    route: '/consulting',
+  },
 ];
 
 export default industries;

@@ -19,6 +19,8 @@ const HealthcareApp = lazy(() => import('./industries/healthcare/HealthcareApp')
 const FintechApp = lazy(() => import('./industries/fintech/FintechApp'));
 const AgencyApp = lazy(() => import('./industries/agency/AgencyApp'));
 const AgritechApp = lazy(() => import('./industries/agritech/AgritechApp'));
+const InsuranceApp = lazy(() => import('./industries/insurance/InsuranceApp'));
+const ConsultingApp = lazy(() => import('./industries/consulting/ConsultingApp'));
 
 function Loader() {
   return (
@@ -50,6 +52,8 @@ export default function App() {
         <Route path="/fintech/*" element={<FintechApp />} />
         <Route path="/agency/*" element={<AgencyApp />} />
         <Route path="/agritech/*" element={<AgritechApp />} />
+        <Route path="/insurance/*" element={<InsuranceApp />} />
+        <Route path="/consulting/*" element={<ConsultingApp />} />
       </Routes>
     </Suspense>
   );

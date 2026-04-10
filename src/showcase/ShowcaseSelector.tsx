@@ -82,7 +82,7 @@ export default function ShowcaseSelector() {
                 <span className="showcase__sidebar-stat-key">Projects</span>
               </div>
               <div className="showcase__sidebar-stat">
-                <span className="showcase__sidebar-stat-val">17</span>
+                <span className="showcase__sidebar-stat-val">19</span>
                 <span className="showcase__sidebar-stat-key">Industries</span>
               </div>
               <div className="showcase__sidebar-stat">
