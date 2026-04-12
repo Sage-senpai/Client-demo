@@ -392,13 +392,9 @@ $xl: 1280px;
     margin-bottom: 3.5rem;
 
     h2 {
-      font-size: 2.4rem;
+      font-size: clamp(1.8rem, 4vw, 3rem);
       font-weight: 800;
       margin: 0 0 1rem;
-
-      @media (min-width: $md) {
-        font-size: 3rem;
-      }
     }
 
     p {
@@ -473,15 +469,11 @@ $xl: 1280px;
   }
 
   &__title {
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 5.5vw, 4rem);
     font-weight: 800;
     color: #fff;
     margin: 0 0 1.5rem;
     line-height: 1.15;
-
-    @media (min-width: $md) {
-      font-size: 4rem;
-    }
   }
 
   &__subtitle {
@@ -819,14 +811,10 @@ $xl: 1280px;
   text-align: center;
 
   h2 {
-    font-size: 2.2rem;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 800;
     color: #fff;
     margin: 0 0 1rem;
-
-    @media (min-width: $md) {
-      font-size: 2.8rem;
-    }
   }
 
   p {
@@ -886,14 +874,10 @@ $xl: 1280px;
   text-align: center;
 
   h1 {
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
     color: #fff;
     margin: 0 0 1rem;
-
-    @media (min-width: $md) {
-      font-size: 3.5rem;
-    }
   }
 
   p {
@@ -1139,14 +1123,10 @@ $xl: 1280px;
   text-align: center;
 
   h1 {
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
     color: #fff;
     margin: 0 0 1rem;
-
-    @media (min-width: $md) {
-      font-size: 3.5rem;
-    }
   }
 
   p {
@@ -1508,14 +1488,10 @@ $xl: 1280px;
   text-align: center;
 
   h1 {
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
     color: #fff;
     margin: 0 0 1rem;
-
-    @media (min-width: $md) {
-      font-size: 3.5rem;
-    }
   }
 
   p {
@@ -1629,14 +1605,10 @@ $xl: 1280px;
   text-align: center;
 
   h1 {
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
     color: #fff;
     margin: 0 0 1rem;
-
-    @media (min-width: $md) {
-      font-size: 3.5rem;
-    }
   }
 
   p {
