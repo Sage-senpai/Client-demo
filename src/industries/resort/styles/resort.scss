@@ -1723,7 +1723,10 @@ $font-body: 'Nunito Sans', -apple-system, sans-serif;
 // ─────────────────────────────────────────────
 .resort-footer {
   background: $dark;
+  color: rgba(255, 255, 255, 0.7);
   padding: 64px 0 28px;
+
+  & a { color: inherit; }
 
   &__grid {
     display: grid;

@@ -2260,7 +2260,10 @@ $lg: 1024px;
    ═══════════════════════════════════════ */
 .kash-footer {
   background: $dark;
+  color: rgba(255, 255, 255, 0.7);
   border-top: 1px solid rgba(255, 255, 255, 0.04);
+
+  & a { color: inherit; }
 
   &__inner {
     @include container;

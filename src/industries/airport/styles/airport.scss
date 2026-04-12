@@ -1373,7 +1373,10 @@ $xl: 1280px;
 // ─── Footer ───
 .airport-footer {
   background: var(--dark);
+  color: rgba(255, 255, 255, 0.7);
   padding: 4rem 0 2rem;
+
+  & a { color: inherit; }
 
   &__grid {
     display: grid;

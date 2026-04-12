@@ -1592,7 +1592,10 @@ $xl: 1280px;
 // ── Footer ──
 .tech-footer {
   background: $primary;
+  color: rgba(255, 255, 255, 0.6);
   padding: 4rem 1.5rem 2rem;
+
+  & a { color: inherit; }
 
   &__inner {
     max-width: 1200px;
