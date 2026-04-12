@@ -219,6 +219,7 @@ $lg: 1024px;
   width: 100%;
   z-index: 1000;
   background: transparent;
+  color: #fff;
   transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
   border-bottom: 1px solid transparent;
 
@@ -356,6 +357,8 @@ $lg: 1024px;
     text-align: center;
     margin-top: 1rem;
   }
+
+  & a { color: inherit; }
 }
 
 

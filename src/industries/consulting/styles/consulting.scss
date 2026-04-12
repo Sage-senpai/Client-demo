@@ -98,6 +98,7 @@ $xl: 1280px;
   width: 100%;
   z-index: 1000;
   padding: 1rem 0;
+  color: $surface;
   transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
 
   &--transparent {
@@ -195,6 +196,11 @@ $xl: 1280px;
       border-radius: 2px;
       transition: transform 0.3s;
     }
+  }
+
+  // Fix: override .vx-app a { color: inherit } specificity
+  & a {
+    color: inherit;
   }
 }
 
@@ -1571,6 +1577,16 @@ $xl: 1280px;
   .vx-services-preview,
   .vx-cases {
     background: $surface;
+
+    .vx-hero__btn-outline {
+      color: $primary;
+      border-color: $border-light;
+
+      &:hover {
+        border-color: $accent;
+        color: $accent;
+      }
+    }
   }
 }
 

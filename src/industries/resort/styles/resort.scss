@@ -159,6 +159,7 @@ $font-body: 'Nunito Sans', -apple-system, sans-serif;
   right: 0;
   z-index: 1000;
   padding: 20px 0;
+  color: #fff;
   transition: all 0.35s ease;
 
   &--scrolled {
@@ -292,6 +293,8 @@ $font-body: 'Nunito Sans', -apple-system, sans-serif;
       }
     }
   }
+
+  & a { color: inherit; }
 }
 
 // Mobile nav overlay

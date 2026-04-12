@@ -183,6 +183,7 @@ $xl: 1280px;
   right: 0;
   z-index: 1000;
   background: $dark;
+  color: $surface;
   transition: background 0.3s ease, box-shadow 0.3s ease;
 
   &--scrolled {
@@ -339,6 +340,8 @@ $xl: 1280px;
     gap: 2rem;
     z-index: 999;
   }
+
+  & a { color: inherit; }
 
   &__overlay-link {
     @include heading-font;

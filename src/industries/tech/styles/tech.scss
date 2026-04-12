@@ -70,6 +70,7 @@ $xl: 1280px;
   width: 100%;
   z-index: 1000;
   background: $primary;
+  color: $surface;
   padding: 0.85rem 0;
   transition: box-shadow 0.3s ease, padding 0.3s ease;
 
@@ -220,6 +221,8 @@ $xl: 1280px;
       margin-top: 0.5rem;
     }
   }
+
+  & a { color: inherit; }
 }
 
 // ── Hero ──
