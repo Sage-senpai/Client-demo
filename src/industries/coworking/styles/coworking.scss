@@ -185,8 +185,11 @@ $radius-pill: 999px;
   right: 0;
   z-index: 1000;
   background: $cream;
+  color: $dark;
   transition: all 0.35s ease;
   border-bottom: 1px solid transparent;
+
+  & a { color: inherit; }
 
   &--scrolled {
     background: rgba($cream, 0.97);
@@ -287,6 +290,9 @@ $radius-pill: 999px;
     }
   }
 
+  // Override nav-level `& a { color: inherit }` for CTA links
+  a.cw-nav__cta { color: #fff; }
+
   &__hamburger {
     display: none;
     width: 32px;
@@ -332,11 +338,15 @@ $radius-pill: 999px;
   bottom: 0;
   z-index: 999;
   background: $cream;
+  color: $dark;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 28px;
+
+  & a { color: inherit; }
+  a.cw-mobile-nav__cta { color: #fff; }
 
   &__link {
     font-family: $font-heading;
@@ -1018,7 +1028,7 @@ $radius-pill: 999px;
     text-align: center;
 
     h1 {
-      font-size: 3rem;
+      font-size: clamp(1.8rem, 5vw, 3rem);
       color: #fff;
       margin-bottom: 12px;
     }
@@ -1138,7 +1148,7 @@ $radius-pill: 999px;
     text-align: center;
 
     h1 {
-      font-size: 3rem;
+      font-size: clamp(1.8rem, 5vw, 3rem);
       color: #fff;
       margin-bottom: 12px;
     }
@@ -1452,7 +1462,7 @@ $radius-pill: 999px;
       text-align: center;
 
       h1 {
-        font-size: 3rem;
+        font-size: clamp(1.8rem, 5vw, 3rem);
         color: #fff;
         margin-bottom: 8px;
       }
@@ -1712,7 +1722,7 @@ $radius-pill: 999px;
     text-align: center;
 
     h1 {
-      font-size: 3rem;
+      font-size: clamp(1.8rem, 5vw, 3rem);
       color: #fff;
       margin-bottom: 12px;
     }
@@ -2467,7 +2477,7 @@ $radius-pill: 999px;
     text-align: center;
 
     h1 {
-      font-size: 3rem;
+      font-size: clamp(1.8rem, 5vw, 3rem);
       color: #fff;
       margin-bottom: 12px;
     }

@@ -39,9 +39,12 @@ $lg: 1024px;
 .fit-nav {
   position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
   background: rgba(13, 13, 13, 0.7);
+  color: $text;
   backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
   transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+  & a { color: inherit; }
+  a.fit-nav__cta { color: $primary; }
   &--scrolled {
     background: rgba(13, 13, 13, 0.95);
     border-bottom-color: $border;

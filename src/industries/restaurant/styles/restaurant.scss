@@ -253,15 +253,11 @@ $xl: 1280px;
 
   &__title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 6vw, 3rem);
+    font-size: clamp(2rem, 8vw, 4.5rem);
     color: #fff;
     margin-bottom: 1.2rem;
     line-height: 1.15;
     word-break: break-word;
-
-    @media (min-width: $md) {
-      font-size: 4.5rem;
-    }
   }
 
   &__subtitle {
@@ -665,7 +661,7 @@ $xl: 1280px;
   &__desc {
     font-size: 0.9rem;
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(255, 255, 255, 0.7);
   }
 
   &__col-title {
@@ -686,7 +682,7 @@ $xl: 1280px;
 
     a {
       font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.55);
+      color: rgba(255, 255, 255, 0.7);
       transition: color 0.2s;
 
       &:hover {
@@ -698,7 +694,7 @@ $xl: 1280px;
   &__info {
     font-size: 0.9rem;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(255, 255, 255, 0.7);
   }
 
   &__bottom {
@@ -707,7 +703,7 @@ $xl: 1280px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
   }
 }
 
